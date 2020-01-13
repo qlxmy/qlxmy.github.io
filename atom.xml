@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-13T09:02:17.237Z</updated>
+  <updated>2020-01-13T09:26:53.757Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,14 +21,14 @@
     <link href="http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/"/>
     <id>http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/</id>
     <published>2020-01-13T08:58:44.000Z</published>
-    <updated>2020-01-13T09:02:17.237Z</updated>
+    <updated>2020-01-13T09:26:53.757Z</updated>
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-Access的一些特性&quot;&gt;&lt;a href=&quot;#1-Access的一些特性&quot; class=&quot;headerlink&quot; title=&quot;1 Access的一些特性&quot;&gt;&lt;/a&gt;1 Access的一些特性&lt;/h3&gt;&lt;p&gt;Access的一些特性如下：&lt;br&gt;●Aceess通常搭配ASP网站；&lt;br&gt;●Access的数据库文件存放在网站目录下（通常是database或者db目录），后缀格式通常是mdb（也可能是asp或者asa）。我们可以想办法下载数据库文件。&lt;br&gt;●Access数据库没有用户名和密码，也没有数据库名。&lt;/p&gt;
-&lt;h3 id=&quot;2-Access手工注入&quot;&gt;&lt;a href=&quot;#2-Access手工注入&quot; class=&quot;headerlink&quot; title=&quot;2 Access手工注入&quot;&gt;&lt;/a&gt;2 Access手工注入&lt;/h3&gt;&lt;p&gt;Access注入的步骤通常如下：&lt;br&gt;（1）.判断注入点&lt;br&gt;（2）.猜解表名&lt;br&gt;（3）.猜解列名&lt;br&gt;（4）.猜解内容&lt;/p&gt;
-&lt;h4 id=&quot;2-1-判断注入点&quot;&gt;&lt;a href=&quot;#2-1-判断注入点&quot; class=&quot;headerlink&quot; title=&quot;2.1 判断注入点&quot;&gt;&lt;/a&gt;2.1 判断注入点&lt;/h4&gt;&lt;p&gt;判断注入点有很多种方法，要根据具体情况使用，所以这里也不详细解释。&lt;/p&gt;
-&lt;h4 id=&quot;2-2-猜解表名&quot;&gt;&lt;a href=&quot;#2-2-猜解表名&quot; class=&quot;headerlink&quot; title=&quot;2.2 猜解表名&quot;&gt;&lt;/a&gt;2.2 猜解表名&lt;/h4&gt;&lt;p&gt;Access的表名和列名都只能靠猜。表名的猜解使用exists函数，猜解语句如下：&lt;/p&gt;
+      &lt;h3 id=&quot;Access的一些特性&quot;&gt;&lt;a href=&quot;#Access的一些特性&quot; class=&quot;headerlink&quot; title=&quot;Access的一些特性&quot;&gt;&lt;/a&gt;Access的一些特性&lt;/h3&gt;&lt;p&gt;Access的一些特性如下：&lt;br&gt;●Aceess通常搭配ASP网站；&lt;br&gt;●Access的数据库文件存放在网站目录下（通常是database或者db目录），后缀格式通常是mdb（也可能是asp或者asa）。我们可以想办法下载数据库文件。&lt;br&gt;●Access数据库没有用户名和密码，也没有数据库名。&lt;/p&gt;
+&lt;h3 id=&quot;Access手工注入&quot;&gt;&lt;a href=&quot;#Access手工注入&quot; class=&quot;headerlink&quot; title=&quot;Access手工注入&quot;&gt;&lt;/a&gt;Access手工注入&lt;/h3&gt;&lt;p&gt;Access注入的步骤通常如下：&lt;br&gt;（1）.判断注入点&lt;br&gt;（2）.猜解表名&lt;br&gt;（3）.猜解列名&lt;br&gt;（4）.猜解内容&lt;/p&gt;
+&lt;h4 id=&quot;判断注入点&quot;&gt;&lt;a href=&quot;#判断注入点&quot; class=&quot;headerlink&quot; title=&quot;判断注入点&quot;&gt;&lt;/a&gt;判断注入点&lt;/h4&gt;&lt;p&gt;判断注入点有很多种方法，要根据具体情况使用，所以这里也不详细解释。&lt;/p&gt;
+&lt;h4 id=&quot;猜解表名&quot;&gt;&lt;a href=&quot;#猜解表名&quot; class=&quot;headerlink&quot; title=&quot;猜解表名&quot;&gt;&lt;/a&gt;猜解表名&lt;/h4&gt;&lt;p&gt;Access的表名和列名都只能靠猜。表名的猜解使用exists函数，猜解语句如下：&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;and exists(select * from 表名)&lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;如果返回正常，说明数据库中有这个表。&lt;br&gt;猜解是否有user表：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vanlgelocnslo0ks81eiccog/1.png&quot; alt=&quot;1.png-34.6kB&quot;&gt;&lt;br&gt;显示出错，说明没有user表。&lt;br&gt;猜解是否有admin表：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/lrve5pbr4w72pwac8njkahkp/2.png&quot; alt=&quot;2.png-291.2kB&quot;&gt;&lt;br&gt;很明显，有admin这个表。&lt;/p&gt;
