@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Old English Text MT:300,300italic,400,400italic,700,700italic|<h3>:300,300italic,400,400italic,700,700italic|Franklin Gothic Book:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="MySQL的一些特性MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；●MySQL有管理员用户名和密码，超级用户是root；●MySQL 5.0以上版本有information_sche">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL注入">
+<meta property="og:url" content="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/index.html">
+<meta property="og:site_name" content="xmy&#39;s house">
+<meta property="og:description" content="MySQL的一些特性MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；●MySQL有管理员用户名和密码，超级用户是root；●MySQL 5.0以上版本有information_sche">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/zx54edpsrllnvv0p8n7eyefh/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/jxfxsmvfosdbf70rtuyuq5yc/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4zgbd5p2qhnnnf179sldugdg/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/v162v35b8slhbtza0v8h2d2d/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/6ezasaqd49h23rzr85h2u134/8.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/tzhtvlgr1jedp3taih44ojhk/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/h6dgkopiddcmrukdsycx7wy0/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/s41pwliitle1skeeej7t1a62/11.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/fnugboqrpg7dnsua7vsjtv1u/12.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/v841j6cbzxyy7wr31zis6300/13.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/g7l4npl403khne8t2v9a6lpf/14.png">
+<meta property="article:published_time" content="2020-01-13T09:31:17.000Z">
+<meta property="article:modified_time" content="2020-01-13T10:33:43.357Z">
+<meta property="article:author" content="小蚂蚁的小窝">
+<meta property="article:tag" content="SQL注入">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>MySQL注入 | xmy's house</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="xmy's house" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmy's house</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Build by xmy</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MySQL注入
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-13 17:31:17 / 修改时间：18:33:43" itemprop="dateCreated datePublished" datetime="2020-01-13T17:31:17+08:00">2020-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="MySQL的一些特性"><a href="#MySQL的一些特性" class="headerlink" title="MySQL的一些特性"></a>MySQL的一些特性</h3><p>MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：<br>●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；<br>●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；<br>●MySQL有管理员用户名和密码，超级用户是root；<br>●MySQL 5.0以上版本有information_schema数据库，存储着所有数据库下的表名和列名信息。<br>MySQL可以使用和Access一样的猜解方法，但我们通常不会这样做，因为MySQL可以暴力破解数据库的很多信息。</p>
+<h3 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h3><p>判断注入点需要具体情况具体分析，这里不做介绍。在这里使用我自己写的一个页面来演示。注入点是：<a href="http://localhost/test/injection.php?id=1" target="_blank" rel="noopener">http://localhost/test/injection.php?id=1</a><br><img src="http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png" alt="1.png-17kB"> </p>
+<h3 id="判断当前数据表列数"><a href="#判断当前数据表列数" class="headerlink" title="判断当前数据表列数"></a>判断当前数据表列数</h3><p>使用order by语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>order by N</code></pre>
+
+<p>N是1，2，3…N，直到页面返回出错，那前面一个数字就是当前数据表的列数。<br>判断当前数据表的列数：<br><img src="http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png" alt="2.png-41.6kB"><br>当前数据表的列数是7。<br>我们也可以使用union语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>and 1=2 union select 1,2,3…</code></pre>
+
+<p>一直增加数字，返回的页面都是出错的，直到返回的页面看到一些数字为止：<br><img src="http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png" alt="3.png-17.1kB"><br>我们可以看到2，5，6这三个奇怪的数字，这三个数字接下来很有用处。</p>
+<h3 id="爆出MySQL的信息"><a href="#爆出MySQL的信息" class="headerlink" title="爆出MySQL的信息"></a>爆出MySQL的信息</h3><p>可以使用以下几个函数来爆出MySQL的一些信息：</p>
+<pre><code>
+database()                //爆出当前数据库名
+version()                    //爆出数据库版本
+user()                    //爆出当前用户
+@@version_compile_os    //爆出操作系统
+</code></pre>
+
+<p>使用的方法是将这些函数替换上面爆出来的一些数字，如下：<br><img src="http://static.zybuluo.com/xmy2017/zx54edpsrllnvv0p8n7eyefh/4.png" alt="4.png-21.2kB"><br>我们可以看到，当前数据库名是bookinfo，用户是root，这是超级用户，操作系统是Windows。</p>
+<h3 id="爆出当前数据库的所有表"><a href="#爆出当前数据库的所有表" class="headerlink" title="爆出当前数据库的所有表"></a>爆出当前数据库的所有表</h3><p>爆出表和字段会用到information_schema这个数据库，语句如下：</p>
+<pre><code>and 1=2 union select 1,group_concat(table_name),3,4,5,6,7 from information_schema.tables where table_schema=当前数据库名(编码)</code></pre>
+
+<p>这里使用了group_concat这个函数，表示返回所有的表；information_schema.tables记录了所有数据库下所有表的信息。需要注意的是table_schema代表数据库名，需要进行十六进制编码。<br>爆出bookinfo这个数据库的所有表：<br><img src="http://static.zybuluo.com/xmy2017/jxfxsmvfosdbf70rtuyuq5yc/5.png" alt="5.png-23.6kB"><br>可以看到显示出了4个表，分别是admin，lend，user和yx_books。</p>
+<h3 id="爆出列名信息"><a href="#爆出列名信息" class="headerlink" title="爆出列名信息"></a>爆出列名信息</h3><p>我们可以爆出某个数据库的的所有列名信息，语句如下：</p>
+<pre><code>and 1=2 union select 1, group_concat(column_name),3,4,5,6,7 from information_schema.columns where table_name=表名（编码）</code></pre>
+
+<p>information_shcema.columns记录了所有列名的信息，我们只需要指定表名就可以查询出具体某个表的列名信息，注意这里的表名需要进行十六进制编码。<br>爆出admin表的列名信息：<br><img src="http://static.zybuluo.com/xmy2017/4zgbd5p2qhnnnf179sldugdg/6.png" alt="6.png-25.4kB"></p>
+<h3 id="爆出数据库的内容"><a href="#爆出数据库的内容" class="headerlink" title="爆出数据库的内容"></a>爆出数据库的内容</h3><p>爆出admin表的username和password这两列的内容，构造语句如下：</p>
+<pre><code>and 1=2 union select 1,group_concat(username),3,4,group_concat(password),6,7 from admin</code></pre>
+
+<p>不使用group_concat()函数只能查询出第一条记录。<br>查询结果如下：<br> <img src="http://static.zybuluo.com/xmy2017/v162v35b8slhbtza0v8h2d2d/7.png" alt="7.png-25.8kB"></p>
+<h3 id="读取文件信息"><a href="#读取文件信息" class="headerlink" title="读取文件信息"></a>读取文件信息</h3><p>如果存在注入点，而且当前用户是root，MySQL的注入会变得好玩很多，比如我们可以试着读取某些文件的内容。读取文件用到load_file()函数，这个函数必须使用文件的绝对路径，所以在使用时我们必须想办法知道想要读取文件的路径。文件读取的语句如下：</p>
+<pre><code>and 1=2 union select 1,load_file(‘文件路径’),3,4,5,6,7</code></pre>
+
+<p>我们知道服务器的操作系统是Windows，试着读取hosts文件的内容：<br><img src="http://static.zybuluo.com/xmy2017/6ezasaqd49h23rzr85h2u134/8.png" alt="8.png-62.9kB"><br>读取成功！注意路径的分隔符用的是“\\”，也可以使用“/”。但是不要使用“\”，因为“\”在编程里面常用于转义，后面接一些字符会出现问题。</p>
+<h3 id="写入文件信息"><a href="#写入文件信息" class="headerlink" title="写入文件信息"></a>写入文件信息</h3><p>我们还可以直接写入一句话代码，如果目录有写入权限的话。写入文件使用的是into outfile函数。写入文件时也需要知道网站的绝对路径，否则写进去也无法成功访问。写入的语句如下：</p>
+<pre><code>and 1=2 union select 1,写入内容的十六进制编码，3,4,5,6,7 into outfile ‘写入文件路径’</code></pre>
+
+<p>我们在“D:\phpstudy\www\test”下写入php一句话木马：<br> <img src="http://static.zybuluo.com/xmy2017/tzhtvlgr1jedp3taih44ojhk/9.png" alt="9.png-32.2kB"><br>页面报错了，不过实际上写入成功了。注意我们对php一句话的内容进行了十六进制编码，这样可以绕过一些防护软件或者转义限制。hack.php的内容如下：<br> <img src="http://static.zybuluo.com/xmy2017/h6dgkopiddcmrukdsycx7wy0/10.png" alt="10.png-4kB"><br>然后就可以直接上菜刀了：<br><img src="http://static.zybuluo.com/xmy2017/s41pwliitle1skeeej7t1a62/11.png" alt="11.png-43.2kB"></p>
+<h3 id="魔术引号问题"><a href="#魔术引号问题" class="headerlink" title="魔术引号问题"></a>魔术引号问题</h3><p>root权限虽然可以使用load_file()和into outfile对文件进行读取和写入，但我们也会遇到无法读取和写入的情况。这些情况通常是由于对目录或者文件权限不够的原因引起的，但也有可能是魔术引号问题引起的。<br>魔术引号通常是指magic_quotes_gpc开关，当开关打开时，所有的GET、POST和COOKIE请求的数据中的单引号（’）、双引号（”）、反斜线（\）和NULL字符都会被自动加上一个反斜线进行转义，这和addslashes()函数的作用完全相同。魔术引号其实就是为了防止SQL注入而增加的功能。不过自PHP 5.4.0起这个功能就被移除了。<br>我们演示一下这个功能吧。在php.ini中开启魔术引号：<br><img src="http://static.zybuluo.com/xmy2017/fnugboqrpg7dnsua7vsjtv1u/12.png" alt="12.png-1.6kB"><br>我们读取一下hosts文件的内容：<br> <img src="http://static.zybuluo.com/xmy2017/v841j6cbzxyy7wr31zis6300/13.png" alt="13.png-55.3kB"><br>读不出来！为了方便，我把sql语句显示了出来。可以看到，前面加上了一个反斜线，导致路径出错了。<br>解决魔术引号问题的办法就是编码，将路径进行编码，注意编码的路径是不带单引号的：<br> <img src="http://static.zybuluo.com/xmy2017/g7l4npl403khne8t2v9a6lpf/14.png" alt="14.png-75.2kB"><br>顺利读取出来了。所以在进行读取和写入时，最好都进行编码。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/SQL%E6%B3%A8%E5%85%A5/" rel="tag"># SQL注入</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/13/Access%E6%B3%A8%E5%85%A5/" rel="prev" title="Access注入">
+      <i class="fa fa-chevron-left"></i> Access注入
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#MySQL的一些特性"><span class="nav-number">1.</span> <span class="nav-text">MySQL的一些特性</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断注入点"><span class="nav-number">2.</span> <span class="nav-text">判断注入点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#判断当前数据表列数"><span class="nav-number">3.</span> <span class="nav-text">判断当前数据表列数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆出MySQL的信息"><span class="nav-number">4.</span> <span class="nav-text">爆出MySQL的信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆出当前数据库的所有表"><span class="nav-number">5.</span> <span class="nav-text">爆出当前数据库的所有表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆出列名信息"><span class="nav-number">6.</span> <span class="nav-text">爆出列名信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#爆出数据库的内容"><span class="nav-number">7.</span> <span class="nav-text">爆出数据库的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#读取文件信息"><span class="nav-number">8.</span> <span class="nav-text">读取文件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#写入文件信息"><span class="nav-number">9.</span> <span class="nav-text">写入文件信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#魔术引号问题"><span class="nav-number">10.</span> <span class="nav-text">魔术引号问题</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小蚂蚁的小窝</p>
+  <div class="site-description" itemprop="description">我见青山多妩媚，料青山见我应如是</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">4</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qlxmy/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qlxmy&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.d4rksec.org/" title="http:&#x2F;&#x2F;www.d4rksec.org&#x2F;" rel="noopener" target="_blank">寻梦小生</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-01-13</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+ <span class="author" itemprop="copyrightHolder">小蚂蚁的小窝</span>
+</div>
+  <!--<div class="powered-by">footer.powered v4.2.0
+  </div>-->
+  <span class="post-meta-divider"></span>
+  <!--<div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

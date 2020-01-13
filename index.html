@@ -209,6 +209,91 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">MySQL注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-13 17:31:17 / 修改时间：18:33:43" itemprop="dateCreated datePublished" datetime="2020-01-13T17:31:17+08:00">2020-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="MySQL的一些特性"><a href="#MySQL的一些特性" class="headerlink" title="MySQL的一些特性"></a>MySQL的一些特性</h3><p>MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：<br>●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；<br>●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；<br>●MySQL有管理员用户名和密码，超级用户是root；<br>●MySQL 5.0以上版本有information_schema数据库，存储着所有数据库下的表名和列名信息。<br>MySQL可以使用和Access一样的猜解方法，但我们通常不会这样做，因为MySQL可以暴力破解数据库的很多信息。</p>
+<h3 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h3><p>判断注入点需要具体情况具体分析，这里不做介绍。在这里使用我自己写的一个页面来演示。注入点是：<a href="http://localhost/test/injection.php?id=1" target="_blank" rel="noopener">http://localhost/test/injection.php?id=1</a><br><img src="http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png" alt="1.png-17kB"> </p>
+<h3 id="判断当前数据表列数"><a href="#判断当前数据表列数" class="headerlink" title="判断当前数据表列数"></a>判断当前数据表列数</h3><p>使用order by语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>order by N</code></pre>
+
+<p>N是1，2，3…N，直到页面返回出错，那前面一个数字就是当前数据表的列数。<br>判断当前数据表的列数：<br><img src="http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png" alt="2.png-41.6kB"><br>当前数据表的列数是7。<br>我们也可以使用union语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>and 1=2 union select 1,2,3…</code></pre>
+
+<p>一直增加数字，返回的页面都是出错的，直到返回的页面看到一些数字为止：<br><img src="http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png" alt="3.png-17.1kB"><br>我们可以看到2，5，6这三个奇怪的数字，这三个数字接下来很有用处。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -554,7 +639,7 @@ SetHandler application/x-httpd-php
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

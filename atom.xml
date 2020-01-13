@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-13T09:26:53.757Z</updated>
+  <updated>2020-01-13T10:33:43.357Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>MySQL注入</title>
+    <link href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/</id>
+    <published>2020-01-13T09:31:17.000Z</published>
+    <updated>2020-01-13T10:33:43.357Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;MySQL的一些特性&quot;&gt;&lt;a href=&quot;#MySQL的一些特性&quot; class=&quot;headerlink&quot; title=&quot;MySQL的一些特性&quot;&gt;&lt;/a&gt;MySQL的一些特性&lt;/h3&gt;&lt;p&gt;MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：&lt;br&gt;●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；&lt;br&gt;●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；&lt;br&gt;●MySQL有管理员用户名和密码，超级用户是root；&lt;br&gt;●MySQL 5.0以上版本有information_schema数据库，存储着所有数据库下的表名和列名信息。&lt;br&gt;MySQL可以使用和Access一样的猜解方法，但我们通常不会这样做，因为MySQL可以暴力破解数据库的很多信息。&lt;/p&gt;
+&lt;h3 id=&quot;判断注入点&quot;&gt;&lt;a href=&quot;#判断注入点&quot; class=&quot;headerlink&quot; title=&quot;判断注入点&quot;&gt;&lt;/a&gt;判断注入点&lt;/h3&gt;&lt;p&gt;判断注入点需要具体情况具体分析，这里不做介绍。在这里使用我自己写的一个页面来演示。注入点是：&lt;a href=&quot;http://localhost/test/injection.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://localhost/test/injection.php?id=1&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png&quot; alt=&quot;1.png-17kB&quot;&gt; &lt;/p&gt;
+&lt;h3 id=&quot;判断当前数据表列数&quot;&gt;&lt;a href=&quot;#判断当前数据表列数&quot; class=&quot;headerlink&quot; title=&quot;判断当前数据表列数&quot;&gt;&lt;/a&gt;判断当前数据表列数&lt;/h3&gt;&lt;p&gt;使用order by语句来判断当前数据表的列数，语句如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;order by N&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;N是1，2，3…N，直到页面返回出错，那前面一个数字就是当前数据表的列数。&lt;br&gt;判断当前数据表的列数：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png&quot; alt=&quot;2.png-41.6kB&quot;&gt;&lt;br&gt;当前数据表的列数是7。&lt;br&gt;我们也可以使用union语句来判断当前数据表的列数，语句如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;and 1=2 union select 1,2,3…&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;一直增加数字，返回的页面都是出错的，直到返回的页面看到一些数字为止：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png&quot; alt=&quot;3.png-17.1kB&quot;&gt;&lt;br&gt;我们可以看到2，5，6这三个奇怪的数字，这三个数字接下来很有用处。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>Access注入</title>
