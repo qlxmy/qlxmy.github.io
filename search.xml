@@ -4,14 +4,19 @@
     <title>masscan扫描</title>
     <url>/2020/01/14/masscan%E6%89%AB%E6%8F%8F/</url>
     <content><![CDATA[<p>Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。</p>
-<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>在Kali系统中安装方法如下：<br><code>apt-get install git gcc make libcap-dev</code><br><code>git clone https://github.com/robertdavidgraham/masscan</code><br><code>cd masscan</code><br><code>make</code><br>测试是否安装成功：<br><code>make regress</code><br><img src="http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png" alt="1.png-61.8kB"></p>
-<h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h4 id="扫描指定网段指定端口"><a href="#扫描指定网段指定端口" class="headerlink" title="扫描指定网段指定端口"></a>扫描指定网段指定端口</h4><p><code>masscan -p445,3389 192.168.31.0/24</code><br><img src="http://static.zybuluo.com/xmy2017/s1nuviog6gygz2fisabiflsc/2.png" alt="2.png-112kB"></p>
-<h4 id="配置文件定制扫描"><a href="#配置文件定制扫描" class="headerlink" title="配置文件定制扫描"></a>配置文件定制扫描</h4><p><code>masscan -p445,3389 192.168.31.0/24 --echo &gt; masscan.conf</code><br><code>masscan -c masscan.conf --rate 1000</code><br><img src="http://static.zybuluo.com/xmy2017/gwr17ozcrp9xtdc1ktovqkrw/3.png" alt="3.png-129kB"></p>
+<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>在Kali系统中安装方法如下：</p>
+<pre><code>apt-get install git gcc make libcap-dev
+git clone https://github.com/robertdavidgraham/masscan
+cd masscan
+make</code></pre><p>测试是否安装成功：</p>
+<pre><code>make regress</code></pre><p><img src="http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png" alt="1.png-61.8kB"></p>
+<h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h4 id="扫描指定网段指定端口"><a href="#扫描指定网段指定端口" class="headerlink" title="扫描指定网段指定端口"></a>扫描指定网段指定端口</h4><pre><code>masscan -p445,3389 192.168.31.0/24</code></pre><p><img src="http://static.zybuluo.com/xmy2017/s1nuviog6gygz2fisabiflsc/2.png" alt="2.png-112kB"></p>
+<h4 id="配置文件定制扫描"><a href="#配置文件定制扫描" class="headerlink" title="配置文件定制扫描"></a>配置文件定制扫描</h4><pre><code>masscan -p445,3389 192.168.31.0/24 --echo &gt; masscan.conf
+masscan -c masscan.conf --rate 1000</code></pre><p><img src="http://static.zybuluo.com/xmy2017/gwr17ozcrp9xtdc1ktovqkrw/3.png" alt="3.png-129kB"></p>
 <p>配置文件内容如下：<br><img src="http://static.zybuluo.com/xmy2017/40fytygxl1b8aemnhuqxx1qe/4.png" alt="4.png-391kB"></p>
 <p>可以通过修改配置文件来定制扫描的参数。</p>
-<h4 id="banner获取"><a href="#banner获取" class="headerlink" title="banner获取"></a>banner获取</h4><p><code>masscan 192.168.31.0/24 -p80 –banners</code><br><img src="http://static.zybuluo.com/xmy2017/vjd1ofbby9f1b0y0rpbya9cs/5.png" alt="5.png-151.3kB"></p>
-<h4 id="结果输出到文件"><a href="#结果输出到文件" class="headerlink" title="结果输出到文件"></a>结果输出到文件</h4><p><code>masscan 192.168.31.0/24 -p80 -oX results.xml</code></p>
-]]></content>
+<h4 id="banner获取"><a href="#banner获取" class="headerlink" title="banner获取"></a>banner获取</h4><pre><code>masscan 192.168.31.0/24 -p80 –banners</code></pre><p><img src="http://static.zybuluo.com/xmy2017/vjd1ofbby9f1b0y0rpbya9cs/5.png" alt="5.png-151.3kB"></p>
+<h4 id="结果输出到文件"><a href="#结果输出到文件" class="headerlink" title="结果输出到文件"></a>结果输出到文件</h4><pre><code>masscan 192.168.31.0/24 -p80 -oX results.xml</code></pre>]]></content>
       <categories>
         <category>扫描工具</category>
       </categories>

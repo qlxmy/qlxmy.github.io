@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T03:46:31.417Z</updated>
+  <updated>2020-01-14T07:50:46.338Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -21,16 +21,18 @@
     <link href="http://yoursite.com/2020/01/14/masscan%E6%89%AB%E6%8F%8F/"/>
     <id>http://yoursite.com/2020/01/14/masscan%E6%89%AB%E6%8F%8F/</id>
     <published>2020-01-14T03:43:38.000Z</published>
-    <updated>2020-01-14T03:46:31.417Z</updated>
+    <updated>2020-01-14T07:50:46.338Z</updated>
     
     <summary type="html">
     
       &lt;p&gt;Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。&lt;/p&gt;
-&lt;h3 id=&quot;工具安装&quot;&gt;&lt;a href=&quot;#工具安装&quot; class=&quot;headerlink&quot; title=&quot;工具安装&quot;&gt;&lt;/a&gt;工具安装&lt;/h3&gt;&lt;p&gt;在Kali系统中安装方法如下：&lt;br&gt;&lt;code&gt;apt-get install git gcc make libcap-dev&lt;/code&gt;&lt;br&gt;&lt;code&gt;git clone https://github.com/robertdavidgraham/masscan&lt;/code&gt;&lt;br&gt;&lt;code&gt;cd masscan&lt;/code&gt;&lt;br&gt;&lt;code&gt;make&lt;/code&gt;&lt;br&gt;测试是否安装成功：&lt;br&gt;&lt;code&gt;make regress&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png&quot; alt=&quot;1.png-61.8kB&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;工具使用&quot;&gt;&lt;a href=&quot;#工具使用&quot; class=&quot;headerlink&quot; title=&quot;工具使用&quot;&gt;&lt;/a&gt;工具使用&lt;/h3&gt;&lt;h4 id=&quot;扫描指定网段指定端口&quot;&gt;&lt;a href=&quot;#扫描指定网段指定端口&quot; class=&quot;headerlink&quot; title=&quot;扫描指定网段指定端口&quot;&gt;&lt;/a&gt;扫描指定网段指定端口&lt;/h4&gt;&lt;p&gt;&lt;code&gt;masscan -p445,3389 192.168.31.0/24&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/s1nuviog6gygz2fisabiflsc/2.png&quot; alt=&quot;2.png-112kB&quot;&gt;&lt;/p&gt;
-&lt;h4 id=&quot;配置文件定制扫描&quot;&gt;&lt;a href=&quot;#配置文件定制扫描&quot; class=&quot;headerlink&quot; title=&quot;配置文件定制扫描&quot;&gt;&lt;/a&gt;配置文件定制扫描&lt;/h4&gt;&lt;p&gt;&lt;code&gt;masscan -p445,3389 192.168.31.0/24 --echo &amp;gt; masscan.conf&lt;/code&gt;&lt;br&gt;&lt;code&gt;masscan -c masscan.conf --rate 1000&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/gwr17ozcrp9xtdc1ktovqkrw/3.png&quot; alt=&quot;3.png-129kB&quot;&gt;&lt;/p&gt;
-&lt;p&gt;配置文件内容如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/40fytygxl1b8aemnhuqxx1qe/4.png&quot; alt=&quot;4.png-391kB&quot;&gt;&lt;/p&gt;
-&lt;p&gt;可以通过修改配置文件来定制扫描的参数。&lt;/p&gt;
+&lt;h3 id=&quot;工具安装&quot;&gt;&lt;a href=&quot;#工具安装&quot; class=&quot;headerlink&quot; title=&quot;工具安装&quot;&gt;&lt;/a&gt;工具安装&lt;/h3&gt;&lt;p&gt;在Kali系统中安装方法如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;apt-get install git gcc make libcap-dev
+git clone https://github.com/robertdavidgraham/masscan
+cd masscan
+make&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;测试是否安装成功：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;make regress&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png&quot; alt=&quot;1.png-61.8kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;工具使用&quot;&gt;&lt;a href=&quot;#工具使用&quot; class=&quot;headerlink&quot; title=&quot;工具使用&quot;&gt;&lt;/a&gt;工具使用&lt;/h3&gt;&lt;h4 id=&quot;扫描指定网段指定端口&quot;&gt;&lt;a href=&quot;#扫描指定网段指定端口&quot; class=&quot;headerlink&quot; title=&quot;扫描指定网段指定端口&quot;&gt;&lt;/a&gt;扫描指定网段指定端口&lt;/h4&gt;&lt;pre&gt;&lt;code&gt;masscan -p445,3389 192.168.31.0/24&lt;/code&gt;&lt;/pre&gt;
     
     </summary>
     
