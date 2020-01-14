@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Old English Text MT:300,300italic,400,400italic,700,700italic|<h3>:300,300italic,400,400italic,700,700italic|Franklin Gothic Book:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。 Drozer下载Drozer的下载地址是https:&#x2F;&#x2F;labs.mwrinfosecurity.com&#x2F;tools&#x2F;drozer&#x2F;，需要下载PC端和手机agent.apk，我下载的是Windows版本： Drozer安装在PC上安装Drozer：   在手机或者Android模拟器上安装Drozer，我这">
+<meta property="og:type" content="article">
+<meta property="og:title" content="drozer安装和使用">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="xmy&#39;s house">
+<meta property="og:description" content="Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。 Drozer下载Drozer的下载地址是https:&#x2F;&#x2F;labs.mwrinfosecurity.com&#x2F;tools&#x2F;drozer&#x2F;，需要下载PC端和手机agent.apk，我下载的是Windows版本： Drozer安装在PC上安装Drozer：   在手机或者Android模拟器上安装Drozer，我这">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/z3cbsnx1x7n5qxaho8qlx8ke/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/lhx5kyccsu9iragsud5laqj6/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/i2hrtnyc6qiy2ou6q9eep3o9/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rsz8f55iktf34ar9gi2w9acz/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/b33hwxccnd8yda1ofcr3xcsy/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/69l70t5rlpmacjdpuddk04mu/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/5w8xyyw7x3yu09jnio7384p8/8.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/whj372xtvrirj5pv6wjgu58r/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/na4typ7ncxmjbtstut3v2nvh/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rmodqvbw8v1ormucp0sdfjah/11.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/gzew0hl6qy3yxts62onoh2jv/12.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/svy9pidjgnzzcx4fuomnnhqi/13.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/r2ww84g45hnlxnlja6g7c1ig/14.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/58595qvnz1k6oept7xb8tz5c/15.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/euyo7nd3iywpq0twznnzo527/16.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/pdhrchsd39790inp1z0hopam/17.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/i95gsh87h22yn066xi762mut/18.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/gaepyiohjib62siyllckamiw/19.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/kn15m12pqmby4kkrw7nv1gtc/20.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/6m4wo62yjavr7geka6248hm7/21.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/mik7rjqnoz3fpvm16sxn10wm/22.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/melxo4t5arktyloadfod2wy0/23.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/dvt54ucbiasd5kiajf2u56v2/24.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/m461567okhc4twsde2vtvsdj/25.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/0jc75pimrz6njgxyhw0mozhg/26.png">
+<meta property="article:published_time" content="2020-01-14T08:57:21.000Z">
+<meta property="article:modified_time" content="2020-01-14T09:03:31.628Z">
+<meta property="article:author" content="小蚂蚁的小窝">
+<meta property="article:tag" content="移动安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>drozer安装和使用 | xmy's house</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="xmy's house" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmy's house</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Build by xmy</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          drozer安装和使用
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 16:57:21 / 修改时间：17:03:31" itemprop="dateCreated datePublished" datetime="2020-01-14T16:57:21+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。</p>
+<h3 id="Drozer下载"><a href="#Drozer下载" class="headerlink" title="Drozer下载"></a>Drozer下载</h3><p>Drozer的下载地址是<a href="https://labs.mwrinfosecurity.com/tools/drozer/" target="_blank" rel="noopener">https://labs.mwrinfosecurity.com/tools/drozer/</a>，需要下载PC端和手机agent.apk，我下载的是Windows版本：<br><img src="http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png" alt="1.png-114.3kB"></p>
+<h3 id="Drozer安装"><a href="#Drozer安装" class="headerlink" title="Drozer安装"></a>Drozer安装</h3><p>在PC上安装Drozer：<br><img src="http://static.zybuluo.com/xmy2017/z3cbsnx1x7n5qxaho8qlx8ke/2.png" alt="2.png-42.6kB"><br>   在手机或者Android模拟器上安装Drozer，我这里在夜神Android模拟器上安装：<br><img src="http://static.zybuluo.com/xmy2017/lhx5kyccsu9iragsud5laqj6/3.png" alt="3.png-921.7kB"></p>
+<h3 id="Drozer连接"><a href="#Drozer连接" class="headerlink" title="Drozer连接"></a>Drozer连接</h3><p>在Windows命令提示符窗口中输入“Drozer”查看使用方法：<br><img src="http://static.zybuluo.com/xmy2017/i2hrtnyc6qiy2ou6q9eep3o9/4.png" alt="4.png-24.2kB"></p>
+<p>console            运行Drozer命令行窗口<br>module　　　管理Drozer组件<br>server    　　　运行Drozer服务器<br>ssl　　　　　　管理Drozer SSL密钥<br>exploit            　生成可以在Drozer中使用的攻击代码<br>agent            　生成用户定义的Drozer agent<br>payload            生成可以在Drozer中使用的Payload</p>
+<p>在模拟器中运行Drozer：<br><img src="http://static.zybuluo.com/xmy2017/rsz8f55iktf34ar9gi2w9acz/5.png" alt="5.png-47.3kB"><br>可以看到端口为31415，单击“Embedded Server”，可以看到运行状态：<br><img src="http://static.zybuluo.com/xmy2017/b33hwxccnd8yda1ofcr3xcsy/6.png" alt="6.png-91.1kB"><br>首先PC端要连接Android模拟器：<br> <img src="http://static.zybuluo.com/xmy2017/69l70t5rlpmacjdpuddk04mu/7.png" alt="7.png-5.4kB"><br>62001是夜神模拟器的端口，其他的模拟器请替换成相应的端口。<br>接着连接Drozer端口：</p>
+<p>adb forward tcp:31415 tcp:31415</p>
+<p><img src="http://static.zybuluo.com/xmy2017/5w8xyyw7x3yu09jnio7384p8/8.png" alt="8.png-4.5kB"><br>最后运行Drozer命令行窗口：</p>
+<p>drozer console connect</p>
+<p><img src="http://static.zybuluo.com/xmy2017/whj372xtvrirj5pv6wjgu58r/9.png" alt="9.png-30.2kB"><br>出现如上界面说明运行成功了。</p>
+<h3 id="Drozer使用"><a href="#Drozer使用" class="headerlink" title="Drozer使用"></a>Drozer使用</h3><h4 id="Drozer的命令"><a href="#Drozer的命令" class="headerlink" title="Drozer的命令"></a>Drozer的命令</h4><p>输入list命令可以列出所有能在Drozer中使用的命令：<br><img src="http://static.zybuluo.com/xmy2017/na4typ7ncxmjbtstut3v2nvh/10.png" alt="10.png-44.3kB"><br>下面对这些命令做个简单的介绍：</p>
+<p>app.activity.forintent                查询可处理Intent的Activity<br>app.activity.info                    获取可导出的Activity信息<br>app.activity.start                    启动Activity<br>app.broadcast.info                    获取BroadcastReceiver信息<br>app.broadcast.send                向正在使用的Intent发送广播<br>app.broadcast.sniff                注册一个可以监听特定意图的广播接收器<br>app.package.attacksurface            获取Package的攻击面<br>app.package.backup                查看Package是否允许备份功能<br>app.package.debuggable            查找可调试的Package<br>app.package.info                    获取Package信息<br>app.package.launchintent            访问Package的Intent<br>app.package.list                    列出设备上已安装的Package<br>app.package.manifest                获取Package的AndroidManifest.xml<br>app.package.native                查找嵌入在应用程序中的本地库<br>app.package.shareduid                查找Package的共享UID<br>app.provider.columns                查看内容提供器列表<br>app.provider.delete                删除内容提供器<br>app.provider.download                从支持文件的内容提供器处下载文件<br>app.provider.finduri                查询Package中浏览的内容URI<br>app.provider.info                    获取可导出的内容提供器信息<br>app.provider.insert                插入内容提供器<br>app.provider.query                查询内容提供器<br>app.provider.read                    读取支持文件的内容提供器<br>app.provider.update                升级内容提供器中的记录<br>app.service.info                    查看可导出的服务<br>app.service.send                    给服务发送信息，并显示响应结果<br>app.service.start                    启用服务<br>app.service.stop                    停止服务<br>auxiliary.webcontentresolver        启用内容提供器的Web服务界面<br>exploit.jdwp.check                    打开@jdwp-control查看app连接情况<br>exploit.pilfer.general.apnprovider    读取APN内容提供器<br>exploit.pilfer.general.settingsprovider    读取内容提供器设置<br>information.datetime                显示日期和时间信息<br>information.deviceinfo                显示设备详细信息<br>information.permissions            显示所有Package的权限<br>scanner.activity.browsable            获取所有可以从Web浏览器调用的组件<br>scanner.misc.native                扫描Package中的本地组件<br>scanner.misc.readablefiles            扫描指定文件夹下的可读文件<br>scanner.misc.secretcodes            扫描可用于拨号的安全代码<br>scanner.misc.sflagbinaries        扫描系统目录下的suid/sgid二进制文件<br>scanner.misc.writablefiles            扫描指定文件夹下的可写文件<br>scanner.provider.finduris            扫描可查询的内容提供器<br>scanner.provider.injection            测试存在SQL注入漏洞的内容提供器<br>scanner.provider.sqltables            扫描可通过SQL注入漏洞访问的表<br>sannner.provier.traversal            测试存在目录遍历漏洞的内容提供器<br>shell.exec                        执行单条Linux shell<br>shell.send                        向远程监听者发送ASH shell<br>shell.start                        输入交互式的Linux shell<br>tools.file.download                下载文件<br>tools.file.md5sum                    获取文件的md5校验和<br>tools.file.size                        获取文件大小<br>tools.file.upload                    上传文件<br>tools.setup.busybox                安装Busybox<br>tools.setup.minimalsu                准备在设备中安装minimal-su程序</p>
+<h4 id="Drozer的实例"><a href="#Drozer的实例" class="headerlink" title="Drozer的实例"></a>Drozer的实例</h4><p>以Drozer提供的sieve为例进行演示，sieve是一个密码管理器，用于展示Android应用的一些常用漏洞。sieve的下载地址为<a href="https://labs.mwrinfosecurity.com/tools/drozer/" target="_blank" rel="noopener">https://labs.mwrinfosecurity.com/tools/drozer/</a>，如下：<br><img src="http://static.zybuluo.com/xmy2017/rmodqvbw8v1ormucp0sdfjah/11.png" alt="11.png-60.6kB"><br>安装sieve.apk后，第一次启动需要进行密码设置和PIN码设置：<br><img src="http://static.zybuluo.com/xmy2017/gzew0hl6qy3yxts62onoh2jv/12.png" alt="12.png-133.4kB"><br>登录后添加一些密码进行管理：<br><img src="http://static.zybuluo.com/xmy2017/svy9pidjgnzzcx4fuomnnhqi/13.png" alt="13.png-121.7kB"><br>Settings的功能如下：<br><img src="http://static.zybuluo.com/xmy2017/r2ww84g45hnlxnlja6g7c1ig/14.png" alt="14.png-121.1kB"><br>下面使用Drozer对sieve进行检测。<br>查看sieve的包名：<br><img src="http://static.zybuluo.com/xmy2017/58595qvnz1k6oept7xb8tz5c/15.png" alt="15.png-5.7kB"><br>查看sieve的包信息：<br><img src="http://static.zybuluo.com/xmy2017/euyo7nd3iywpq0twznnzo527/16.png" alt="16.png-50.1kB"><br>查看sieve是否允许被调试：<br><img src="http://static.zybuluo.com/xmy2017/pdhrchsd39790inp1z0hopam/17.png" alt="17.png-20.4kB"><br>获取sieve的攻击面：<br><img src="http://static.zybuluo.com/xmy2017/i95gsh87h22yn066xi762mut/18.png" alt="18.png-16.4kB"><br>最后一行同样显示了sieve是允许调试的。<br>获取sieve可导出的Activity信息：<br><img src="http://static.zybuluo.com/xmy2017/gaepyiohjib62siyllckamiw/19.png" alt="19.png-21.2kB"><br>启动最后一个Activity（com.mwr.example.sieve.PWList）:<br><img src="http://static.zybuluo.com/xmy2017/kn15m12pqmby4kkrw7nv1gtc/20.png" alt="20.png-7.9kB"><br>启动效果如下：<br><img src="http://static.zybuluo.com/xmy2017/6m4wo62yjavr7geka6248hm7/21.png" alt="21.png-55.4kB"><br>我们没有通过登录界面输入密码和PIN码便直接登录了APP，相当于绕过了登录功能。<br>获取sieve可导出的Content Provider信息：<br><img src="http://static.zybuluo.com/xmy2017/mik7rjqnoz3fpvm16sxn10wm/22.png" alt="22.png-57.6kB"><br>获取可以直接查询的Content Provider信息：<br><img src="http://static.zybuluo.com/xmy2017/melxo4t5arktyloadfod2wy0/23.png" alt="23.png-69.7kB"><br>标红部分都是可以直接进行数据操作的。<br>查询URI的数据：<br><img src="http://static.zybuluo.com/xmy2017/dvt54ucbiasd5kiajf2u56v2/24.png" alt="24.png-29.8kB"><br>第一个URI保存的是登录密码和PIN码，第二个URI保存的是被管理的账号信息。<br>与上面的操作类似，检测sieve是否存在SQL注入漏洞：<br><img src="http://static.zybuluo.com/xmy2017/m461567okhc4twsde2vtvsdj/25.png" alt="25.png-64.5kB"><br>检测sieve是否存在目录遍历漏洞：<br><img src="http://static.zybuluo.com/xmy2017/0jc75pimrz6njgxyhw0mozhg/26.png" alt="26.png-46.9kB"></p>
+<p>参考：<br><a href="http://www.droidsec.cn/使用drozer对android应用进行安全评估/" target="_blank" rel="noopener">http://www.droidsec.cn/使用drozer对android应用进行安全评估/</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag"># 移动安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/" rel="prev" title="deepin安装Android模拟器Genymotion">
+      <i class="fa fa-chevron-left"></i> deepin安装Android模拟器Genymotion
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" rel="next" title="Santoku安装部署">
+      Santoku安装部署 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Drozer下载"><span class="nav-number">1.</span> <span class="nav-text">Drozer下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drozer安装"><span class="nav-number">2.</span> <span class="nav-text">Drozer安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drozer连接"><span class="nav-number">3.</span> <span class="nav-text">Drozer连接</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Drozer使用"><span class="nav-number">4.</span> <span class="nav-text">Drozer使用</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Drozer的命令"><span class="nav-number">4.1.</span> <span class="nav-text">Drozer的命令</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Drozer的实例"><span class="nav-number">4.2.</span> <span class="nav-text">Drozer的实例</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小蚂蚁的小窝</p>
+  <div class="site-description" itemprop="description">我见青山多妩媚，料青山见我应如是</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qlxmy/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qlxmy&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.d4rksec.org/" title="http:&#x2F;&#x2F;www.d4rksec.org&#x2F;" rel="noopener" target="_blank">寻梦小生</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-01-14</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+ <span class="author" itemprop="copyrightHolder">小蚂蚁的小窝</span>
+</div>
+  <!--<div class="powered-by">footer.powered v4.2.0
+  </div>-->
+  <span class="post-meta-divider"></span>
+  <!--<div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

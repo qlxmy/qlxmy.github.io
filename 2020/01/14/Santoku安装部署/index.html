@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Old English Text MT:300,300italic,400,400italic,700,700italic|<h3>:300,300italic,400,400italic,700,700italic|Franklin Gothic Book:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。Santoku的官方下载地址是https:&#x2F;&#x2F;santoku-linux.com&#x2F;，当前版本是0.5。 安装Santoku下面演示如何使用VMware安装Santoku">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Santoku安装部署">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:site_name" content="xmy&#39;s house">
+<meta property="og:description" content="如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。Santoku的官方下载地址是https:&#x2F;&#x2F;santoku-linux.com&#x2F;，当前版本是0.5。 安装Santoku下面演示如何使用VMware安装Santoku">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/9ltfbyrywd475r97nqw6kmfm/47.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/m5ua4b29oyom0r6c7sotfcgu/48.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rk8kcgt5pzuwgvwbn6i72xts/49.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/yq6nchgvkln8cn7tre13w2w2/50.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/aunluzt9l9n5t5tuyj7yi6nt/51.png">
+<meta property="article:published_time" content="2020-01-14T09:31:21.000Z">
+<meta property="article:modified_time" content="2020-01-14T09:34:10.515Z">
+<meta property="article:author" content="小蚂蚁的小窝">
+<meta property="article:tag" content="移动安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Santoku安装部署 | xmy's house</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="xmy's house" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmy's house</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Build by xmy</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Santoku安装部署
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 17:31:21 / 修改时间：17:34:10" itemprop="dateCreated datePublished" datetime="2020-01-14T17:31:21+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。<br>Santoku的官方下载地址是<a href="https://santoku-linux.com/" target="_blank" rel="noopener">https://santoku-linux.com/</a>，当前版本是0.5。</p>
+<h3 id="安装Santoku"><a href="#安装Santoku" class="headerlink" title="安装Santoku"></a>安装Santoku</h3><p>下面演示如何使用VMware安装Santoku。基本上是和Ubuntu一样的安装方法，创建虚拟机后，启动界面如下所示：<br><img src="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png" alt="31.png-413.6kB"><br>选择“live – boot the Live System”进入Live CD模式，这种模式下不需要安装就可以正常使用系统，缺点是无法保存文件。如果需要安装的话，可以在这个界面下选择“install – start the installer directly”，当然也可以在Live CD模式下选择“Install Santoku 14.04”：<br><img src="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png" alt="32.png-615.8kB"><br>启动安装程序，选择“中文（简体）”：<br><img src="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png" alt="33.png-84.1kB"><br>  选择硬盘分区方式，如果你对Linux分区不熟悉，就选择第一项“清除整个磁盘并安装Santoku”，我通常喜欢自己定义分区：<br><img src="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png" alt="34.png-115.8kB"><br>创建用户和密码：<br><img src="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png" alt="35.png-77.2kB"><br>之后便进入了安装阶段，喝杯茶坐等安装完成吧：<br><img src="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png" alt="36.png-602.7kB"><br>安装完成后重启Santoku，启动完成后如下：<br><img src="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png" alt="37.png-574.5kB"></p>
+<h3 id="修改更新源"><a href="#修改更新源" class="headerlink" title="修改更新源"></a>修改更新源</h3><p>我们修改更新源，将它指向aliyun的源，这样可以极大地提高更新速度。打开菜单，选择“Preferences”-“Sofeware &amp; Updates”：<br><img src="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png" alt="38.png-492.8kB"><br>在“Download from”中选择Other，找到“China”下的“mirrors.aliyun.com”:<br><img src="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png" alt="39.png-314.1kB"><br>关闭时选择”Reload”更新缓存：<br><img src="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png" alt="40.png-320.8kB"> </p>
+<h3 id="更改语言为中文"><a href="#更改语言为中文" class="headerlink" title="更改语言为中文"></a>更改语言为中文</h3><p>选择“Preferences”-“Language Support”：<br><img src="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png" alt="41.png-493.2kB"><br>选择“Install”：<br><img src="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png" alt="42.png-340.8kB"><br>安装完成后将“汉语”拖动到语言选项的最上方：<br><img src="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png" alt="43.png-373.8kB"><br>重启系统之后就变成中文了：<br><img src="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png" alt="44.png-493.2kB"></p>
+<h3 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h3><p>选择“系统工具”-“软件更新器”，或者在终端下使用“sudo apt-get upgrade”指令更新系统：<br><img src="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png" alt="45.png-511.6kB"><br><img src="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png" alt="46.png-357.7kB"></p>
+<h3 id="安装VMware-Tools"><a href="#安装VMware-Tools" class="headerlink" title="安装VMware Tools"></a>安装VMware Tools</h3><p>选择“Player”-“管理”-“安装VMware Tools”：<br><img src="http://static.zybuluo.com/xmy2017/9ltfbyrywd475r97nqw6kmfm/47.png" alt="47.png-251.7kB"><br>将文件复制到home目录下，并解压它：<br><img src="http://static.zybuluo.com/xmy2017/m5ua4b29oyom0r6c7sotfcgu/48.png" alt="48.png-84.3kB"><br><img src="http://static.zybuluo.com/xmy2017/rk8kcgt5pzuwgvwbn6i72xts/49.png" alt="49.png-92.1kB"><br>在终端中运行vmware-install.pl文件：<br><img src="http://static.zybuluo.com/xmy2017/yq6nchgvkln8cn7tre13w2w2/50.png" alt="50.png-125.6kB"><br>安装完成后如图所示：<br><img src="http://static.zybuluo.com/xmy2017/aunluzt9l9n5t5tuyj7yi6nt/51.png" alt="51.png-239.2kB"><br>重启即可Enjoy了！</p>
+<p>后面将会介绍AndroGuard工具包的一些工具教程。</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag"># 移动安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" rel="prev" title="drozer安装和使用">
+      <i class="fa fa-chevron-left"></i> drozer安装和使用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/" rel="next" title="Ubuntu安装JDK和Tomcat">
+      Ubuntu安装JDK和Tomcat <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Santoku"><span class="nav-number">1.</span> <span class="nav-text">安装Santoku</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改更新源"><span class="nav-number">2.</span> <span class="nav-text">修改更新源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改语言为中文"><span class="nav-number">3.</span> <span class="nav-text">更改语言为中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统更新"><span class="nav-number">4.</span> <span class="nav-text">系统更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装VMware-Tools"><span class="nav-number">5.</span> <span class="nav-text">安装VMware Tools</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小蚂蚁的小窝</p>
+  <div class="site-description" itemprop="description">我见青山多妩媚，料青山见我应如是</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qlxmy/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qlxmy&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.d4rksec.org/" title="http:&#x2F;&#x2F;www.d4rksec.org&#x2F;" rel="noopener" target="_blank">寻梦小生</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-01-14</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+ <span class="author" itemprop="copyrightHolder">小蚂蚁的小窝</span>
+</div>
+  <!--<div class="powered-by">footer.powered v4.2.0
+  </div>-->
+  <span class="post-meta-divider"></span>
+  <!--<div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

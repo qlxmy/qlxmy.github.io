@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Old English Text MT:300,300italic,400,400italic,700,700italic|<h3>:300,300italic,400,400italic,700,700italic|Franklin Gothic Book:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。下面介绍如何在deepin中安装和使用Genymotion。 Genymotion下载Genymotion的中文官网是http:&#x2F;&#x2F;www.genymotion.net&#x2F;，这个网站除了介绍Genymotion的特性之外">
+<meta property="og:type" content="article">
+<meta property="og:title" content="deepin安装Android模拟器Genymotion">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/index.html">
+<meta property="og:site_name" content="xmy&#39;s house">
+<meta property="og:description" content="Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。下面介绍如何在deepin中安装和使用Genymotion。 Genymotion下载Genymotion的中文官网是http:&#x2F;&#x2F;www.genymotion.net&#x2F;，这个网站除了介绍Genymotion的特性之外">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/1rdk3hga7scgl8hr043ce28b/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/t2dbrr05xvsnv126u2fcfgy4/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/b8294uqpt03j5qjm848e1luk/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/x3c0zmpgy1faj0kxpcedpgj7/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/s17v44bhwmvtubuzfjvwkxfq/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/xdlrsbmi0ssblbk9g29apy4f/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/scrxiku0i5gm21nbnhbh48tl/8.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/j77jwttil35cgomr9e2wzc0s/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/psqbtskjbuvta90p9y7926nn/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rxhvlthgl2v52481ie5pzec9/11.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/3b0srk8k6etl26te4z1mtzuw/12.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/fe78asqbdcnvp7anhlv81pw2/13.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cvdyfje6aobdpg120rxc0r51/14.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/9bkzmgqx1elu7p4wp3e36jwf/15.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/km1rqmn6ks3z23sr03n1pjtq/16.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/d8w0ukye0r1k9xfjbtxxzocf/17.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/u66ec98hkbqcqpsnk8wtttuo/18.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/31rx54fxhlca4zr2pf3s004n/19.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/7zi9d97oxtb4oc2215obgao2/20.png">
+<meta property="article:published_time" content="2020-01-14T08:51:03.000Z">
+<meta property="article:modified_time" content="2020-01-14T08:56:41.116Z">
+<meta property="article:author" content="小蚂蚁的小窝">
+<meta property="article:tag" content="移动安全">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>deepin安装Android模拟器Genymotion | xmy's house</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="xmy's house" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmy's house</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Build by xmy</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          deepin安装Android模拟器Genymotion
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 16:51:03 / 修改时间：16:56:41" itemprop="dateCreated datePublished" datetime="2020-01-14T16:51:03+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" itemprop="url" rel="index">
+                    <span itemprop="name">移动安全</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。<br>下面介绍如何在deepin中安装和使用Genymotion。</p>
+<h3 id="Genymotion下载"><a href="#Genymotion下载" class="headerlink" title="Genymotion下载"></a>Genymotion下载</h3><p>Genymotion的中文官网是<a href="http://www.genymotion.net/" target="_blank" rel="noopener">http://www.genymotion.net/</a>，这个网站除了介绍Genymotion的特性之外并没有什么用，我们首先要注册账号：<br><img src="http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png" alt="1.png-161.3kB"><br>正式的官网是<a href="https://www.genymotion.com/" target="_blank" rel="noopener">https://www.genymotion.com/</a>：<br><img src="http://static.zybuluo.com/xmy2017/1rdk3hga7scgl8hr043ce28b/2.png" alt="2.png-66.3kB">   注册成功后登录官网，下载的页面是：<a href="https://www.genymotion.com/download/" target="_blank" rel="noopener">https://www.genymotion.com/download/</a><br> <img src="http://static.zybuluo.com/xmy2017/t2dbrr05xvsnv126u2fcfgy4/3.png" alt="3.png-88.7kB"><br>除了在官网下载，还可以在deepin的深度商店上下载安装，但是在官网注册的步骤不能省略，后面配置需要登录。打开深度商店，找到“编程开发”，如下：<br><img src="http://static.zybuluo.com/xmy2017/b8294uqpt03j5qjm848e1luk/4.png" alt="4.png-118.7kB"></p>
+<h3 id="Genymotion安装"><a href="#Genymotion安装" class="headerlink" title="Genymotion安装"></a>Genymotion安装</h3><p>安装如下：</p>
+<p>chmod 755 genymotion-2.11.0-linux_x64.bin<br>sudo mv genymotion-2.11.0-linux_x64.bin /opt<br>cd /opt<br>sudo ./genymotion-2.11.0-linux_x64.bin</p>
+<p><img src="http://static.zybuluo.com/xmy2017/x3c0zmpgy1faj0kxpcedpgj7/5.png" alt="5.png-85.2kB"></p>
+<h3 id="配置Genymotion"><a href="#配置Genymotion" class="headerlink" title="配置Genymotion"></a>配置Genymotion</h3><p>启动Genymotin如下：</p>
+<p>cd genymobile/genymotion/<br>./genymotion</p>
+<p><img src="http://static.zybuluo.com/xmy2017/s17v44bhwmvtubuzfjvwkxfq/6.png" alt="6.png-26.1kB"><br>启动后界面如下：<br> <img src="http://static.zybuluo.com/xmy2017/xdlrsbmi0ssblbk9g29apy4f/7.png" alt="7.png-65.8kB"><br>选择“Personal Use”即可打开主界面：<br> <img src="http://static.zybuluo.com/xmy2017/scrxiku0i5gm21nbnhbh48tl/8.png" alt="8.png-24.3kB"><br>点击Add按钮添加虚拟机，要求登录：<br> <img src="http://static.zybuluo.com/xmy2017/j77jwttil35cgomr9e2wzc0s/9.png" alt="9.png-36.1kB"><br>登录后即可选择虚拟机版本，选择你需要的版本进行下载和安装：<br><img src="http://static.zybuluo.com/xmy2017/psqbtskjbuvta90p9y7926nn/10.png" alt="10.png-50.8kB"><br><img src="http://static.zybuluo.com/xmy2017/rxhvlthgl2v52481ie5pzec9/11.png" alt="11.png-86.4kB"><br>安装完成后点击Start启动虚拟机：<br> <img src="http://static.zybuluo.com/xmy2017/3b0srk8k6etl26te4z1mtzuw/12.png" alt="12.png-212.4kB"></p>
+<h3 id="安装APP"><a href="#安装APP" class="headerlink" title="安装APP"></a>安装APP</h3><p>Genymotion是基于x86架构的，而Android APP是基于ARM架构的，两者之间并不兼容，所以如果直接安装APP会报错：<br> <img src="http://static.zybuluo.com/xmy2017/fe78asqbdcnvp7anhlv81pw2/13.png" alt="13.png-209kB"><br>我们需要安装ARM的转换插件Genymotion-ARM-Translation。Genymotion-ARM-Translation可以直接百度下载，下载完成后直接拖放到虚拟机进行安装：<br><img src="http://static.zybuluo.com/xmy2017/cvdyfje6aobdpg120rxc0r51/14.png" alt="14.png-163.3kB"><br><img src="http://static.zybuluo.com/xmy2017/9bkzmgqx1elu7p4wp3e36jwf/15.png" alt="15.png-145.2kB"><br>重启虚拟机之后即可正常安装APP。</p>
+<h3 id="使用adb"><a href="#使用adb" class="headerlink" title="使用adb"></a>使用adb</h3><p>Genymotion默认使用的自带的adb，可以在Settings-ADB中进行设置：<br> <img src="http://static.zybuluo.com/xmy2017/km1rqmn6ks3z23sr03n1pjtq/16.png" alt="16.png-44.2kB"><br>不建议使用自定义adb，因为会和Genymotions自带的adb产生端口冲突。为了使用方便，我们可以定义别名。首先找到Genymotions自带的adb位置：<br> <img src="http://static.zybuluo.com/xmy2017/d8w0ukye0r1k9xfjbtxxzocf/17.png" alt="17.png-32.2kB"><br>记下这个路径，编辑~/.bashrc文件：</p>
+<p>sudo vim .bashrc</p>
+<p>定义别名如下：</p>
+<p>alias adb=/opt/genymobile/genymotion/tools/adb</p>
+<p><img src="http://static.zybuluo.com/xmy2017/u66ec98hkbqcqpsnk8wtttuo/18.png" alt="18.png-36.1kB"><br>然后执行以下指令应用更改：</p>
+<p>source ~/.bashrc</p>
+<p><img src="http://static.zybuluo.com/xmy2017/31rx54fxhlca4zr2pf3s004n/19.png" alt="19.png-10.3kB"><br>无需连接端口即可直接使用adb shell：<br><img src="http://static.zybuluo.com/xmy2017/7zi9d97oxtb4oc2215obgao2/20.png" alt="20.png-12kB"></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/" rel="tag"># 移动安全</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/" rel="prev" title="apk反编译">
+      <i class="fa fa-chevron-left"></i> apk反编译
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" rel="next" title="drozer安装和使用">
+      drozer安装和使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#Genymotion下载"><span class="nav-number">1.</span> <span class="nav-text">Genymotion下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Genymotion安装"><span class="nav-number">2.</span> <span class="nav-text">Genymotion安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#配置Genymotion"><span class="nav-number">3.</span> <span class="nav-text">配置Genymotion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装APP"><span class="nav-number">4.</span> <span class="nav-text">安装APP</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用adb"><span class="nav-number">5.</span> <span class="nav-text">使用adb</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小蚂蚁的小窝</p>
+  <div class="site-description" itemprop="description">我见青山多妩媚，料青山见我应如是</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qlxmy/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qlxmy&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.d4rksec.org/" title="http:&#x2F;&#x2F;www.d4rksec.org&#x2F;" rel="noopener" target="_blank">寻梦小生</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-01-14</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+ <span class="author" itemprop="copyrightHolder">小蚂蚁的小窝</span>
+</div>
+  <!--<div class="powered-by">footer.powered v4.2.0
+  </div>-->
+  <span class="post-meta-divider"></span>
+  <!--<div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

