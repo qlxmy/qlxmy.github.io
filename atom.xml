@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T03:02:54.036Z</updated>
+  <updated>2020-01-14T03:27:23.126Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,171 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>密码爆破神器Medusa</title>
+    <link href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/"/>
+    <id>http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/</id>
+    <published>2020-01-14T03:24:39.000Z</published>
+    <updated>2020-01-14T03:27:23.126Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Medusa，美杜莎，希腊神话中的蛇发女妖：&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/z6b3lk2o0jtkrfaykpxj5vm0/1.png&quot; alt=&quot;1.png-832.7kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;（挺奇怪为什么密码爆破神器都以希腊神话中的怪物命名）&lt;/p&gt;
+&lt;p&gt;与Hydra一样，Medusa支持多种协议的密码爆破，是当之无愧的密码爆破神器。&lt;/p&gt;
+&lt;h3 id=&quot;Medusa选项&quot;&gt;&lt;a href=&quot;#Medusa选项&quot; class=&quot;headerlink&quot; title=&quot;Medusa选项&quot;&gt;&lt;/a&gt;Medusa选项&lt;/h3&gt;&lt;p&gt;Medusa的选项和参数如下：&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/h8kchdfgron5estw2uv3vdfn/2.png&quot; alt=&quot;2.png-306.7kB&quot;&gt;&lt;/p&gt;
+&lt;p&gt;-h [TEXT]　　　　目标主机名或IP&lt;br&gt;-H [FILE]　　　　目标主机文件&lt;br&gt;-u [TEXT]　　　　用户名&lt;br&gt;-U [FILE]　　　　用户名文件&lt;br&gt;-p [TEXT]　　　　密码&lt;br&gt;-P [FILE]　　　　密码文件&lt;br&gt;-C [FILE]　　　　组合条目文件，格式为：host:user:password&lt;br&gt;-O [FILE]　　　　日志信息文件&lt;br&gt;-e [n/s/ns]　　　n代表空密码，s代表用户名与密码相同&lt;br&gt;-M [TEXT]　　　　执行模块名称&lt;br&gt;-m [TEXT]　　　　传递参数到模块，可以传输多个参数&lt;br&gt;-d　　　　　　　　显示所有模块名称&lt;br&gt;-n [NUM]　　　　　指定非默认端口&lt;br&gt;-s　　　　　　　　启用SSL&lt;br&gt;-g [NUM]　　　　尝试连接超时时间（默认为3秒）&lt;br&gt;-r [NUM]　　　　重试间隔时间（默认为3秒）&lt;br&gt;-R [NUM]　　　　超时之前的尝试次数（N），总尝试次数为N+1&lt;br&gt;-C [NUM]　　　　socket连接等待时间（默认为500微秒）&lt;br&gt;-t [NUM]　　　　同时测试的登录数线程&lt;br&gt;-T [NUM]　　　　同时测试的主机数线程&lt;br&gt;-L　　　　　　　每个用户使用一个线程&lt;br&gt;-f　　　　　　　匹配第一个结果时停止破解&lt;br&gt;-q　　　　　　　显示模块的使用信息&lt;br&gt;-v [NUM]　　　　详细信息显示级别[0-6]&lt;br&gt;-w [NUM]　　　　错误高度信息显示级别[0-6]&lt;br&gt;-V　　　　　　　显示版本&lt;br&gt;-Z [TEXT]　　　继续上一次扫描&lt;/p&gt;
+&lt;h3 id=&quot;Medusa举例&quot;&gt;&lt;a href=&quot;#Medusa举例&quot; class=&quot;headerlink&quot; title=&quot;Medusa举例&quot;&gt;&lt;/a&gt;Medusa举例&lt;/h3&gt;&lt;p&gt;Medusa支持的协议（称之为模块）如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/z0lki501exe8tb43h60drxqj/3.png&quot; alt=&quot;3.png-306.7kB&quot;&gt;&lt;br&gt;爆破ssh密码：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;medusa -u root -P pass_top100.txt -e ns -h 192.168.216.130 -M ssh&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/wvsn9uegw5xq7posljxvexal/4.png&quot; alt=&quot;4.png-154.4kB&quot;&gt;&lt;br&gt;可以使用-q查阅模块的使用信息，比如查阅web-form模块：&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>密码爆破神器Hydra</title>
+    <link href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/"/>
+    <id>http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/</id>
+    <published>2020-01-14T03:16:42.000Z</published>
+    <updated>2020-01-14T03:24:02.496Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;Hydra，希腊神话中的怪兽许德拉，就是九头蛇，长这样：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vmxy5ido5vv1fnfd1i6rgn9a/1.jpg&quot; alt=&quot;1.jpg-53.7kB&quot;&gt;&lt;br&gt;好吧，扯远了，我们要说的是Kali中的密码爆破神器Hydra。Hydra支持多种协议的破解，Github上的地址是：&lt;br&gt;&lt;a href=&quot;https://github.com/vanhauser-thc/thc-hydra&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/vanhauser-thc/thc-hydra&lt;/a&gt;&lt;br&gt;Hydra也有Windows版本，Github上的地址是：&lt;br&gt;&lt;a href=&quot;https://github.com/maaaaz/thc-hydra-windows&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/maaaaz/thc-hydra-windows&lt;/a&gt;&lt;br&gt;Hydra目前支持的协议如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/bnrm4tbimh2gmgbc5l0h4l16/2.png&quot; alt=&quot;2.png-89kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Hydra选项&quot;&gt;&lt;a href=&quot;#Hydra选项&quot; class=&quot;headerlink&quot; title=&quot;Hydra选项&quot;&gt;&lt;/a&gt;Hydra选项&lt;/h3&gt;&lt;p&gt;Hydra的选项如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/1auhz1empzqwnjynmz25c24o/3.png&quot; alt=&quot;3.png-365.5kB&quot;&gt;&lt;br&gt;翻译一下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;-R　　继续从上一次中断的进度进行破解
+-I　　忽略已存在的存储文件（不需要等待10秒）
+-S　　采用SSL连接
+-s PORT    　指定非默认端口
+-l LOGIN or –L FILE     -l后接用户名，-L后接用户字典文件
+-p PASS or –P FILE      -p后接密码，-P后接密码字典文件
+-x MIN:MAX:CHARSET　密码生成器，输入“-x -h”来获取帮助信息
+-y      禁止在暴力破解中使用符号
+-e    nsr    n表示空密码，s表示用户名和密码相同，r表示用户名和密码翻转
+-u    围绕用户名进行探测
+-C FILE      字典格式为login:pass，取代-L/-P选项
+-M FILE      同时攻击多个服务，每行一个服务名，冒号后接端口
+-o FILE   指定结果输出文件，用于替代标准屏幕输出
+-b FORMAT    指定输出文件格式，有text（默认）、json、jsonv1
+-f/-F        当找到第一个匹配结果时中断破解（-M: -f表示
+中断单个目标的破解；-F表示中断全部目标的破解）
+-t TASKS    指定单个目标的线程数（默认是16）
+-T TASKS    指定全部目标的线程数（默认是64）
+-w/-W TIME    指定最大响应超时时间（默认是32）/每个线程的间隔时间（默认是0）
+-c TIME        指定每次登录的尝试等待时间
+-4/-6        指定IPv4（默认）/IPv6
+-v/-V/-d    -v显示全部信息，-V显示每次登录的用户名/密码，-d显示debug信息
+-O      使用SSL v2和v3
+-q      不显示连接出错信息
+-U      显示详细的服务模块信息
+-h      显示帮助信息
+server      指定目标，可以是域名、IP或者网段
+service     指定服务协议（选项后面列出了支持的服务）
+OPT     一些支持的额外选项&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Hydra举例&quot;&gt;&lt;a href=&quot;#Hydra举例&quot; class=&quot;headerlink&quot; title=&quot;Hydra举例&quot;&gt;&lt;/a&gt;Hydra举例&lt;/h3&gt;&lt;p&gt;hydra –help最后有相应举例：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/dwtn4x3x74l07htsyhz1une8/4.png&quot; alt=&quot;4.png-50.9kB&quot;&gt;&lt;br&gt;这些都比较简直，就不详细说明了。举一个比较复杂的例子，http的爆破。使用-U可以显示模块的详细信息，查看http-post-form的信息如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/28c7xxhkepr8x57qrh92hffr/8.png&quot; alt=&quot;8.png-358kB&quot;&gt;&lt;br&gt;　　http爆破如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/6ju6cjmfc7iwe9m69pthhwa4/5.png&quot; alt=&quot;5.png-87.7kB&quot;&gt;&lt;br&gt;图中http-post-form分成了三个段，用冒号分隔。第一段是路径；第二段是提交的参数，爆破的参数用^^包围起来；第三段是错误的关键字。&lt;/p&gt;
+&lt;h3 id=&quot;密码生成器&quot;&gt;&lt;a href=&quot;#密码生成器&quot; class=&quot;headerlink&quot; title=&quot;密码生成器&quot;&gt;&lt;/a&gt;密码生成器&lt;/h3&gt;&lt;p&gt;来看一下Hydra的密码生成器功能。&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/7uvw6obv6eux1tiei5kt623c/6.png&quot; alt=&quot;6.png-101kB&quot;&gt;&lt;br&gt;用法是-x MIN:MAX:CHARSET，描述如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;MIN        密码最小长度
+MAX        密码最大长度
+CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代表数字,特殊字符需要一个个写进来
+-y        禁止使用占位符&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/9lore17e0akks46cxt8bchsi/7.png&quot; alt=&quot;7.png-152.6kB&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+    
+      <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>htmlspecialchars-函数过滤XSS的问题</title>
+    <link href="http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <published>2020-01-14T03:12:11.000Z</published>
+    <updated>2020-01-14T03:15:47.010Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;htmlspecialchars()函数的功能如下：&lt;br&gt;htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。&lt;br&gt;预定义的字符是：&lt;/p&gt;
+&lt;pre&gt;&amp; （和号）成为 &amp;
+&quot; （双引号）成为 &quot;
+&#39; （单引号）成为 &#39;
+&lt; （小于）成为 &lt;
+&gt; （大于）成为 &gt;&lt;/pre&gt;
+
+&lt;p&gt;它的语法如下：&lt;/p&gt;
+&lt;pre&gt;htmlspecialchars(string,flags,character-set,double_encode)&lt;/pre&gt;
+
+&lt;p&gt;其中第二个参数flags需要重要注意，很多开发者就是因为没有注意到这个参数导致使用htmlspecialchars()函数过滤XSS时被绕过。因为flags参数对于引号的编码如下：&lt;br&gt;可用的引号类型：&lt;br&gt;ENT_COMPAT - 默认。仅编码双引号。&lt;br&gt;ENT_QUOTES - 编码双引号和单引号。&lt;br&gt;ENT_NOQUOTES - 不编码任何引号。&lt;br&gt;默认是只编码双引号的！默认只编码双引号！默认只编码双引号……重要的事情说三遍！！！&lt;/p&gt;
+&lt;p&gt;于是看下面的代码：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php   
+    $name = $_GET[&amp;quot;name&amp;quot;];  
+    $name = htmlspecialchars($name);  
+?&amp;gt;  
+
+&amp;lt;input type=&amp;#39;text&amp;#39; value=&amp;#39;&amp;lt;?php echo $name?&amp;gt;&amp;#39;&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;轻松绕过：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/f9w12k9hraepojh38e1nxswn/image_1bftto1vk1obet9dau91pkq11559.png&quot; alt=&quot;image_1bftto1vk1obet9dau91pkq11559.png-94.4kB&quot;&gt;&lt;br&gt;加上ENT_QUOTES参数：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php   
+    $name = $_GET[&amp;quot;name&amp;quot;];  
+    $name = htmlspecialchars($name, ENT_QUOTES);  
+?&amp;gt;  
+
+&amp;lt;input type=&amp;#39;text&amp;#39; value=&amp;#39;&amp;lt;?php echo $name?&amp;gt;&amp;#39;&amp;gt; &lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;发现无法绕过了：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/kufslbaofmpw2naqxv7fci8l/image_1bfttoqf017gu1b911n0sqt91d9cm.png&quot; alt=&quot;image_1bfttoqf017gu1b911n0sqt91d9cm.png-20.9kB&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/categories/XSS/"/>
+    
+    
+      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>XXE注入</title>
+    <link href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/"/>
+    <id>http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/</id>
+    <published>2020-01-14T03:05:43.000Z</published>
+    <updated>2020-01-14T03:12:58.276Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;XXE注入攻击简介&quot;&gt;&lt;a href=&quot;#XXE注入攻击简介&quot; class=&quot;headerlink&quot; title=&quot;XXE注入攻击简介&quot;&gt;&lt;/a&gt;XXE注入攻击简介&lt;/h3&gt;&lt;p&gt;XXE Injection即XML External Entity Injection，也就是XML外部实体注入攻击。漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。&lt;br&gt;在XML1.0标准里，XML文档结构里定义了实体(entity)这个概念。实体可以通过预定义在文档中调用，实体的标识符可访问本地或远程内容.如果在这个过程中引入了“污染”源，在对XML文档处理后则可能导致信息泄漏等安全问题。&lt;br&gt;当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、拒绝服务攻击、攻击内网网站等危害。&lt;/p&gt;
+&lt;h3 id=&quot;XXE注入利用&quot;&gt;&lt;a href=&quot;#XXE注入利用&quot; class=&quot;headerlink&quot; title=&quot;XXE注入利用&quot;&gt;&lt;/a&gt;XXE注入利用&lt;/h3&gt;&lt;p&gt;首先存在漏洞的web服务一定是存在XML传输数据的，可以在http头的Content-Type中查看，也可以根据url一些常见的关键字进行判断测试，例如wsdl（web服务描述语言）。或者一些常见的采用XML的java服务配置文件（spring，struts2）。不过现实中存在的大多数XXE漏洞都是blind，即不可见的，必须采用带外通道进行返回信息的记录，这里简单来说就是攻击者必须具有一台具有公网ip的主机。&lt;/p&gt;
+&lt;h4 id=&quot;简单检测&quot;&gt;&lt;a href=&quot;#简单检测&quot; class=&quot;headerlink&quot; title=&quot;简单检测&quot;&gt;&lt;/a&gt;简单检测&lt;/h4&gt;&lt;p&gt;Payload如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;
+&amp;lt;!DOCTYPE any[
+&amp;lt;!ENTITY test &amp;quot;this is a test&amp;quot;&amp;gt;
+]&amp;gt;
+&amp;lt;root&amp;gt;&amp;amp;test;&amp;lt;/root&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&lt;h4 id=&quot;文件读取&quot;&gt;&lt;a href=&quot;#文件读取&quot; class=&quot;headerlink&quot; title=&quot;文件读取&quot;&gt;&lt;/a&gt;文件读取&lt;/h4&gt;&lt;p&gt;Payload如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&quot;xml&quot;&gt;&amp;lt;?xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;UTF-8&amp;quot;?&amp;gt;  
+&amp;lt;!DOCTYPE ANY [  
+&amp;lt;!ENTITY test SYSTEM &amp;quot;file:///etc/passwd&amp;quot;&amp;gt;  
+]&amp;gt; 
+&amp;lt;root&amp;gt;&amp;amp;test;&amp;lt;/root&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+    
+    </summary>
+    
+    
+      <category term="XXE注入" scheme="http://yoursite.com/categories/XXE%E6%B3%A8%E5%85%A5/"/>
+    
+    
+      <category term="XXE注入" scheme="http://yoursite.com/tags/XXE%E6%B3%A8%E5%85%A5/"/>
+    
+  </entry>
   
   <entry>
     <title>宽字节注入</title>
