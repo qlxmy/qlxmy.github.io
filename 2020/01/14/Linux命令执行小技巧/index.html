@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Monda:300,300italic,400,400italic,700,700italic|Old English Text MT:300,300italic,400,400italic,700,700italic|<h3>:300,300italic,400,400italic,700,700italic|Franklin Gothic Book:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+
+<script id="hexo-configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    hostname: new URL('http://yoursite.com').hostname,
+    root: '/',
+    scheme: 'Pisces',
+    version: '7.7.0',
+    exturl: false,
+    sidebar: {"position":"right","display":"post","padding":18,"offset":12,"onmobile":false},
+    copycode: {"enable":false,"show_result":false,"style":null},
+    back2top: {"enable":true,"sidebar":false,"scrollpercent":false},
+    bookmark: {"enable":false,"color":"#222","save":"auto"},
+    fancybox: false,
+    mediumzoom: false,
+    lazyload: false,
+    pangu: false,
+    comments: {"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},
+    algolia: {
+      appID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    },
+    localsearch: {"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},
+    path: 'search.xml',
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}
+  };
+</script>
+
+  <meta name="description" content="空格绕过分别在Linux和PHP环境下测试，PHP测试脚本如下： &lt;?php     $cmd &#x3D; $_GET[&#39;cmd&#39;];     $black &#x3D; array(&#39; &#39;);     str_ireplace($black, &#39;&#39;, $cmd, $i);     if($i !&#x3D; 0)     {         die(&quot;Atta">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Linux命令执行小技巧">
+<meta property="og:url" content="http://yoursite.com/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/index.html">
+<meta property="og:site_name" content="xmy&#39;s house">
+<meta property="og:description" content="空格绕过分别在Linux和PHP环境下测试，PHP测试脚本如下： &lt;?php     $cmd &#x3D; $_GET[&#39;cmd&#39;];     $black &#x3D; array(&#39; &#39;);     str_ireplace($black, &#39;&#39;, $cmd, $i);     if($i !&#x3D; 0)     {         die(&quot;Atta">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/6u6l6n126dc253w47wtjgcs8/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/59lgqax0jepw9k86wdv9gpfb/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/elbqnmkcxvs9td6pbg3dxbem/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/ar1kv8jb8yumkfjig0x3iuyu/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/mr6mzy7ali916mydssalrp8f/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/m3qkysgcovn7kafap2206n7l/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/9294d50xer6a6d9c67mqcnrq/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/1lz86v45k3p0v2aup0h3w1pg/8.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/0whlfbzvnlkgrppa8amxvvso/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/bvcsje4dopmxo7bjinr4e7pb/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/2jqnadkzr3zz7k6rkkyf5q7g/11.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/6hnc68ehmww57bwjj9xigd5i/12.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/xy4fduy9r9dh1oc632z2l06o/13.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/e63iaukpnk5zgtfx1e3ns15k/14.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/u4du5552skxn7305z1kx3mjc/15.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/erfzholf35yyxa8na9kaieek/16.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rgb8kwav0g41k2fu54x800bh/17.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/6l646edagc2pqlkad26k7z3s/18.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/xteyvn27qy446q5o611bd03d/19.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/0z1vyqhwgohrfsgigf8r9nff/20.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/pshm0c4pursmhwecmty8mqpb/21.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/b2fp5nzlxcx69wujya6493vf/22.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nxbordhxqkvmhif0zpuxy5wo/23.png">
+<meta property="article:published_time" content="2020-01-14T07:55:17.000Z">
+<meta property="article:modified_time" content="2020-01-14T08:01:20.215Z">
+<meta property="article:author" content="小蚂蚁的小窝">
+<meta property="article:tag" content="命令执行">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/6u6l6n126dc253w47wtjgcs8/1.png">
+
+<link rel="canonical" href="http://yoursite.com/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>Linux命令执行小技巧 | xmy's house</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="xmy's house" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">xmy's house</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Build by xmy</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+
+</nav>
+  <div class="site-search">
+    <div class="popup search-popup">
+    <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocorrect="off" autocapitalize="none"
+           placeholder="搜索..." spellcheck="false"
+           type="text" id="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result"></div>
+
+</div>
+<div class="search-pop-overlay"></div>
+
+  </div>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Linux命令执行小技巧
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 15:55:17 / 修改时间：16:01:20" itemprop="dateCreated datePublished" datetime="2020-01-14T15:55:17+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" itemprop="url" rel="index">
+                    <span itemprop="name">命令执行</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h3 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过"></a>空格绕过</h3><p>分别在Linux和PHP环境下测试，PHP测试脚本如下：</p>
+<pre><code class="php">&lt;?php
+    $cmd = $_GET[&#39;cmd&#39;];
+    $black = array(&#39; &#39;);
+    str_ireplace($black, &#39;&#39;, $cmd, $i);
+    if($i != 0)
+    {
+        die(&quot;Attack!&quot;);
+    }
+    else
+    {
+        system($cmd);
+    }
+?&gt;</code></pre>
+<h4 id="小于号（-lt-）"><a href="#小于号（-lt-）" class="headerlink" title="小于号（&lt;）"></a>小于号（&lt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/6u6l6n126dc253w47wtjgcs8/1.png" alt="1.png-15.7kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/59lgqax0jepw9k86wdv9gpfb/2.png" alt="2.png-59.7kB"> </p>
+<h4 id="两个尖括号（-lt-gt-）"><a href="#两个尖括号（-lt-gt-）" class="headerlink" title="两个尖括号（&lt;&gt;）"></a>两个尖括号（&lt;&gt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/elbqnmkcxvs9td6pbg3dxbem/3.png" alt="3.png-12.5kB"><br>PHP环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/ar1kv8jb8yumkfjig0x3iuyu/4.png" alt="4.png-62.6kB"> </p>
+<h4 id="Tab键（-09）"><a href="#Tab键（-09）" class="headerlink" title="Tab键（%09）"></a>Tab键（%09）</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/mr6mzy7ali916mydssalrp8f/5.png" alt="5.png-17.6kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/m3qkysgcovn7kafap2206n7l/6.png" alt="6.png-59.5kB"> </p>
+<h4 id="IFS"><a href="#IFS" class="headerlink" title="$IFS$"></a>$IFS$</h4><p>Linux环境下，$IFS$(1-9)（文件名）都可以，0和两位以上的整数就无法识别了：<br><img src="http://static.zybuluo.com/xmy2017/9294d50xer6a6d9c67mqcnrq/7.png" alt="7.png-48.9kB"><br><img src="http://static.zybuluo.com/xmy2017/1lz86v45k3p0v2aup0h3w1pg/8.png" alt="8.png-60.8kB"><br> PHP环境下，$IFS$后面接0以上（不包括0）的整数都可以识别：<br><img src="http://static.zybuluo.com/xmy2017/0whlfbzvnlkgrppa8amxvvso/9.png" alt="9.png-71.1kB"> </p>
+<h4 id="IFS-1"><a href="#IFS-1" class="headerlink" title="${IFS}"></a>${IFS}</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/bvcsje4dopmxo7bjinr4e7pb/10.png" alt="10.png-13.1kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/2jqnadkzr3zz7k6rkkyf5q7g/11.png" alt="11.png-64kB"> </p>
+<h3 id="命令分隔符"><a href="#命令分隔符" class="headerlink" title="命令分隔符"></a>命令分隔符</h3><h4 id="0a"><a href="#0a" class="headerlink" title="%0a"></a>%0a</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/6hnc68ehmww57bwjj9xigd5i/12.png" alt="12.png-18.1kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/xy4fduy9r9dh1oc632z2l06o/13.png" alt="13.png-16.6kB"></p>
+<h4 id="0d"><a href="#0d" class="headerlink" title="%0d"></a>%0d</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/e63iaukpnk5zgtfx1e3ns15k/14.png" alt="14.png-18.6kB"><br>PHP环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/u4du5552skxn7305z1kx3mjc/15.png" alt="15.png-12.6kB"> </p>
+<h4 id="分号（-）"><a href="#分号（-）" class="headerlink" title="分号（;）"></a>分号（;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/erfzholf35yyxa8na9kaieek/16.png" alt="16.png-55.5kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/rgb8kwav0g41k2fu54x800bh/17.png" alt="17.png-15.6kB"> </p>
+<h4 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/6l646edagc2pqlkad26k7z3s/18.png" alt="18.png-106kB"></p>
+<h4 id="管道符（-）"><a href="#管道符（-）" class="headerlink" title="管道符（|）"></a>管道符（|）</h4><p>管道符只会执行后一个指令：<br><img src="http://static.zybuluo.com/xmy2017/xteyvn27qy446q5o611bd03d/19.png" alt="19.png-11.6kB"></p>
+<h3 id="命令终止符"><a href="#命令终止符" class="headerlink" title="命令终止符"></a>命令终止符</h3><h4 id="（-00-20-）"><a href="#（-00-20-）" class="headerlink" title="（%00%20#）"></a>（%00%20#）</h4><p>只会执行前一个指令：<br><img src="http://static.zybuluo.com/xmy2017/0z1vyqhwgohrfsgigf8r9nff/20.png" alt="20.png-15.4kB"></p>
+<h3 id="黑名单绕过"><a href="#黑名单绕过" class="headerlink" title="黑名单绕过"></a>黑名单绕过</h3><h4 id="参数定义"><a href="#参数定义" class="headerlink" title="参数定义"></a>参数定义</h4><p>比如在限制不允许使用cat的情况下遍历目录，Linux环境下可以这样使用：<br><img src="http://static.zybuluo.com/xmy2017/pshm0c4pursmhwecmty8mqpb/21.png" alt="21.png-45kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/b2fp5nzlxcx69wujya6493vf/22.png" alt="22.png-68.5kB"><br>####4.2 base64编码<br><img src="http://static.zybuluo.com/xmy2017/nxbordhxqkvmhif0zpuxy5wo/23.png" alt="23.png-18.8kB"><br>编码的内容为“cat test.txt”。</p>
+<p>参考：<br><a href="http://url.cn/5NsHbNP" target="_blank" rel="noopener">http://url.cn/5NsHbNP</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" rel="tag"># 命令执行</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/01/14/masscan%E6%89%AB%E6%8F%8F/" rel="prev" title="masscan扫描">
+      <i class="fa fa-chevron-left"></i> masscan扫描
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/01/14/lpk%E5%90%8E%E9%97%A8%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="lpk后门的使用">
+      lpk后门的使用 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#空格绕过"><span class="nav-number">1.</span> <span class="nav-text">空格绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#小于号（-lt-）"><span class="nav-number">1.1.</span> <span class="nav-text">小于号（&lt;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#两个尖括号（-lt-gt-）"><span class="nav-number">1.2.</span> <span class="nav-text">两个尖括号（&lt;&gt;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Tab键（-09）"><span class="nav-number">1.3.</span> <span class="nav-text">Tab键（%09）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IFS"><span class="nav-number">1.4.</span> <span class="nav-text">$IFS$</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#IFS-1"><span class="nav-number">1.5.</span> <span class="nav-text">${IFS}</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令分隔符"><span class="nav-number">2.</span> <span class="nav-text">命令分隔符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0a"><span class="nav-number">2.1.</span> <span class="nav-text">%0a</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#0d"><span class="nav-number">2.2.</span> <span class="nav-text">%0d</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#分号（-）"><span class="nav-number">2.3.</span> <span class="nav-text">分号（;）</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#amp-amp"><span class="nav-number">2.4.</span> <span class="nav-text">&amp;&amp;</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#管道符（-）"><span class="nav-number">2.5.</span> <span class="nav-text">管道符（|）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#命令终止符"><span class="nav-number">3.</span> <span class="nav-text">命令终止符</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（-00-20-）"><span class="nav-number">3.1.</span> <span class="nav-text">（%00%20#）</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#黑名单绕过"><span class="nav-number">4.</span> <span class="nav-text">黑名单绕过</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#参数定义"><span class="nav-number">4.1.</span> <span class="nav-text">参数定义</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">小蚂蚁的小窝</p>
+  <div class="site-description" itemprop="description">我见青山多妩媚，料青山见我应如是</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">21</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/qlxmy/" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;qlxmy&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="/atom.xml" title="RSS → &#x2F;atom.xml"><i class="fa fa-fw fa-rss"></i>RSS</a>
+      </span>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="http://www.d4rksec.org/" title="http:&#x2F;&#x2F;www.d4rksec.org&#x2F;" rel="noopener" target="_blank">寻梦小生</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020-01-14</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+ <span class="author" itemprop="copyrightHolder">小蚂蚁的小窝</span>
+</div>
+  <!--<div class="powered-by">footer.powered v4.2.0
+  </div>-->
+  <span class="post-meta-divider"></span>
+  <!--<div class="theme-info">主题 – <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> v7.7.0
+  </div>-->
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>

