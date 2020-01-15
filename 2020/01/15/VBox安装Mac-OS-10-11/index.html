@@ -46,42 +46,49 @@
   };
 </script>
 
-  <meta name="description" content="如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。Santoku的官方下载地址是https:&#x2F;&#x2F;santoku-linux.com&#x2F;，当前版本是0.5。 安装Santoku下面演示如何使用VMware安装Santoku">
+  <meta name="description" content="这是个记录贴，第一次使用VirtualBox安装Mac OS，记录一下安装的过程以及遇到的问题。安装的Mac OS版本是10.11，百度网盘分享链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1pNoRvkf 密码：s6hm。 VirtualBox设置打开VirtualBox，新建虚拟机，设置虚拟机名称和类型：内存保持默认（2048MB）:选择“不添加虚拟硬盘”：选择“继续”：设置虚拟机选项">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Santoku安装部署">
-<meta property="og:url" content="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/index.html">
+<meta property="og:title" content="VBox安装Mac-OS-10-11">
+<meta property="og:url" content="http://yoursite.com/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/index.html">
 <meta property="og:site_name" content="xmy&#39;s house">
-<meta property="og:description" content="如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。Santoku的官方下载地址是https:&#x2F;&#x2F;santoku-linux.com&#x2F;，当前版本是0.5。 安装Santoku下面演示如何使用VMware安装Santoku">
+<meta property="og:description" content="这是个记录贴，第一次使用VirtualBox安装Mac OS，记录一下安装的过程以及遇到的问题。安装的Mac OS版本是10.11，百度网盘分享链接：https:&#x2F;&#x2F;pan.baidu.com&#x2F;s&#x2F;1pNoRvkf 密码：s6hm。 VirtualBox设置打开VirtualBox，新建虚拟机，设置虚拟机名称和类型：内存保持默认（2048MB）:选择“不添加虚拟硬盘”：选择“继续”：设置虚拟机选项">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/9ltfbyrywd475r97nqw6kmfm/47.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/m5ua4b29oyom0r6c7sotfcgu/48.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/rk8kcgt5pzuwgvwbn6i72xts/49.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/yq6nchgvkln8cn7tre13w2w2/50.png">
-<meta property="og:image" content="http://static.zybuluo.com/xmy2017/aunluzt9l9n5t5tuyj7yi6nt/51.png">
-<meta property="article:published_time" content="2020-01-14T09:31:21.000Z">
-<meta property="article:modified_time" content="2020-01-14T09:34:10.515Z">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4tgtctat4dy5nnrzk8hajl34/1.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/a3o2p2yufocbod7cpyfbckhg/2.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/96vbjh53h1bev48ozd6n4d59/3.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/vro6jf7z2j4yf7dwo25x47yw/4.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/mew4fowtmpccbs0z9jz6sr7j/5.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/1rkvzdcnc4hjjo2c4f58prql/6.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/iohij2ru4pkxpbfebk6bkmkr/7.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/d889hj120u4g9p1fmoe2lwom/8.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/bujulnrbmoe3k7c7boghxwvs/9.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/zwks3o2ct4rtbpfwzjmmsqid/10.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4d1pebl9vmxz4h79e6d8kbr5/11.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/41vw1oj2d7mv88su0l79v0tx/12.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/5urf2vwy50vn631l456k4das/13.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/1n9n7dd0znefrc26chwjdjwh/14.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/g9gpl5ci46oab36skc3bnrgl/15.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/w8g3ap2h1lv435uw7nl26bdl/16.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/u84nq379khvoyfrmcbugcar0/17.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/st32pfkc896x5sur0558ldy8/18.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/cg23pmqzwlm8pdalzika7knw/19.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/4v47o0l6hmmt1aqi9l25vm1h/20.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/m05imkue5wclxenv94pfen6d/21.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/nto6ddx2ghncg1tdrv31x4yj/22.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/hpv5rm1pv07glef3r682m9re/23.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/f9jl543canelrn4l05kf7r4w/24.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/r9cra2688f1zpy60yh5eewjw/25.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/evtqs2gwpmoqczl7fs2pi502/26.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/0rxh23r1i5gi3u3xgw5uyc1u/27.png">
+<meta property="og:image" content="http://static.zybuluo.com/xmy2017/xe2cma775bnvubzyf08m0puv/28.png">
+<meta property="article:published_time" content="2020-01-15T01:48:49.000Z">
+<meta property="article:modified_time" content="2020-01-15T01:52:50.208Z">
 <meta property="article:author" content="小蚂蚁的小窝">
 <meta property="article:tag" content="移动安全">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png">
+<meta name="twitter:image" content="http://static.zybuluo.com/xmy2017/4tgtctat4dy5nnrzk8hajl34/1.png">
 
-<link rel="canonical" href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+<link rel="canonical" href="http://yoursite.com/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/">
 
 
 <script id="page-configurations">
@@ -93,7 +100,7 @@
   };
 </script>
 
-  <title>Santoku安装部署 | xmy's house</title>
+  <title>VBox安装Mac-OS-10-11 | xmy's house</title>
   
 
 
@@ -234,7 +241,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/Santoku%E5%AE%89%E8%A3%85%E9%83%A8%E7%BD%B2/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -247,7 +254,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Santoku安装部署
+          VBox安装Mac-OS-10-11
         </h1>
 
         <div class="post-meta">
@@ -258,7 +265,7 @@
               <span class="post-meta-item-text">发表于</span>
               
 
-              <time title="创建时间：2020-01-14 17:31:21 / 修改时间：17:34:10" itemprop="dateCreated datePublished" datetime="2020-01-14T17:31:21+08:00">2020-01-14</time>
+              <time title="创建时间：2020-01-15 09:48:49 / 修改时间：09:52:50" itemprop="dateCreated datePublished" datetime="2020-01-15T09:48:49+08:00">2020-01-15</time>
             </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -283,13 +290,18 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>如果说Web安全爱好者居家旅行必备的利器是Kali Linux的话，那移动安全爱好者必备的利器应该就是Santoku了。Santoku是基于Ubuntu的移动安全分析平台，致力于手机恶意代码分析，内置安装AndroGuard工具包。<br>Santoku的官方下载地址是<a href="https://santoku-linux.com/" target="_blank" rel="noopener">https://santoku-linux.com/</a>，当前版本是0.5。</p>
-<h3 id="安装Santoku"><a href="#安装Santoku" class="headerlink" title="安装Santoku"></a>安装Santoku</h3><p>下面演示如何使用VMware安装Santoku。基本上是和Ubuntu一样的安装方法，创建虚拟机后，启动界面如下所示：<br><img src="http://static.zybuluo.com/xmy2017/r7x6v2vdxvah3piw81de294x/31.png" alt="31.png-413.6kB"><br>选择“live – boot the Live System”进入Live CD模式，这种模式下不需要安装就可以正常使用系统，缺点是无法保存文件。如果需要安装的话，可以在这个界面下选择“install – start the installer directly”，当然也可以在Live CD模式下选择“Install Santoku 14.04”：<br><img src="http://static.zybuluo.com/xmy2017/cps4k75fq0an2l1ei46mpa6u/32.png" alt="32.png-615.8kB"><br>启动安装程序，选择“中文（简体）”：<br><img src="http://static.zybuluo.com/xmy2017/ttgnizxm3m72cq9yqr3a3qu3/33.png" alt="33.png-84.1kB"><br>  选择硬盘分区方式，如果你对Linux分区不熟悉，就选择第一项“清除整个磁盘并安装Santoku”，我通常喜欢自己定义分区：<br><img src="http://static.zybuluo.com/xmy2017/nc1fv4sngm8fhh296inpqc4b/34.png" alt="34.png-115.8kB"><br>创建用户和密码：<br><img src="http://static.zybuluo.com/xmy2017/kwk1ns1j03ey87wouuia39sk/35.png" alt="35.png-77.2kB"><br>之后便进入了安装阶段，喝杯茶坐等安装完成吧：<br><img src="http://static.zybuluo.com/xmy2017/q5n7neyt6kfr0o5ku6w0j3jb/36.png" alt="36.png-602.7kB"><br>安装完成后重启Santoku，启动完成后如下：<br><img src="http://static.zybuluo.com/xmy2017/dec8i42lakpuwqn92l90sdm5/37.png" alt="37.png-574.5kB"></p>
-<h3 id="修改更新源"><a href="#修改更新源" class="headerlink" title="修改更新源"></a>修改更新源</h3><p>我们修改更新源，将它指向aliyun的源，这样可以极大地提高更新速度。打开菜单，选择“Preferences”-“Sofeware &amp; Updates”：<br><img src="http://static.zybuluo.com/xmy2017/v5tomo6ro8v3gw31az14qywa/38.png" alt="38.png-492.8kB"><br>在“Download from”中选择Other，找到“China”下的“mirrors.aliyun.com”:<br><img src="http://static.zybuluo.com/xmy2017/nilmgn2l5ji5w50fcse4mm6d/39.png" alt="39.png-314.1kB"><br>关闭时选择”Reload”更新缓存：<br><img src="http://static.zybuluo.com/xmy2017/4tpix15apxct5zheqf808i8t/40.png" alt="40.png-320.8kB"> </p>
-<h3 id="更改语言为中文"><a href="#更改语言为中文" class="headerlink" title="更改语言为中文"></a>更改语言为中文</h3><p>选择“Preferences”-“Language Support”：<br><img src="http://static.zybuluo.com/xmy2017/cekyj6cidk34itz0ijo534x2/41.png" alt="41.png-493.2kB"><br>选择“Install”：<br><img src="http://static.zybuluo.com/xmy2017/qb79mtvj5kb8y3obcd1ajkdz/42.png" alt="42.png-340.8kB"><br>安装完成后将“汉语”拖动到语言选项的最上方：<br><img src="http://static.zybuluo.com/xmy2017/7qsxlhx9l49s0dfpbxq3wih2/43.png" alt="43.png-373.8kB"><br>重启系统之后就变成中文了：<br><img src="http://static.zybuluo.com/xmy2017/dfintm29aknfbg5131oj7pjo/44.png" alt="44.png-493.2kB"></p>
-<h3 id="系统更新"><a href="#系统更新" class="headerlink" title="系统更新"></a>系统更新</h3><p>选择“系统工具”-“软件更新器”，或者在终端下使用“sudo apt-get upgrade”指令更新系统：<br><img src="http://static.zybuluo.com/xmy2017/upijulkg4lb8970fk3tka3q7/45.png" alt="45.png-511.6kB"><br><img src="http://static.zybuluo.com/xmy2017/295t2x33wtv1u6n1qpovtf3k/46.png" alt="46.png-357.7kB"></p>
-<h3 id="安装VMware-Tools"><a href="#安装VMware-Tools" class="headerlink" title="安装VMware Tools"></a>安装VMware Tools</h3><p>选择“Player”-“管理”-“安装VMware Tools”：<br><img src="http://static.zybuluo.com/xmy2017/9ltfbyrywd475r97nqw6kmfm/47.png" alt="47.png-251.7kB"><br>将文件复制到home目录下，并解压它：<br><img src="http://static.zybuluo.com/xmy2017/m5ua4b29oyom0r6c7sotfcgu/48.png" alt="48.png-84.3kB"><br><img src="http://static.zybuluo.com/xmy2017/rk8kcgt5pzuwgvwbn6i72xts/49.png" alt="49.png-92.1kB"><br>在终端中运行vmware-install.pl文件：<br><img src="http://static.zybuluo.com/xmy2017/yq6nchgvkln8cn7tre13w2w2/50.png" alt="50.png-125.6kB"><br>安装完成后如图所示：<br><img src="http://static.zybuluo.com/xmy2017/aunluzt9l9n5t5tuyj7yi6nt/51.png" alt="51.png-239.2kB"><br>重启即可Enjoy了！</p>
-<p>后面将会介绍AndroGuard工具包的一些工具教程。</p>
+        <p>这是个记录贴，第一次使用VirtualBox安装Mac OS，记录一下安装的过程以及遇到的问题。<br>安装的Mac OS版本是10.11，百度网盘分享链接：<a href="https://pan.baidu.com/s/1pNoRvkf" target="_blank" rel="noopener">https://pan.baidu.com/s/1pNoRvkf</a> 密码：s6hm。</p>
+<h3 id="VirtualBox设置"><a href="#VirtualBox设置" class="headerlink" title="VirtualBox设置"></a>VirtualBox设置</h3><p>打开VirtualBox，新建虚拟机，设置虚拟机名称和类型：<br><img src="http://static.zybuluo.com/xmy2017/4tgtctat4dy5nnrzk8hajl34/1.png" alt="1.png-78kB"><br>内存保持默认（2048MB）:<br><img src="http://static.zybuluo.com/xmy2017/a3o2p2yufocbod7cpyfbckhg/2.png" alt="2.png-62.4kB"><br>选择“不添加虚拟硬盘”：<br><img src="http://static.zybuluo.com/xmy2017/96vbjh53h1bev48ozd6n4d59/3.png" alt="3.png-83.4kB"><br>选择“继续”：<br><img src="http://static.zybuluo.com/xmy2017/vro6jf7z2j4yf7dwo25x47yw/4.png" alt="4.png-92kB"><br>设置虚拟机选项，去除软驱，将硬盘调整至第一位，取消“启用EFI”:<br><img src="http://static.zybuluo.com/xmy2017/mew4fowtmpccbs0z9jz6sr7j/5.png" alt="5.png-74.7kB"><br>将下载的Mac OS镜像解压，把OS X 10.11 El Capitan GM by TechReviews.vmdk复制到Mac OS X虚拟机位置中：<br> <img src="http://static.zybuluo.com/xmy2017/1rkvzdcnc4hjjo2c4f58prql/6.png" alt="6.png-74.3kB"><br>选择存储选项卡，添加虚拟硬盘，选择“使用现有的虚拟盘”：<br><img src="http://static.zybuluo.com/xmy2017/iohij2ru4pkxpbfebk6bkmkr/7.png" alt="7.png-91.3kB"><br>选中刚才虚拟机位置中的OS X 10.11 El Capitan GM by TechReviews.vmdk：<br><img src="http://static.zybuluo.com/xmy2017/d889hj120u4g9p1fmoe2lwom/8.png" alt="8.png-68.7kB"><br>关闭VirtualBox，使用管理员打开命令提示符，输入以下命令：</p>
+<pre><code>cd &quot;C:\Program Files\Oracle\VirtualBox\&quot;  
+VBoxManage.exe modifyvm &quot;Mac OS X&quot; --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiSystemProduct&quot; &quot;iMac11,3&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiSystemVersion&quot; &quot;1.0&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiBoardProduct&quot; &quot;Iloveapple&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/smc/0/Config/DeviceKey&quot; &quot;ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC&quot; 1</code></pre><p><img src="http://static.zybuluo.com/xmy2017/bujulnrbmoe3k7c7boghxwvs/9.png" alt="9.png-72.2kB"><br>关闭命令行，重新打开VirtualBox，启动Mac虚拟机。假如出现以下错误：<br><img src="http://static.zybuluo.com/xmy2017/zwks3o2ct4rtbpfwzjmmsqid/10.png" alt="10.png-127.8kB"><br>则重新进行虚拟机设置，切换到系统选项卡，芯片组选择“PIIX3”，勾选“启用EFI”：<br><img src="http://static.zybuluo.com/xmy2017/4d1pebl9vmxz4h79e6d8kbr5/11.png" alt="11.png-74.1kB"><br>成功的启动如下所示，Mac虚拟机进行初始化操作：<br><img src="http://static.zybuluo.com/xmy2017/41vw1oj2d7mv88su0l79v0tx/12.png" alt="12.png-72.7kB"></p>
+<h3 id="Mac虚拟机设置"><a href="#Mac虚拟机设置" class="headerlink" title="Mac虚拟机设置"></a>Mac虚拟机设置</h3><p>初始化完成后，虚拟机进行设置界面，在国家设置中勾选“Show All”，选择China：<br><img src="http://static.zybuluo.com/xmy2017/5urf2vwy50vn631l456k4das/13.png" alt="13.png-274.7kB"><br>设置键盘： <img src="http://static.zybuluo.com/xmy2017/1n9n7dd0znefrc26chwjdjwh/14.png" alt="14.png-256.2kB"><br>询问是否导入其他电脑的信息到系统中，选择不导入：<br><img src="http://static.zybuluo.com/xmy2017/g9gpl5ci46oab36skc3bnrgl/15.png" alt="15.png-271.9kB"><br>询问是否启用位置服务，选择不启用：<br><img src="http://static.zybuluo.com/xmy2017/w8g3ap2h1lv435uw7nl26bdl/16.png" alt="16.png-262kB"><br>询问是否输入Apple ID，选择不输入：<br><img src="http://static.zybuluo.com/xmy2017/u84nq379khvoyfrmcbugcar0/17.png" alt="17.png-275.1kB"><br>查看并同意软件证书：<br><img src="http://static.zybuluo.com/xmy2017/st32pfkc896x5sur0558ldy8/18.png" alt="18.png-288.5kB"><br>设置登录用户名和密码，此处将键盘切换回ABC，否则不好输入英文：<br><img src="http://static.zybuluo.com/xmy2017/cg23pmqzwlm8pdalzika7knw/19.png" alt="19.png-249.6kB"><br>设置时区，我选择的是广州：<br><img src="http://static.zybuluo.com/xmy2017/4v47o0l6hmmt1aqi9l25vm1h/20.png" alt="20.png-281.8kB"><br>询问是否将电脑信息发送给Apple，选择不发送：<br><img src="http://static.zybuluo.com/xmy2017/m05imkue5wclxenv94pfen6d/21.png" alt="21.png-258.3kB"><br>至此，设置便完成了，成功登录系统：<br><img src="http://static.zybuluo.com/xmy2017/nto6ddx2ghncg1tdrv31x4yj/22.png" alt="22.png-1621.4kB"></p>
+<h3 id="设置语言为中文"><a href="#设置语言为中文" class="headerlink" title="设置语言为中文"></a>设置语言为中文</h3><p>登录后发现语言是英文的，调整成中文。选择“System Preferences”-“Language &amp; Region”：<br><img src="http://static.zybuluo.com/xmy2017/hpv5rm1pv07glef3r682m9re/23.png" alt="23.png-894.7kB"><br>删除English：<br><img src="http://static.zybuluo.com/xmy2017/f9jl543canelrn4l05kf7r4w/24.png" alt="24.png-796.1kB"><br>重启系统：<br><img src="http://static.zybuluo.com/xmy2017/r9cra2688f1zpy60yh5eewjw/25.png" alt="25.png-1119.4kB"><br>重启后语言便调整成中文了：<br><img src="http://static.zybuluo.com/xmy2017/evtqs2gwpmoqczl7fs2pi502/26.png" alt="26.png-1079.4kB"></p>
+<h3 id="设置输入法切换"><a href="#设置输入法切换" class="headerlink" title="设置输入法切换"></a>设置输入法切换</h3><p>我设置的输入法是五笔型，但发现输入法切换存在问题，无法切换到中文输入法。选择“快捷键”-“输入源”，勾选“选择输入菜单的下一个输入源”：<br><img src="http://static.zybuluo.com/xmy2017/0rxh23r1i5gi3u3xgw5uyc1u/27.png" alt="27.png-881.4kB"><br>发现了警告信息，提示快捷键（Ctrl+Space）冲突了，换一个快捷键就可以了：<br><img src="http://static.zybuluo.com/xmy2017/xe2cma775bnvubzyf08m0puv/28.png" alt="28.png-884.6kB"></p>
 
     </div>
 
@@ -308,13 +320,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/01/14/drozer%E5%AE%89%E8%A3%85%E5%92%8C%E4%BD%BF%E7%94%A8/" rel="prev" title="drozer安装和使用">
-      <i class="fa fa-chevron-left"></i> drozer安装和使用
+    <a href="/2020/01/15/Python%E6%96%87%E6%A1%A3%E6%9F%A5%E9%98%85%E5%B7%A5%E5%85%B7pydoc/" rel="prev" title="Python文档查阅工具pydoc">
+      <i class="fa fa-chevron-left"></i> Python文档查阅工具pydoc
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85JDK%E5%92%8CTomcat/" rel="next" title="Ubuntu安装JDK和Tomcat">
-      Ubuntu安装JDK和Tomcat <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -374,7 +383,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装Santoku"><span class="nav-number">1.</span> <span class="nav-text">安装Santoku</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#修改更新源"><span class="nav-number">2.</span> <span class="nav-text">修改更新源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#更改语言为中文"><span class="nav-number">3.</span> <span class="nav-text">更改语言为中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统更新"><span class="nav-number">4.</span> <span class="nav-text">系统更新</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#安装VMware-Tools"><span class="nav-number">5.</span> <span class="nav-text">安装VMware Tools</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#VirtualBox设置"><span class="nav-number">1.</span> <span class="nav-text">VirtualBox设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Mac虚拟机设置"><span class="nav-number">2.</span> <span class="nav-text">Mac虚拟机设置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置语言为中文"><span class="nav-number">3.</span> <span class="nav-text">设置语言为中文</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#设置输入法切换"><span class="nav-number">4.</span> <span class="nav-text">设置输入法切换</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

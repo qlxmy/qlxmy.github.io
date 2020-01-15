@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-01-14T09:49:03.335Z</updated>
+  <updated>2020-01-15T01:52:50.208Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,64 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>VBox安装Mac-OS-10-11</title>
+    <link href="http://yoursite.com/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/"/>
+    <id>http://yoursite.com/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/</id>
+    <published>2020-01-15T01:48:49.000Z</published>
+    <updated>2020-01-15T01:52:50.208Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;这是个记录贴，第一次使用VirtualBox安装Mac OS，记录一下安装的过程以及遇到的问题。&lt;br&gt;安装的Mac OS版本是10.11，百度网盘分享链接：&lt;a href=&quot;https://pan.baidu.com/s/1pNoRvkf&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://pan.baidu.com/s/1pNoRvkf&lt;/a&gt; 密码：s6hm。&lt;/p&gt;
+&lt;h3 id=&quot;VirtualBox设置&quot;&gt;&lt;a href=&quot;#VirtualBox设置&quot; class=&quot;headerlink&quot; title=&quot;VirtualBox设置&quot;&gt;&lt;/a&gt;VirtualBox设置&lt;/h3&gt;&lt;p&gt;打开VirtualBox，新建虚拟机，设置虚拟机名称和类型：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/4tgtctat4dy5nnrzk8hajl34/1.png&quot; alt=&quot;1.png-78kB&quot;&gt;&lt;br&gt;内存保持默认（2048MB）:&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/a3o2p2yufocbod7cpyfbckhg/2.png&quot; alt=&quot;2.png-62.4kB&quot;&gt;&lt;br&gt;选择“不添加虚拟硬盘”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/96vbjh53h1bev48ozd6n4d59/3.png&quot; alt=&quot;3.png-83.4kB&quot;&gt;&lt;br&gt;选择“继续”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vro6jf7z2j4yf7dwo25x47yw/4.png&quot; alt=&quot;4.png-92kB&quot;&gt;&lt;br&gt;设置虚拟机选项，去除软驱，将硬盘调整至第一位，取消“启用EFI”:&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/mew4fowtmpccbs0z9jz6sr7j/5.png&quot; alt=&quot;5.png-74.7kB&quot;&gt;&lt;br&gt;将下载的Mac OS镜像解压，把OS X 10.11 El Capitan GM by TechReviews.vmdk复制到Mac OS X虚拟机位置中：&lt;br&gt; &lt;img src=&quot;http://static.zybuluo.com/xmy2017/1rkvzdcnc4hjjo2c4f58prql/6.png&quot; alt=&quot;6.png-74.3kB&quot;&gt;&lt;br&gt;选择存储选项卡，添加虚拟硬盘，选择“使用现有的虚拟盘”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/iohij2ru4pkxpbfebk6bkmkr/7.png&quot; alt=&quot;7.png-91.3kB&quot;&gt;&lt;br&gt;选中刚才虚拟机位置中的OS X 10.11 El Capitan GM by TechReviews.vmdk：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/d889hj120u4g9p1fmoe2lwom/8.png&quot; alt=&quot;8.png-68.7kB&quot;&gt;&lt;br&gt;关闭VirtualBox，使用管理员打开命令提示符，输入以下命令：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;cd &amp;quot;C:\Program Files\Oracle\VirtualBox\&amp;quot;  
+VBoxManage.exe modifyvm &amp;quot;Mac OS X&amp;quot; --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff  
+VBoxManage setextradata &amp;quot;Mac OS X&amp;quot; &amp;quot;VBoxInternal/Devices/efi/0/Config/DmiSystemProduct&amp;quot; &amp;quot;iMac11,3&amp;quot;  
+VBoxManage setextradata &amp;quot;Mac OS X&amp;quot; &amp;quot;VBoxInternal/Devices/efi/0/Config/DmiSystemVersion&amp;quot; &amp;quot;1.0&amp;quot;  
+VBoxManage setextradata &amp;quot;Mac OS X&amp;quot; &amp;quot;VBoxInternal/Devices/efi/0/Config/DmiBoardProduct&amp;quot; &amp;quot;Iloveapple&amp;quot;  
+VBoxManage setextradata &amp;quot;Mac OS X&amp;quot; &amp;quot;VBoxInternal/Devices/smc/0/Config/DeviceKey&amp;quot; &amp;quot;ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc&amp;quot;  
+VBoxManage setextradata &amp;quot;Mac OS X&amp;quot; &amp;quot;VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC&amp;quot; 1&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/bujulnrbmoe3k7c7boghxwvs/9.png&quot; alt=&quot;9.png-72.2kB&quot;&gt;&lt;br&gt;关闭命令行，重新打开VirtualBox，启动Mac虚拟机。假如出现以下错误：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/zwks3o2ct4rtbpfwzjmmsqid/10.png&quot; alt=&quot;10.png-127.8kB&quot;&gt;&lt;br&gt;则重新进行虚拟机设置，切换到系统选项卡，芯片组选择“PIIX3”，勾选“启用EFI”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/4d1pebl9vmxz4h79e6d8kbr5/11.png&quot; alt=&quot;11.png-74.1kB&quot;&gt;&lt;br&gt;成功的启动如下所示，Mac虚拟机进行初始化操作：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/41vw1oj2d7mv88su0l79v0tx/12.png&quot; alt=&quot;12.png-72.7kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;Mac虚拟机设置&quot;&gt;&lt;a href=&quot;#Mac虚拟机设置&quot; class=&quot;headerlink&quot; title=&quot;Mac虚拟机设置&quot;&gt;&lt;/a&gt;Mac虚拟机设置&lt;/h3&gt;&lt;p&gt;初始化完成后，虚拟机进行设置界面，在国家设置中勾选“Show All”，选择China：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/5urf2vwy50vn631l456k4das/13.png&quot; alt=&quot;13.png-274.7kB&quot;&gt;&lt;br&gt;设置键盘： &lt;img src=&quot;http://static.zybuluo.com/xmy2017/1n9n7dd0znefrc26chwjdjwh/14.png&quot; alt=&quot;14.png-256.2kB&quot;&gt;&lt;br&gt;询问是否导入其他电脑的信息到系统中，选择不导入：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/g9gpl5ci46oab36skc3bnrgl/15.png&quot; alt=&quot;15.png-271.9kB&quot;&gt;&lt;br&gt;询问是否启用位置服务，选择不启用：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/w8g3ap2h1lv435uw7nl26bdl/16.png&quot; alt=&quot;16.png-262kB&quot;&gt;&lt;br&gt;询问是否输入Apple ID，选择不输入：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/u84nq379khvoyfrmcbugcar0/17.png&quot; alt=&quot;17.png-275.1kB&quot;&gt;&lt;br&gt;查看并同意软件证书：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/st32pfkc896x5sur0558ldy8/18.png&quot; alt=&quot;18.png-288.5kB&quot;&gt;&lt;br&gt;设置登录用户名和密码，此处将键盘切换回ABC，否则不好输入英文：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/cg23pmqzwlm8pdalzika7knw/19.png&quot; alt=&quot;19.png-249.6kB&quot;&gt;&lt;br&gt;设置时区，我选择的是广州：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/4v47o0l6hmmt1aqi9l25vm1h/20.png&quot; alt=&quot;20.png-281.8kB&quot;&gt;&lt;br&gt;询问是否将电脑信息发送给Apple，选择不发送：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/m05imkue5wclxenv94pfen6d/21.png&quot; alt=&quot;21.png-258.3kB&quot;&gt;&lt;br&gt;至此，设置便完成了，成功登录系统：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/nto6ddx2ghncg1tdrv31x4yj/22.png&quot; alt=&quot;22.png-1621.4kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;设置语言为中文&quot;&gt;&lt;a href=&quot;#设置语言为中文&quot; class=&quot;headerlink&quot; title=&quot;设置语言为中文&quot;&gt;&lt;/a&gt;设置语言为中文&lt;/h3&gt;&lt;p&gt;登录后发现语言是英文的，调整成中文。选择“System Preferences”-“Language &amp;amp; Region”：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/hpv5rm1pv07glef3r682m9re/23.png&quot; alt=&quot;23.png-894.7kB&quot;&gt;&lt;br&gt;删除English：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/f9jl543canelrn4l05kf7r4w/24.png&quot; alt=&quot;24.png-796.1kB&quot;&gt;&lt;br&gt;重启系统：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/r9cra2688f1zpy60yh5eewjw/25.png&quot; alt=&quot;25.png-1119.4kB&quot;&gt;&lt;br&gt;重启后语言便调整成中文了：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/evtqs2gwpmoqczl7fs2pi502/26.png&quot; alt=&quot;26.png-1079.4kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;设置输入法切换&quot;&gt;&lt;a href=&quot;#设置输入法切换&quot; class=&quot;headerlink&quot; title=&quot;设置输入法切换&quot;&gt;&lt;/a&gt;设置输入法切换&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/categories/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+    
+      <category term="移动安全" scheme="http://yoursite.com/tags/%E7%A7%BB%E5%8A%A8%E5%AE%89%E5%85%A8/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python文档查阅工具pydoc</title>
+    <link href="http://yoursite.com/2020/01/15/Python%E6%96%87%E6%A1%A3%E6%9F%A5%E9%98%85%E5%B7%A5%E5%85%B7pydoc/"/>
+    <id>http://yoursite.com/2020/01/15/Python%E6%96%87%E6%A1%A3%E6%9F%A5%E9%98%85%E5%B7%A5%E5%85%B7pydoc/</id>
+    <published>2020-01-15T01:40:49.000Z</published>
+    <updated>2020-01-15T01:45:27.018Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;pydoc是python3自带的文档查阅工具，使用它可以很方便地查阅类和方法的文档。我们可以查看它的参数如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 –m pydoc&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/79f08oviswiofy2eckom8dsd/4.png&quot; alt=&quot;4.png-83.6kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;使用浏览器查阅文档&quot;&gt;&lt;a href=&quot;#使用浏览器查阅文档&quot; class=&quot;headerlink&quot; title=&quot;使用浏览器查阅文档&quot;&gt;&lt;/a&gt;使用浏览器查阅文档&lt;/h3&gt;&lt;p&gt;使用pydoc启动一个web服务器：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 –m pydoc –b&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;-b表示启动浏览器，这时启动的端口是随机的：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/cd9bmwgf34nbrg5lybnnocjx/5.png&quot; alt=&quot;5.png-11.7kB&quot;&gt;&lt;br&gt;可以使用-p指定端口，命令如下：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;python3 –m pydoc –p 1234&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/3g69t2ps2opxbr16o3n518am/6.png&quot; alt=&quot;6.png-11.4kB&quot;&gt;&lt;br&gt;在浏览器中访问如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/72ej1r6l420lhylr2pl6o872/7.png&quot; alt=&quot;7.png-139.6kB&quot;&gt;&lt;br&gt;想查阅类或者方法的文档直接在Get那里输入类名或者方法名就可以了，例如查阅str的文档：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/mg5v1v9dgwjtiq632aormvpn/8.png&quot; alt=&quot;8.png-146.1kB&quot;&gt;&lt;/p&gt;
+&lt;h3 id=&quot;使用终端查阅文档&quot;&gt;&lt;a href=&quot;#使用终端查阅文档&quot; class=&quot;headerlink&quot; title=&quot;使用终端查阅文档&quot;&gt;&lt;/a&gt;使用终端查阅文档&lt;/h3&gt;
+    
+    </summary>
+    
+    
+      <category term="Python学习" scheme="http://yoursite.com/categories/Python%E5%AD%A6%E4%B9%A0/"/>
+    
+    
+      <category term="Python学习" scheme="http://yoursite.com/tags/Python%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
   
   <entry>
     <title>Ubuntu安装Metasploit</title>
@@ -585,108 +643,6 @@ make&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;测试是否安装成功：&lt;/p&gt;
     
     
       <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>密码爆破神器Hydra</title>
-    <link href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/"/>
-    <id>http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/</id>
-    <published>2020-01-14T03:16:42.000Z</published>
-    <updated>2020-01-14T03:24:02.496Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;Hydra，希腊神话中的怪兽许德拉，就是九头蛇，长这样：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/vmxy5ido5vv1fnfd1i6rgn9a/1.jpg&quot; alt=&quot;1.jpg-53.7kB&quot;&gt;&lt;br&gt;好吧，扯远了，我们要说的是Kali中的密码爆破神器Hydra。Hydra支持多种协议的破解，Github上的地址是：&lt;br&gt;&lt;a href=&quot;https://github.com/vanhauser-thc/thc-hydra&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/vanhauser-thc/thc-hydra&lt;/a&gt;&lt;br&gt;Hydra也有Windows版本，Github上的地址是：&lt;br&gt;&lt;a href=&quot;https://github.com/maaaaz/thc-hydra-windows&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;https://github.com/maaaaz/thc-hydra-windows&lt;/a&gt;&lt;br&gt;Hydra目前支持的协议如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/bnrm4tbimh2gmgbc5l0h4l16/2.png&quot; alt=&quot;2.png-89kB&quot;&gt;&lt;/p&gt;
-&lt;h3 id=&quot;Hydra选项&quot;&gt;&lt;a href=&quot;#Hydra选项&quot; class=&quot;headerlink&quot; title=&quot;Hydra选项&quot;&gt;&lt;/a&gt;Hydra选项&lt;/h3&gt;&lt;p&gt;Hydra的选项如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/1auhz1empzqwnjynmz25c24o/3.png&quot; alt=&quot;3.png-365.5kB&quot;&gt;&lt;br&gt;翻译一下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;-R　　继续从上一次中断的进度进行破解
--I　　忽略已存在的存储文件（不需要等待10秒）
--S　　采用SSL连接
--s PORT    　指定非默认端口
--l LOGIN or –L FILE     -l后接用户名，-L后接用户字典文件
--p PASS or –P FILE      -p后接密码，-P后接密码字典文件
--x MIN:MAX:CHARSET　密码生成器，输入“-x -h”来获取帮助信息
--y      禁止在暴力破解中使用符号
--e    nsr    n表示空密码，s表示用户名和密码相同，r表示用户名和密码翻转
--u    围绕用户名进行探测
--C FILE      字典格式为login:pass，取代-L/-P选项
--M FILE      同时攻击多个服务，每行一个服务名，冒号后接端口
--o FILE   指定结果输出文件，用于替代标准屏幕输出
--b FORMAT    指定输出文件格式，有text（默认）、json、jsonv1
--f/-F        当找到第一个匹配结果时中断破解（-M: -f表示
-中断单个目标的破解；-F表示中断全部目标的破解）
--t TASKS    指定单个目标的线程数（默认是16）
--T TASKS    指定全部目标的线程数（默认是64）
--w/-W TIME    指定最大响应超时时间（默认是32）/每个线程的间隔时间（默认是0）
--c TIME        指定每次登录的尝试等待时间
--4/-6        指定IPv4（默认）/IPv6
--v/-V/-d    -v显示全部信息，-V显示每次登录的用户名/密码，-d显示debug信息
--O      使用SSL v2和v3
--q      不显示连接出错信息
--U      显示详细的服务模块信息
--h      显示帮助信息
-server      指定目标，可以是域名、IP或者网段
-service     指定服务协议（选项后面列出了支持的服务）
-OPT     一些支持的额外选项&lt;/code&gt;&lt;/pre&gt;&lt;h3 id=&quot;Hydra举例&quot;&gt;&lt;a href=&quot;#Hydra举例&quot; class=&quot;headerlink&quot; title=&quot;Hydra举例&quot;&gt;&lt;/a&gt;Hydra举例&lt;/h3&gt;&lt;p&gt;hydra –help最后有相应举例：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/dwtn4x3x74l07htsyhz1une8/4.png&quot; alt=&quot;4.png-50.9kB&quot;&gt;&lt;br&gt;这些都比较简直，就不详细说明了。举一个比较复杂的例子，http的爆破。使用-U可以显示模块的详细信息，查看http-post-form的信息如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/28c7xxhkepr8x57qrh92hffr/8.png&quot; alt=&quot;8.png-358kB&quot;&gt;&lt;br&gt;　　http爆破如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/6ju6cjmfc7iwe9m69pthhwa4/5.png&quot; alt=&quot;5.png-87.7kB&quot;&gt;&lt;br&gt;图中http-post-form分成了三个段，用冒号分隔。第一段是路径；第二段是提交的参数，爆破的参数用^^包围起来；第三段是错误的关键字。&lt;/p&gt;
-&lt;h3 id=&quot;密码生成器&quot;&gt;&lt;a href=&quot;#密码生成器&quot; class=&quot;headerlink&quot; title=&quot;密码生成器&quot;&gt;&lt;/a&gt;密码生成器&lt;/h3&gt;&lt;p&gt;来看一下Hydra的密码生成器功能。&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/7uvw6obv6eux1tiei5kt623c/6.png&quot; alt=&quot;6.png-101kB&quot;&gt;&lt;br&gt;用法是-x MIN:MAX:CHARSET，描述如下：&lt;/p&gt;
-&lt;pre&gt;&lt;code&gt;MIN        密码最小长度
-MAX        密码最大长度
-CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代表数字,特殊字符需要一个个写进来
--y        禁止使用占位符&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;使用如下：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/9lore17e0akks46cxt8bchsi/7.png&quot; alt=&quot;7.png-152.6kB&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="密码破解" scheme="http://yoursite.com/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
-    
-    
-      <category term="密码破解" scheme="http://yoursite.com/tags/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>htmlspecialchars-函数过滤XSS的问题</title>
-    <link href="http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/</id>
-    <published>2020-01-14T03:12:11.000Z</published>
-    <updated>2020-01-14T03:15:47.010Z</updated>
-    
-    <summary type="html">
-    
-      &lt;p&gt;htmlspecialchars()函数的功能如下：&lt;br&gt;htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。&lt;br&gt;预定义的字符是：&lt;/p&gt;
-&lt;pre&gt;&amp; （和号）成为 &amp;
-&quot; （双引号）成为 &quot;
-&#39; （单引号）成为 &#39;
-&lt; （小于）成为 &lt;
-&gt; （大于）成为 &gt;&lt;/pre&gt;
-
-&lt;p&gt;它的语法如下：&lt;/p&gt;
-&lt;pre&gt;htmlspecialchars(string,flags,character-set,double_encode)&lt;/pre&gt;
-
-&lt;p&gt;其中第二个参数flags需要重要注意，很多开发者就是因为没有注意到这个参数导致使用htmlspecialchars()函数过滤XSS时被绕过。因为flags参数对于引号的编码如下：&lt;br&gt;可用的引号类型：&lt;br&gt;ENT_COMPAT - 默认。仅编码双引号。&lt;br&gt;ENT_QUOTES - 编码双引号和单引号。&lt;br&gt;ENT_NOQUOTES - 不编码任何引号。&lt;br&gt;默认是只编码双引号的！默认只编码双引号！默认只编码双引号……重要的事情说三遍！！！&lt;/p&gt;
-&lt;p&gt;于是看下面的代码：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php   
-    $name = $_GET[&amp;quot;name&amp;quot;];  
-    $name = htmlspecialchars($name);  
-?&amp;gt;  
-
-&amp;lt;input type=&amp;#39;text&amp;#39; value=&amp;#39;&amp;lt;?php echo $name?&amp;gt;&amp;#39;&amp;gt; &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;轻松绕过：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/f9w12k9hraepojh38e1nxswn/image_1bftto1vk1obet9dau91pkq11559.png&quot; alt=&quot;image_1bftto1vk1obet9dau91pkq11559.png-94.4kB&quot;&gt;&lt;br&gt;加上ENT_QUOTES参数：&lt;/p&gt;
-&lt;pre&gt;&lt;code class=&quot;php&quot;&gt;&amp;lt;?php   
-    $name = $_GET[&amp;quot;name&amp;quot;];  
-    $name = htmlspecialchars($name, ENT_QUOTES);  
-?&amp;gt;  
-
-&amp;lt;input type=&amp;#39;text&amp;#39; value=&amp;#39;&amp;lt;?php echo $name?&amp;gt;&amp;#39;&amp;gt; &lt;/code&gt;&lt;/pre&gt;
-&lt;p&gt;发现无法绕过了：&lt;br&gt;&lt;img src=&quot;http://static.zybuluo.com/xmy2017/kufslbaofmpw2naqxv7fci8l/image_1bfttoqf017gu1b911n0sqt91d9cm.png&quot; alt=&quot;image_1bfttoqf017gu1b911n0sqt91d9cm.png-20.9kB&quot;&gt;&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="XSS" scheme="http://yoursite.com/categories/XSS/"/>
-    
-    
-      <category term="XSS" scheme="http://yoursite.com/tags/XSS/"/>
     
   </entry>
   

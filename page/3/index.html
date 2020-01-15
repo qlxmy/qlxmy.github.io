@@ -209,6 +209,220 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/" class="post-title-link" itemprop="url">密码爆破神器Hydra</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:16:42 / 修改时间：11:24:02" itemprop="dateCreated datePublished" datetime="2020-01-14T11:16:42+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AF%86%E7%A0%81%E7%A0%B4%E8%A7%A3/" itemprop="url" rel="index">
+                    <span itemprop="name">密码破解</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>Hydra，希腊神话中的怪兽许德拉，就是九头蛇，长这样：<br><img src="http://static.zybuluo.com/xmy2017/vmxy5ido5vv1fnfd1i6rgn9a/1.jpg" alt="1.jpg-53.7kB"><br>好吧，扯远了，我们要说的是Kali中的密码爆破神器Hydra。Hydra支持多种协议的破解，Github上的地址是：<br><a href="https://github.com/vanhauser-thc/thc-hydra" target="_blank" rel="noopener">https://github.com/vanhauser-thc/thc-hydra</a><br>Hydra也有Windows版本，Github上的地址是：<br><a href="https://github.com/maaaaz/thc-hydra-windows" target="_blank" rel="noopener">https://github.com/maaaaz/thc-hydra-windows</a><br>Hydra目前支持的协议如下：<br><img src="http://static.zybuluo.com/xmy2017/bnrm4tbimh2gmgbc5l0h4l16/2.png" alt="2.png-89kB"></p>
+<h3 id="Hydra选项"><a href="#Hydra选项" class="headerlink" title="Hydra选项"></a>Hydra选项</h3><p>Hydra的选项如下：<br><img src="http://static.zybuluo.com/xmy2017/1auhz1empzqwnjynmz25c24o/3.png" alt="3.png-365.5kB"><br>翻译一下：</p>
+<pre><code>-R　　继续从上一次中断的进度进行破解
+-I　　忽略已存在的存储文件（不需要等待10秒）
+-S　　采用SSL连接
+-s PORT    　指定非默认端口
+-l LOGIN or –L FILE     -l后接用户名，-L后接用户字典文件
+-p PASS or –P FILE      -p后接密码，-P后接密码字典文件
+-x MIN:MAX:CHARSET　密码生成器，输入“-x -h”来获取帮助信息
+-y      禁止在暴力破解中使用符号
+-e    nsr    n表示空密码，s表示用户名和密码相同，r表示用户名和密码翻转
+-u    围绕用户名进行探测
+-C FILE      字典格式为login:pass，取代-L/-P选项
+-M FILE      同时攻击多个服务，每行一个服务名，冒号后接端口
+-o FILE   指定结果输出文件，用于替代标准屏幕输出
+-b FORMAT    指定输出文件格式，有text（默认）、json、jsonv1
+-f/-F        当找到第一个匹配结果时中断破解（-M: -f表示
+中断单个目标的破解；-F表示中断全部目标的破解）
+-t TASKS    指定单个目标的线程数（默认是16）
+-T TASKS    指定全部目标的线程数（默认是64）
+-w/-W TIME    指定最大响应超时时间（默认是32）/每个线程的间隔时间（默认是0）
+-c TIME        指定每次登录的尝试等待时间
+-4/-6        指定IPv4（默认）/IPv6
+-v/-V/-d    -v显示全部信息，-V显示每次登录的用户名/密码，-d显示debug信息
+-O      使用SSL v2和v3
+-q      不显示连接出错信息
+-U      显示详细的服务模块信息
+-h      显示帮助信息
+server      指定目标，可以是域名、IP或者网段
+service     指定服务协议（选项后面列出了支持的服务）
+OPT     一些支持的额外选项</code></pre><h3 id="Hydra举例"><a href="#Hydra举例" class="headerlink" title="Hydra举例"></a>Hydra举例</h3><p>hydra –help最后有相应举例：<br><img src="http://static.zybuluo.com/xmy2017/dwtn4x3x74l07htsyhz1une8/4.png" alt="4.png-50.9kB"><br>这些都比较简直，就不详细说明了。举一个比较复杂的例子，http的爆破。使用-U可以显示模块的详细信息，查看http-post-form的信息如下：<br><img src="http://static.zybuluo.com/xmy2017/28c7xxhkepr8x57qrh92hffr/8.png" alt="8.png-358kB"><br>　　http爆破如下：<br><img src="http://static.zybuluo.com/xmy2017/6ju6cjmfc7iwe9m69pthhwa4/5.png" alt="5.png-87.7kB"><br>图中http-post-form分成了三个段，用冒号分隔。第一段是路径；第二段是提交的参数，爆破的参数用^^包围起来；第三段是错误的关键字。</p>
+<h3 id="密码生成器"><a href="#密码生成器" class="headerlink" title="密码生成器"></a>密码生成器</h3><p>来看一下Hydra的密码生成器功能。<br><img src="http://static.zybuluo.com/xmy2017/7uvw6obv6eux1tiei5kt623c/6.png" alt="6.png-101kB"><br>用法是-x MIN:MAX:CHARSET，描述如下：</p>
+<pre><code>MIN        密码最小长度
+MAX        密码最大长度
+CHARSET     指定字符集，a代表小写字母，A代表大写字母，1代表数字,特殊字符需要一个个写进来
+-y        禁止使用占位符</code></pre><p>使用如下：<br><img src="http://static.zybuluo.com/xmy2017/9lore17e0akks46cxt8bchsi/7.png" alt="7.png-152.6kB"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/%E5%AF%86%E7%A0%81%E7%88%86%E7%A0%B4%E7%A5%9E%E5%99%A8Hydra/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="小蚂蚁的小窝">
+      <meta itemprop="description" content="我见青山多妩媚，料青山见我应如是">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="xmy's house">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/" class="post-title-link" itemprop="url">htmlspecialchars-函数过滤XSS的问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2020-01-14 11:12:11 / 修改时间：11:15:47" itemprop="dateCreated datePublished" datetime="2020-01-14T11:12:11+08:00">2020-01-14</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/XSS/" itemprop="url" rel="index">
+                    <span itemprop="name">XSS</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>htmlspecialchars()函数的功能如下：<br>htmlspecialchars() 函数把预定义的字符转换为 HTML 实体。<br>预定义的字符是：</p>
+<pre>& （和号）成为 &
+" （双引号）成为 "
+' （单引号）成为 '
+< （小于）成为 <
+> （大于）成为 ></pre>
+
+<p>它的语法如下：</p>
+<pre>htmlspecialchars(string,flags,character-set,double_encode)</pre>
+
+<p>其中第二个参数flags需要重要注意，很多开发者就是因为没有注意到这个参数导致使用htmlspecialchars()函数过滤XSS时被绕过。因为flags参数对于引号的编码如下：<br>可用的引号类型：<br>ENT_COMPAT - 默认。仅编码双引号。<br>ENT_QUOTES - 编码双引号和单引号。<br>ENT_NOQUOTES - 不编码任何引号。<br>默认是只编码双引号的！默认只编码双引号！默认只编码双引号……重要的事情说三遍！！！</p>
+<p>于是看下面的代码：</p>
+<pre><code class="php">&lt;?php   
+    $name = $_GET[&quot;name&quot;];  
+    $name = htmlspecialchars($name);  
+?&gt;  
+
+&lt;input type=&#39;text&#39; value=&#39;&lt;?php echo $name?&gt;&#39;&gt; </code></pre>
+<p>轻松绕过：<br><img src="http://static.zybuluo.com/xmy2017/f9w12k9hraepojh38e1nxswn/image_1bftto1vk1obet9dau91pkq11559.png" alt="image_1bftto1vk1obet9dau91pkq11559.png-94.4kB"><br>加上ENT_QUOTES参数：</p>
+<pre><code class="php">&lt;?php   
+    $name = $_GET[&quot;name&quot;];  
+    $name = htmlspecialchars($name, ENT_QUOTES);  
+?&gt;  
+
+&lt;input type=&#39;text&#39; value=&#39;&lt;?php echo $name?&gt;&#39;&gt; </code></pre>
+<p>发现无法绕过了：<br><img src="http://static.zybuluo.com/xmy2017/kufslbaofmpw2naqxv7fci8l/image_1bfttoqf017gu1b911n0sqt91d9cm.png" alt="image_1bfttoqf017gu1b911n0sqt91d9cm.png-20.9kB"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/01/14/htmlspecialchars-%E5%87%BD%E6%95%B0%E8%BF%87%E6%BB%A4XSS%E7%9A%84%E9%97%AE%E9%A2%98/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/14/XXE%E6%B3%A8%E5%85%A5/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -922,20 +1136,20 @@ SetHandler application/x-httpd-php
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">27</span>
+          <span class="site-state-item-count">29</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-count">12</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -979,7 +1193,7 @@ SetHandler application/x-httpd-php
 <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2020-01-14</span>
+  <span itemprop="copyrightYear">2020-01-15</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

@@ -1,6 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>VBox安装Mac-OS-10-11</title>
+    <url>/2020/01/15/VBox%E5%AE%89%E8%A3%85Mac-OS-10-11/</url>
+    <content><![CDATA[<p>这是个记录贴，第一次使用VirtualBox安装Mac OS，记录一下安装的过程以及遇到的问题。<br>安装的Mac OS版本是10.11，百度网盘分享链接：<a href="https://pan.baidu.com/s/1pNoRvkf" target="_blank" rel="noopener">https://pan.baidu.com/s/1pNoRvkf</a> 密码：s6hm。</p>
+<h3 id="VirtualBox设置"><a href="#VirtualBox设置" class="headerlink" title="VirtualBox设置"></a>VirtualBox设置</h3><p>打开VirtualBox，新建虚拟机，设置虚拟机名称和类型：<br><img src="http://static.zybuluo.com/xmy2017/4tgtctat4dy5nnrzk8hajl34/1.png" alt="1.png-78kB"><br>内存保持默认（2048MB）:<br><img src="http://static.zybuluo.com/xmy2017/a3o2p2yufocbod7cpyfbckhg/2.png" alt="2.png-62.4kB"><br>选择“不添加虚拟硬盘”：<br><img src="http://static.zybuluo.com/xmy2017/96vbjh53h1bev48ozd6n4d59/3.png" alt="3.png-83.4kB"><br>选择“继续”：<br><img src="http://static.zybuluo.com/xmy2017/vro6jf7z2j4yf7dwo25x47yw/4.png" alt="4.png-92kB"><br>设置虚拟机选项，去除软驱，将硬盘调整至第一位，取消“启用EFI”:<br><img src="http://static.zybuluo.com/xmy2017/mew4fowtmpccbs0z9jz6sr7j/5.png" alt="5.png-74.7kB"><br>将下载的Mac OS镜像解压，把OS X 10.11 El Capitan GM by TechReviews.vmdk复制到Mac OS X虚拟机位置中：<br> <img src="http://static.zybuluo.com/xmy2017/1rkvzdcnc4hjjo2c4f58prql/6.png" alt="6.png-74.3kB"><br>选择存储选项卡，添加虚拟硬盘，选择“使用现有的虚拟盘”：<br><img src="http://static.zybuluo.com/xmy2017/iohij2ru4pkxpbfebk6bkmkr/7.png" alt="7.png-91.3kB"><br>选中刚才虚拟机位置中的OS X 10.11 El Capitan GM by TechReviews.vmdk：<br><img src="http://static.zybuluo.com/xmy2017/d889hj120u4g9p1fmoe2lwom/8.png" alt="8.png-68.7kB"><br>关闭VirtualBox，使用管理员打开命令提示符，输入以下命令：</p>
+<pre><code>cd &quot;C:\Program Files\Oracle\VirtualBox\&quot;  
+VBoxManage.exe modifyvm &quot;Mac OS X&quot; --cpuidset 00000001 000106e5 00100800 0098e3fd bfebfbff  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiSystemProduct&quot; &quot;iMac11,3&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiSystemVersion&quot; &quot;1.0&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/efi/0/Config/DmiBoardProduct&quot; &quot;Iloveapple&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/smc/0/Config/DeviceKey&quot; &quot;ourhardworkbythesewordsguardedpleasedontsteal(c)AppleComputerInc&quot;  
+VBoxManage setextradata &quot;Mac OS X&quot; &quot;VBoxInternal/Devices/smc/0/Config/GetKeyFromRealSMC&quot; 1</code></pre><p><img src="http://static.zybuluo.com/xmy2017/bujulnrbmoe3k7c7boghxwvs/9.png" alt="9.png-72.2kB"><br>关闭命令行，重新打开VirtualBox，启动Mac虚拟机。假如出现以下错误：<br><img src="http://static.zybuluo.com/xmy2017/zwks3o2ct4rtbpfwzjmmsqid/10.png" alt="10.png-127.8kB"><br>则重新进行虚拟机设置，切换到系统选项卡，芯片组选择“PIIX3”，勾选“启用EFI”：<br><img src="http://static.zybuluo.com/xmy2017/4d1pebl9vmxz4h79e6d8kbr5/11.png" alt="11.png-74.1kB"><br>成功的启动如下所示，Mac虚拟机进行初始化操作：<br><img src="http://static.zybuluo.com/xmy2017/41vw1oj2d7mv88su0l79v0tx/12.png" alt="12.png-72.7kB"></p>
+<h3 id="Mac虚拟机设置"><a href="#Mac虚拟机设置" class="headerlink" title="Mac虚拟机设置"></a>Mac虚拟机设置</h3><p>初始化完成后，虚拟机进行设置界面，在国家设置中勾选“Show All”，选择China：<br><img src="http://static.zybuluo.com/xmy2017/5urf2vwy50vn631l456k4das/13.png" alt="13.png-274.7kB"><br>设置键盘： <img src="http://static.zybuluo.com/xmy2017/1n9n7dd0znefrc26chwjdjwh/14.png" alt="14.png-256.2kB"><br>询问是否导入其他电脑的信息到系统中，选择不导入：<br><img src="http://static.zybuluo.com/xmy2017/g9gpl5ci46oab36skc3bnrgl/15.png" alt="15.png-271.9kB"><br>询问是否启用位置服务，选择不启用：<br><img src="http://static.zybuluo.com/xmy2017/w8g3ap2h1lv435uw7nl26bdl/16.png" alt="16.png-262kB"><br>询问是否输入Apple ID，选择不输入：<br><img src="http://static.zybuluo.com/xmy2017/u84nq379khvoyfrmcbugcar0/17.png" alt="17.png-275.1kB"><br>查看并同意软件证书：<br><img src="http://static.zybuluo.com/xmy2017/st32pfkc896x5sur0558ldy8/18.png" alt="18.png-288.5kB"><br>设置登录用户名和密码，此处将键盘切换回ABC，否则不好输入英文：<br><img src="http://static.zybuluo.com/xmy2017/cg23pmqzwlm8pdalzika7knw/19.png" alt="19.png-249.6kB"><br>设置时区，我选择的是广州：<br><img src="http://static.zybuluo.com/xmy2017/4v47o0l6hmmt1aqi9l25vm1h/20.png" alt="20.png-281.8kB"><br>询问是否将电脑信息发送给Apple，选择不发送：<br><img src="http://static.zybuluo.com/xmy2017/m05imkue5wclxenv94pfen6d/21.png" alt="21.png-258.3kB"><br>至此，设置便完成了，成功登录系统：<br><img src="http://static.zybuluo.com/xmy2017/nto6ddx2ghncg1tdrv31x4yj/22.png" alt="22.png-1621.4kB"></p>
+<h3 id="设置语言为中文"><a href="#设置语言为中文" class="headerlink" title="设置语言为中文"></a>设置语言为中文</h3><p>登录后发现语言是英文的，调整成中文。选择“System Preferences”-“Language &amp; Region”：<br><img src="http://static.zybuluo.com/xmy2017/hpv5rm1pv07glef3r682m9re/23.png" alt="23.png-894.7kB"><br>删除English：<br><img src="http://static.zybuluo.com/xmy2017/f9jl543canelrn4l05kf7r4w/24.png" alt="24.png-796.1kB"><br>重启系统：<br><img src="http://static.zybuluo.com/xmy2017/r9cra2688f1zpy60yh5eewjw/25.png" alt="25.png-1119.4kB"><br>重启后语言便调整成中文了：<br><img src="http://static.zybuluo.com/xmy2017/evtqs2gwpmoqczl7fs2pi502/26.png" alt="26.png-1079.4kB"></p>
+<h3 id="设置输入法切换"><a href="#设置输入法切换" class="headerlink" title="设置输入法切换"></a>设置输入法切换</h3><p>我设置的输入法是五笔型，但发现输入法切换存在问题，无法切换到中文输入法。选择“快捷键”-“输入源”，勾选“选择输入菜单的下一个输入源”：<br><img src="http://static.zybuluo.com/xmy2017/0rxh23r1i5gi3u3xgw5uyc1u/27.png" alt="27.png-881.4kB"><br>发现了警告信息，提示快捷键（Ctrl+Space）冲突了，换一个快捷键就可以了：<br><img src="http://static.zybuluo.com/xmy2017/xe2cma775bnvubzyf08m0puv/28.png" alt="28.png-884.6kB"></p>
+]]></content>
+      <categories>
+        <category>移动安全</category>
+      </categories>
+      <tags>
+        <tag>移动安全</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Python文档查阅工具pydoc</title>
+    <url>/2020/01/15/Python%E6%96%87%E6%A1%A3%E6%9F%A5%E9%98%85%E5%B7%A5%E5%85%B7pydoc/</url>
+    <content><![CDATA[<p>pydoc是python3自带的文档查阅工具，使用它可以很方便地查阅类和方法的文档。我们可以查看它的参数如下：</p>
+<pre><code>python3 –m pydoc</code></pre><p><img src="http://static.zybuluo.com/xmy2017/79f08oviswiofy2eckom8dsd/4.png" alt="4.png-83.6kB"></p>
+<h3 id="使用浏览器查阅文档"><a href="#使用浏览器查阅文档" class="headerlink" title="使用浏览器查阅文档"></a>使用浏览器查阅文档</h3><p>使用pydoc启动一个web服务器：</p>
+<pre><code>python3 –m pydoc –b</code></pre><p>-b表示启动浏览器，这时启动的端口是随机的：<br><img src="http://static.zybuluo.com/xmy2017/cd9bmwgf34nbrg5lybnnocjx/5.png" alt="5.png-11.7kB"><br>可以使用-p指定端口，命令如下：</p>
+<pre><code>python3 –m pydoc –p 1234</code></pre><p><img src="http://static.zybuluo.com/xmy2017/3g69t2ps2opxbr16o3n518am/6.png" alt="6.png-11.4kB"><br>在浏览器中访问如下：<br><img src="http://static.zybuluo.com/xmy2017/72ej1r6l420lhylr2pl6o872/7.png" alt="7.png-139.6kB"><br>想查阅类或者方法的文档直接在Get那里输入类名或者方法名就可以了，例如查阅str的文档：<br><img src="http://static.zybuluo.com/xmy2017/mg5v1v9dgwjtiq632aormvpn/8.png" alt="8.png-146.1kB"></p>
+<h3 id="使用终端查阅文档"><a href="#使用终端查阅文档" class="headerlink" title="使用终端查阅文档"></a>使用终端查阅文档</h3><p>使用终端查阅某个类或者方法的文档，如下：</p>
+<pre><code>python3 –m pydoc str</code></pre><p><img src="http://static.zybuluo.com/xmy2017/iqbzqd0od4u6dkwpsqjfhipm/9.png" alt="9.png-52.5kB"></p>
+<h3 id="生成html文档"><a href="#生成html文档" class="headerlink" title="生成html文档"></a>生成html文档</h3><p>使用-w参数可以生成html文档，如下：</p>
+<pre><code>python3 –m pydoc –w str</code></pre><p><img src="http://static.zybuluo.com/xmy2017/16te2hsa86t141ho4tv8udw0/10.png" alt="10.png-5.6kB"><br>可以查看str.html的内容：<br><img src="http://static.zybuluo.com/xmy2017/u10fbegi29c1aq1e7zb96buy/11.png" alt="11.png-125.4kB"></p>
+<h3 id="查找模块信息"><a href="#查找模块信息" class="headerlink" title="查找模块信息"></a>查找模块信息</h3><p>使用-k参数可以查找相关模块的信息，如下：</p>
+<pre><code>python3 –m pydoc –k str</code></pre><p><img src="http://static.zybuluo.com/xmy2017/g1xrowfw7h1uvzuowgqsq4mi/12.png" alt="12.png-92.8kB"></p>
+]]></content>
+      <categories>
+        <category>Python学习</category>
+      </categories>
+      <tags>
+        <tag>Python学习</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Ubuntu安装Metasploit</title>
     <url>/2020/01/14/Ubuntu%E5%AE%89%E8%A3%85Metasploit/</url>
     <content><![CDATA[<h3 id="1-安装metasploit"><a href="#1-安装metasploit" class="headerlink" title="1.安装metasploit"></a>1.安装metasploit</h3><pre><code>curl https://raw.githubusercontent.com/rapid7/metasploit-omnibus/master/config/templates/metasploit-framework-wrappers/msfupdate.erb &gt; msfinstall
